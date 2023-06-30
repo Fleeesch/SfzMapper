@@ -1,0 +1,1349 @@
+---
+# = = = = = = = = = = = = = = = = = = = = = = = = = = =
+# - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Default Configuration
+# - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# = = = = = = = = = = = = = = = = = = = = = = = = = = =
+
+# DO NOT DELETE!!!
+# INTEGRAL TO THE SOFTWARE
+
+# ======================================================================================
+#     TEMPLATES
+# ======================================================================================
+
+templates:
+  #--
+  # This section will be merged with the template files in the ~~/tmp~~ folder
+  # and the template section of the local sfz-mapping file.
+  # ?? It's best to keep the structure in place and make changes with external files
+  # !! Do not remove the ~~Blank~~ entries
+  #--
+
+  # ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+  # Placeholder
+  # ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+
+  placeholder:
+    #--
+    # Can be used for dynamic replacement by using the Syntax ~~...PlaceholderName...~~
+    # ?? Placeholders from the raw YAML file will be replaced before any processing
+    #--
+    #??
+    # TestPlaceholder: 1.25
+    # ->
+    # Element: ...TestPlaceholder...
+    # ->
+    # Element: 1.25
+    #??
+    Blank: 0
+
+  # ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+  # Snippets
+  # ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+
+  snippet:
+    #--
+    # Pre-made dicts with optional arguments ~~$1-$10~~.
+    # State the arguments sequentially by using a list as the snippet reference.
+    #--
+    #??
+    # TestSnippet:
+    #   EntryA: $1
+    #   EntryB: 1.2
+    # ->
+    # pitch:
+    #   snippet: [TestSnippet, 99]
+    # ->
+    # pitch:
+    #   EntryA: 99
+    #   EntryB: 1.2
+    #??
+
+    Blank:
+      Blank: $1
+
+  # ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+  # Pattern
+  # ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+
+  pattern:
+    #--
+    # Patterns used by the mapping process.
+    #
+    # ...level... patterns are for level mapping (Y-Axis),
+    # ...tonal... patterns are for note mapping (X-Axis)
+    # !!Tonal patterns must have 12 entries to cover the western scale
+    #--
+
+    # * * * * * * * * * * * * * * *
+    # Level
+
+    level: # .f.string list.f.
+      pattern a: ["1", "2"]
+      pattern b: ["01", "02"]
+
+    # * * * * * * * * * * * * * * *
+    # Tonal
+
+    tonal: # .f.string list.f.
+      classic-h-sharp: [c, c#, d, d#, e, f, f#, g, g#, a, a#, h]
+      classic-b-sharp: [c, c#, d, d#, e, f, f#, g, g#, a, a#, b]
+      classic-h-b: [c, db, d, eb, e, f, gb, g, ab, a, bb, h]
+      classic-b-b: [c, db, d, eb, e, f, gb, g, ab, a, hb, b]
+
+# ======================================================================================
+#     SFZ
+# ======================================================================================
+
+# ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+# SFZ File
+# ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+
+sfz:
+  #--
+  # Global SFZ file information, shared accross all SFZ files created for an instrument.
+  #--
+
+  name: SFZ Instrument # First Part of the Sfz filename ++Sfz Name - Instrument Name
+
+  symbols:
+    #--
+    # !!Partially deprecated, but still mandatory for proper functionality
+    #--
+    tab: ". . " # .f.string.f.
+    line placeholder: "$l" # .f.string.f.
+    comment line placeholder: "$c" # .f.string.f.
+    comment:
+      line: "- - - - - - - - - - - - - - - - - - - - -" # .f.string.f.
+      subline: "* * * * * * * * * * * * * * * * *" # .f.string.f.
+      large header:
+        - "= = = = = = = = = = = = = = = = = = = = = = = = = =" # .f.string.f.
+        - "- - - - - - - - - - - - - - - - - - - - - - - - - -" # .f.string.f.
+
+# ======================================================================================
+#     SFZ : [INSTRUMENT] : [LOOKUP ELEMENT]
+# ======================================================================================
+
+# ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+# Instrument Sections
+# ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+
+instruments:
+  #--
+  # Every Instrument represents a single SFZ file that shares
+  # its attributes with all containing elements.
+  #
+  # .h.Name of element
+  # The instrument section name represents the second part of the sfz file.
+  # Use ~~$InstrumentName~~ to skip the first part of the name from the ~~sfz:~~ section.
+  #
+  # .h.Data-Structure
+  # sfz:
+  #   instruments:
+  #     Instrument Name:
+  #       ~~data **<- this section**~~
+  #       parts:
+  #         Part name:
+  #           Part data:
+  #           ...
+  # .h.copy:
+  # Copies YAML data from another instrument or sequentially if a list is given.
+  #--
+
+  copy: # copies YAML data from instrument(s) .f.str | [str, str].f.
+  hide: false # refuse to write instrument to a SFZ file, but still collect it's data .f.bool.f.
+  control: # .t.section.t.
+  envelopes: # .t.section.t.
+  curves: # .t.section.t.
+  variables: # .t.section.t.
+  release envelopes: # .t.section.t.
+  filters: # .t.section.t.
+  equalizers: # .t.section.t.
+  lfo: # .t.section.t.
+  choke: # .t.section.t.
+  velocity tracking: 0 # disable velocity tracking by default
+  keyswitches: # .t.section.t.
+    default: # default keyswitch on startup .t.string.t.
+
+# ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+# Include
+# ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+
+include:
+  #--
+  # Text from files that gets inserted before or after the
+  # generated content. Multiple files can be used when stating a list.
+  #--
+
+  pre: # .t.string | [string, string].t.
+  post: # .t.string | [string, string].t.
+
+# ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+# Insert Text
+# ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+
+insert:
+  #--
+  # Custom strings that can be inserted before or after the
+  # generated content. Multiple strings can be used when stating a list.
+  #--
+
+  pre: # .t.string | [string, string].t.
+  post: # .t.string | [string, string].t.
+
+# ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+# Control Section
+# ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+
+# * * * * * * * * * * * * * * *
+# Default Controls
+
+control:
+  #--
+  # ControlChange addresses that also function as a
+  # self-generating ARIA-control-map section.
+  #--
+
+  # ::: Listed :::
+
+  #--
+  # .h.Default controls, always listed
+  # !!Overriding ARIA's volume & pan controls seems to disable their interface-functionality
+  #--
+  # Bend
+  Bend:
+    cc: 20
+    default: 0
+
+  # Velocity
+  Velocity:
+    cc: 131
+    default: 0
+    hide: true
+
+  # Release Velocity
+  Release Velocity:
+    cc: 132
+    default: 0
+    hide: true
+
+  # Channel Aftertouch
+  Channel AT:
+    cc: 129
+    default: 0
+
+  # [!] Integrating ARIA Interface CCs seems to break them
+
+  # Volume
+  Volume:
+    cc: 7
+  #  default: 127
+
+  # Pan
+  Pan:
+    cc: 10
+    default: 64
+
+  # Send
+  #Send:
+  #  cc: 91
+  #  default: 0
+
+  # Pitchbend
+  Pitchbend:
+    cc: 128
+    default: 0
+
+  # ::: Unlisted (SFZ2) :::
+
+  #--
+  # .h.Unlisted ARIA Controls
+  #--
+
+  # Polyphonic Aftertouch
+  Poly AT:
+    cc: 130
+    default: 0
+    hide: True
+
+  # Note Number
+  Note:
+    cc: 133
+    hide: true
+
+  # Gate (activated on Note press, can be used for legato modulation)
+  Gate:
+    cc: 134
+    hide: true
+
+  # Random Unipolar
+  Random Unipolar:
+    cc: 135
+    hide: true
+
+  # Random Bipolar
+  Random Bipolar:
+    cc: 136
+    hide: true
+
+  # Alternate
+  Alternate:
+    cc: 137
+    hide: true
+
+  # ::: Unlisted (ARIA) :::
+
+  # Key Delta
+  Keydelta:
+    cc: 140
+    hide: True
+
+  # Key Delta (Absolute)
+  Keydelta ABS:
+    cc: 141
+    hide: True
+
+  # Host BPM
+  Host BPM:
+    cc: 142
+    hide: True
+
+  # Host Transport
+  Host Transport:
+    cc: 143
+    hide: True
+
+  # Host Samplerate
+  Host Samplerate:
+    cc: 144
+    hide: True
+
+  # Time Engine
+  Time Engine:
+    cc: 145
+    hide: True
+
+  # Time Signature A
+  Timesig A:
+    cc: 146
+    hide: True
+
+  # Time Signature B
+  Timesig B:
+    cc: 147
+    hide: True
+
+  # Quarter Note Position (Absolute)
+  QN Position ABS:
+    cc: 148
+    hide: True
+
+  # Quarter Note Position
+  QN Position:
+    cc: 149
+    hide: True
+
+  # Time since Instrument Creation
+  Time Instrument:
+    cc: 150
+    hide: True
+  
+  # Time since Last Key has been pressed
+  Time LastKeyOn:
+    cc: 151
+    hide: True
+
+  # Time since Last Key has been released
+  Time LastKeyOff:
+    cc: 152
+    hide: True
+
+  # Count of Keys pressed
+  Keycount:
+    cc: 153
+    hide: True
+
+  # Count of active Voices
+  Voicecount:
+    cc: 154
+    hide: True
+
+  # Playahead offset of any sample
+  Offset:
+    cc: 155
+    hide: True
+
+# * * * * * * * * * * * * * * *
+# Control Element
+
+control element:
+  #--
+  # Element of the control section.
+  #--
+  cc: 0 # cc number .t.int.t.
+  default: null # default value .f.0 - 127.f.
+  hide: false # hide control from ARIA control section .t.bool.t.
+  show cc: true # show cc index number .t.bool.t.
+
+# ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+# Equalizers
+# ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+
+# * * * * * * * * * * * * * * *
+# Equalizers
+
+equalizers:
+  #--
+  # Prepared Equalizers, limited to the SFZ-3-band-count.
+  # ??One equalizer can be inserted per part.
+  #--
+
+  Blank:
+    dynamic: true
+    bands:
+      - [0, 1, 2]
+      - [200, 20, 2]
+
+# * * * * * * * * * * * * * * *
+# Equalizers : Element
+
+equalizer element:
+  #--
+  # Placeholder section defining an equalizer.
+  #--
+  dynamic: false # dynamic recalculation of times during playback .t.bool.t.
+  bands: # list of bands .t.[double, double, double].t. .f.[frequency, gain, bandwidth].f.
+
+# * * * * * * * * * * * * * * *
+# Part : Equalizers : Element
+
+part equalizer element:
+  #--
+  # Equalizer section of a part.
+  # A part can load a prepared instrument equalizer by stating its name as a section.
+  # Individual modulation can then be applied per part.
+  #
+  # .h.Data-Structure
+  # equalizer:
+  #   ~~equalizer name:~~
+  #     modulation:
+  #       ...
+  #--
+
+  modulation:
+    band 1: # .t.section.t.
+    band 2: # .t.section.t.
+    band 3: # .t.section.t.
+
+# * * * * * * * * * * * * * * *
+# Band Modulation
+
+equalizer band modulation:
+  #--
+  # Equalizer band modulation within a part.
+  # Follows the conventional modulation section.
+  #--
+  frequency:
+    type: # type of modulation .t.string.t. .f.add, multiply.f.
+    compensation: # compensation factor .t.double.t.
+    cc: # .t.section.t.
+    lfo: # .t.section.t.
+    variables: # .t.section.t.
+    envelopes: # .t.section.t.
+  bandwidth:
+    type: # type of modulation .t.string.t. .f.add, multiply.f.
+    compensation: # compensation factor .t.double.t.
+    cc: # .t.section.t.
+    lfo: # .t.section.t.
+    variables: # .t.section.t.
+    envelopes: # .t.section.t.
+  gain:
+    type: # type of modulation .t.string.t. .f.add, multiply.f.
+    compensation: # compensation factor .t.double.t.
+    cc: # .t.section.t.
+    lfo: # .t.section.t.
+    variables: # .t.section.t.
+    envelopes: # .t.section.t.
+
+# ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+# Filters
+# ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+
+# * * * * * * * * * * * * * * *
+# Filter Section
+
+filters:
+  #--
+  # Filter section of an instrument.
+  # Use the section for declaration so that the filters
+  # can be implemented in a part.
+  #--
+  Blank: # name of the filter .t.string.t.
+    type: lowpass
+    poles: 2
+    frequency: 100
+
+# * * * * * * * * * * * * * * *
+# Filter : Element
+
+filter element:
+  #--
+  # Placeholder values for a newly created filter.
+  #
+  # .h.Types
+  # ~~lowpass, highpass, bandpass,~~
+  # ~~notch, allpass, comb, pink~~
+  # ~~low-shelf, high-shelf, eq~~
+  #
+  # .h.Poles
+  # lowpass: ~~1,2,4,6~~
+  # highpass: ~~1,2,4,6~~
+  # bandpass: ~~1,2~~
+  # allpass: ~~1~~
+  # !!Highpass 1-Pole seems to be ignored by ARIA
+  #--
+
+  type: lowpass # type of filter .t.string.t.
+  poles: 1 # count of poles .t.int.t.
+  frequency: 9600 # frequency .t.int.t. ++seems to be maxed at 9600
+  resonance: 0 # resonance .t.double.t.
+  gain: 0 # gain on shelf and eq .t.double.t.
+  key tracking: 0 # key tracking .t.int.t.
+  key tracking center: 64 # .t.int.t.
+  velocity tracking: 0 # .t.int.t.
+
+# * * * * * * * * * * * * * * *
+# Part : Filter : Element
+
+part filter element:
+  #--
+  # Filter that gets inserted into a part.
+  # Parts allow a maximum of 2 filters, limited by the SFZ standard.
+  #
+  # The filter source comes from a declared filter in the instrument section,
+  # modulation can be applied individually per part.
+  #
+  # .h.Data-Structure
+  # filters:
+  #   ~~filter name:~~
+  #     modulation:
+  #       ...
+  #--
+
+  modulation:
+    frequency:
+      type: # type of modulation .t.string.t. .f.add, multiply.f.
+      compensation: # compensation factor .t.double.t.
+      cc: # .t.section.t.
+      lfo: # .t.section.t.
+      variables: # .t.section.t.
+      envelopes: # .t.section.t.
+    resonance:
+      type: # type of modulation .t.string.t. .f.add, multiply.f.
+      compensation: # compensation factor .t.double.t.
+      cc: # .t.section.t.
+      lfo: # .t.section.t.
+      variables: # .t.section.t.
+      envelopes: # .t.section.t.
+    gain:
+      type: # type of modulation .t.string.t. .f.add, multiply.f.
+      compensation: # compensation factor .t.double.t.
+      cc: # .t.section.t.
+      lfo: # .t.section.t.
+      variables: # .t.section.t.
+      envelopes: # .t.section.t.
+
+# ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+# Release Envelopes
+# ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+
+# * * * * * * * * * * * * * * *
+# Envelopes
+
+release envelopes:
+  #--
+  # Release Envelopes are triggered by release samples.
+  #--
+
+  Normal: # name of release envelope .t.string.t.
+    decay:
+    points: # list of envelope points [double, double]
+      - [0, 1]
+
+# * * * * * * * * * * * * * * *
+# Release Envelope Element
+
+release envelope element:
+  #--
+  # Placeholder values for a newly created release envelope.
+  #--
+  points:
+    decay: # amount of volume lost by time [double] ++high number -> faster decay
+    points: # envelope points .t.[double, double].t. .f.[time, depth].f.
+
+# ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+# Modulation
+# ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+
+# * * * * * * * * * * * * * * *
+# Modulation Element
+
+modulation element:
+  #--
+  # Universal modulation section,
+  # used for almost any element that allow modulation.
+  #
+  # Has a compensation factor that offsets the source value
+  # based on the given factor, respecting other modulators
+  # accessing the attribute, too.
+  #
+  # Curves can be used to change the shape of the modulation
+  # by stating the name of a curve created in the instrument section.
+  #
+  # !!Some modulations are not possible because of a lack of support, use trial and error
+  #--
+  #--
+  # .h.Modulating Modulators
+  # Envelopes and LFOs can act as modulators,
+  # while at the same time be modulated by other modulators.
+  #--
+  #??
+  # Modulating the pitch using an LFO,
+  # while the Modwheel controls the LFOs depth.
+  #
+  # pitch:
+  #   modulation:
+  #     lfo:
+  #       TestLFO:
+  #         modulation:
+  #           cc:
+  #             Modwheel:
+  #               detph: 100
+  #??
+
+  depth: 0 # depth of modulation .t.double.t.
+  curve: # curve name used from lookup .t.string.t.
+  compensate: 0 # compensation factor .t.double.t.
+  smooth: 25 # smoothing factor .t.double.t. ++higher value -> smoother signal
+  step: 0 # stepping of the signal .t.double.t. ++leave at 0 for a smooth signal
+  modulation: # nested modulation .t.section.t. ++supported by envelopes and LFOs
+
+# * * * * * * * * * * * * * * *
+# Envelope Element
+
+envelope element:
+  #--
+  # Part Envelope element used for modulation.
+  # Can be modulated itself for continuous depth control.
+  #--
+
+  depth: 0 # depth of modulation .t.double.t.
+  modulation: # nested modulation .t.section.t.
+
+# * * * * * * * * * * * * * * *
+# Modulation Envelope Element
+
+modulation envelope element:
+  #--
+  # Modulation of an envelope itself in the instrument section.
+  # Allows the modulation of the individual envelope points,
+  # including point-exclusive curve assignment.
+  #
+  # .h.Data-Structure
+  # envelopes:
+  #   ~~name of envelope:~~
+  #     modulation:
+  #       cc:
+  #         ~~name of control:~~
+  #           ~~points: <- **this section**~~
+  #             - [time, level] .t.[double, double].t.
+  #             - [time, level] .t.[double, double].t.
+  #             [h] Alternatively....
+  #             - [time, curve, level, curve] .t.[double, str, double, str].t.
+  #             - [time, curve, level, curve] .t.[double, str, double, str].t.
+  #             - ...
+  #       variables:
+  #       ...
+  # ??stating a curve value of null will ignore the curve assigment
+  #--
+
+  points: # modulation of envelope points .t.section.t.
+
+# * * * * * * * * * * * * * * *
+# Adsr Modulation Element
+
+modulation adsr element:
+  #--
+  # Modulation section of an ADSR segment.
+  #--
+  depth: 0 # depth value .t.double.t.
+  curve: # curve assignment .t.string.t.
+  compensate: 0 # compensation factor .t.double.t.
+  smooth: 25 # smoothing factor .t.double.t. ++higher value -> smoother signal
+  step: 0 # stepping of the signal .t.double.t. ++leave at 0 for a smooth signal
+
+# * * * * * * * * * * * * * * *
+# Adsr Modulation Element
+
+modulation lfo element:
+  #--
+  # Modulation through an LFO within a part.
+  # The depth can be dynamically modulated with a CC.
+  #--
+  depth: # depth of modulation .t.double.t.
+  compensate: 0 # compensation factor .t.double.t.
+  modulation: # depth modulation by cc .t.section.t.
+    cc: # .t.section.t.
+
+# ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+# Pitchbend
+# ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+
+pitchbend:
+  #--
+  # Pitchbend modulation section of a part.
+  #--
+  range: 100 # range in cents .t.int | [int, int].t. .f.up, down.f.
+  step: 0 # step value (quantization) .t.int | [int, int].t. .f.up, down.f.
+  smooth: 25 # smoothing factor .t.double.t. ++higher value -> smoother signal
+
+# ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+# Variables
+# ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+
+variable element:
+  #--
+  # Variable declaration of an instrument.
+  # Can be modulated by CCs in order to change its value.
+  #
+  # .h.variables:
+  #   ~~variable name:~~
+  #     modulation:
+  #       cc:
+  #         ~~name of control]:~~
+  #           depth:
+  #           curve:
+  #           smooth
+  #         ...
+  #--
+  modulation:
+    type: # type of modulation .t.string.t. .f.add, multiply.f.
+
+# ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+# Amp EG
+# ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+
+amp eg:
+  #--
+  # Placeholder values for a newly created Volume ADSR.
+  #
+  # .h.Data-Structure
+  # amp eg:
+  #   ~~ampeg segment:~~
+  #     level:
+  #     shape:
+  #     modulation:
+  #       cc:
+  #         ~~control name:~~
+  #           depth:
+  #       ....
+  #--
+  dynamic: false # dynamic recalcuation of segment time during playback .t.bool.t.
+  delay:
+    level: 0 # level of value .t.double.t.
+    modulation: # see default modulation section -> .t.section.t.
+      type:
+      cc:
+  attack:
+    level: 0.005
+    shape: 0 # shape of the segment .t.double.t. ++<0 -> slow attack, >0 -> fast attack
+    modulation:
+      type:
+      cc:
+  hold:
+    level: 0
+    modulation:
+      type:
+      cc:
+  decay:
+    level: 0.01
+    shape: 0
+    modulation:
+      type:
+      cc:
+  sustain:
+    level: 1
+    modulation:
+      type:
+      cc:
+  release:
+    level: 0.01
+    shape: 0
+    modulation:
+      type:
+      cc:
+
+# ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+# LFO
+# ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+
+lfo:
+  #--
+  # Placeholder values for a newly created LFO in the instrument section.
+  #
+  # .h.Waveform-Names
+  # sine, tri, saw, hold, square
+  #--
+  waveform: 0 # waveform name or number .t.string | int.t.
+  rate: 1 # rate of LFO .t.double.t. .f.hertz.f.
+  phase: 0 # phase offset .t.double.t. .f.0-1.f.
+  delay: 0 # delay before LFO starts .t.double.t.
+  fade: 0 # fade-in of LFO depth .t.double.t.
+  offset: 0 # !!no idea what this one does
+  smooth: 25 # smoothing of the lfo .t.double.t.
+
+  sub:
+    #--
+    # Additional LFOs layered on top of the original LFO
+    #--
+    mix: 1 # mix-in factor .t.double.t.
+    list: # list of LFOs .t.[double,double,double,double].t. .f.[waveform, ratio, scale, offset].f.
+
+  modulation:
+    #--
+    # Modulation of the LFO attributes.
+    #
+    # The rules of the default modulation section
+    # can be applied here for almost every element.
+    # !!Some elements might not support certain modulation, use trial and error
+    #--
+    depth add:
+      cc:
+      compensation:
+      lfo:
+      envelopes:
+    depth:
+      cc:
+      compensation:
+      lfo:
+      envelopes:
+    waveform:
+      type:
+      compensation:
+      cc:
+      envelopes:
+    rate:
+      type:
+      compensation:
+      cc:
+      lfo:
+      envelopes:
+    phase:
+      type:
+      compensation:
+      cc:
+      envelopes:
+    delay:
+      type:
+      compensation:
+      cc:
+      envelopes:
+    fade:
+      type:
+      compensation:
+      cc:
+      envelopes:
+    smooth:
+      type:
+      compensation:
+      cc:
+      envelopes:
+    offset:
+      type:
+      compensation:
+      cc:
+      envelopes:
+
+# ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+# Envelopes
+# ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+
+envelopes:
+  #--
+  # Envelope declaration of an instrument section.
+  #
+  # .h.Sustain Point
+  # Sustain point of the envelope will be automatically
+  # calculated if no number is given.
+  # A ~~positive number~~ will lead to a fixed sustain point,
+  # a ~~negative number~~ will use a sustain point at the relative
+  # offset from the last point.
+  #
+  # .h.Curves
+  # The ~~curve~~ tag within the point map
+  # can be used to apply a custom curve
+  # to the envelope segment
+  #
+  # ??Modulation can be applied individually per point **-> See Section**
+  # ??Left out point values will be replaced with default values
+  #--
+  sustain: # sustain point [int]
+  dynamic: false # dynamic recalculation of times during playback .t.bool.t.
+  modulation: # .t.section.t.
+    type:
+    cc:
+  points: # list of points .t.[double,double,double,double].t. .f.[time, level, curvature, curve].f.
+
+# ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+# Curves
+# ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+
+# Element in curve lookup
+
+curve element:
+  #--
+  # Placeholder values for a declared curve.
+  #
+  # .h.Non-linearity
+  # If an exponent is defined the curve will be interpolated
+  # for the given section.
+  # .h.Resolution
+  # By picking a resolution value between 0 - 1 the amount of points
+  # can be reduced. Lower values will reduce the curve points to its fraction.
+  # .h.Stepped Curve
+  # Activating ~~steps~~ will transform the curve into a stepped one,
+  # eliminating any interpolation introduced by the SFZ playback engine.
+  #--
+  resolution: 1 # factor for point reduction .t.double.t.
+  points: # list of points .t.[double,double,double].t. .f.[level, position, exponent].f.
+  steps: false # creates a stepped curve .t.bool.t.
+
+# ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+# Choke
+# ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+
+choke:
+  #--
+  # Group Choke section of a part.
+  #
+  # Groups are created on the fly when a name is given
+  # and used universally accross the instrument
+  #
+  # The creation of Choke Groups always leadds to phantom zones
+  # that act as choke agents for samples. It's a hack that
+  # allows authentic Choke Groups with crossfaded samples.
+  #
+  # .h.Polymono
+  # Bypasses the "group" and "off by" settings and creates
+  # per note mono-groups. Used for authentic per-key-monophony.
+  #--
+
+  polymono: false # polyphonic one-voice-per-key overrite .t.bool.t.
+  auto increment: false # pics the next available group number .t.bool.t.
+  group: # group the part belongs tobelonging .t.string.t.
+  off by: # group that chokes the part .t.string.t.
+  hard off: false # ignores the voice release when turned on .t.bool.t.
+  time: # fadeout time .t.double.t.
+  shape: # fadeout curve shape .t.double.t.
+
+# ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+# Pedals
+# ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+
+pedals:
+  #--
+  # Reconfiguration of standardized Footpedals.
+  # Empty fields will jump back to default values.
+  #--
+
+  sustain:
+    bypass: false # bypass pedal .t.bool.t.
+    cc: # cc number of pedal .t.int.t.
+    off value: # off value .t.double.t.
+  sostenuto:
+    bypass: false # bypass pedal .t.bool.t.
+    cc: # cc number of pedal .t.int.t.
+    off value: # off value .t.double.t.
+
+# ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+# Attributes
+# ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+
+attributes:
+  #--
+  # Universal placeholder values for attributes.
+  # Attributes are defined by their modulability.
+  #
+  # .h.Compensation
+  # The ~~modulation->compensation~~ value has 2 options:
+  #   ~~sum:~~ sum of all compensations
+  #   ~~average:~~ average of all compensation
+  # If left empty the ~~sum~~ value will be used by default.
+  #--
+
+  level: 0 # level of attribute .t.double.t.
+  modulation:
+    compensation: # compensation type .t.string.t. .f.sum, average.f.
+    type: # type of modulation .t.string.t. .f.add, multiply.f.
+    lfo: # .t.section.t. ++->see modulation section
+    cc: # .t.section.t. ++->see modulation section
+    envelopes: # .t.section.t. ++->see modulation section
+    variables: # .t.section.t. ++->see modulation section
+
+# ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+# Range Element
+# ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+
+range element:
+  #--
+  # Placeholder for elements that cover ranges,
+  #--
+  low: 0 # low range .t.int.t.
+  high: 127 # high range .t.int.t.
+
+# ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+# Keyswitch Element
+# ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+
+keyswitch element:
+  #--
+  # Keyswitch declaration in the instrument section.
+  # The name of the keyswitch defines its name in the ARIA interface.
+  # !!~~label~~ is deprecated
+  #--
+  label: Keyswitch # label shown in the ARIA interface .t.string.t.
+  note: # single note or section .t.int | [int, int].t. .f.0-127.f.
+
+# ======================================================================================
+#     SFZ : [INSTRUMENT] : [PART]
+# ======================================================================================
+
+# ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+# Part Section
+# ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+
+# :-:-:-:-:-:-:-:-:-:-:-:-:-:
+#   Attribute Information
+
+parts:
+  #--
+  # Part of an Instrument, representing a sound source with its modulations.
+  # It is summarized via the ~~<group>~~ tag and includes every single sample
+  # or generator individually as a ~~<region>~~.
+  #
+  # Parts are used for...
+  #   - multi-layered sounds
+  #   - keyswitches
+  #   - conditional sounds
+  #   - hack-layers //(mute keys)//
+  #
+  # .h.Trigger
+  #   ~~normal  -> ~~Always trigger the note
+  #   ~~release -> ~~Trigger on release
+  #   ~~first   -> ~~First key when no other key is activated
+  #   ~~second  -> ~~Follow-up keys after the first key is held down
+  # ??Release Trigger always requires amnactivated Voice in ARIAs playback engine
+  #
+  # .h.Generator
+  #   Access to ARIAs internal sound generators.
+  #   Overwrites existing samples since there can be only one sound source.
+  #
+  # .h.Playmode
+  #   ~~normal   -> ~~Straight forward playing of the sample
+  #   ~~shot     -> ~~One Shot trigger, play full sample, ignoring the note release
+  #   ~~loop all -> ~~Loop sample all the time even during note release
+  #   ~~loop     -> ~~Loop sample, but escape the loop during note release
+  #
+  # .h.Roundrobin
+  #   ~~sequence  -> ~~Play Roundrobins in a sequential order
+  #   ~~random    -> ~~Play Roundrobins in a randomized order
+  #   ~~hybrid    -> ~~Split Roundrobins into two sequential sections, each using a randomized order
+  #   !!~~Hybrid~~ is broken in ARIA because the sequence tracking isn't globally synced
+  #
+  # .h.Include
+  #   A single item or list of files that can be included.
+  #   The raw content of the file is inserted into the final SFZ, without any pre-processing or checkups.
+  #
+  # .h.Insert
+  #   Raw text input that is inserted into the final SFZ file.
+  #   This section can make use of several sections of the instrument by using
+  #   a syntax of ~~{section:elementName}~~:
+  #   ~~{envelopes:EnvelopeName}          ->~~ Envelope SFZ tag
+  #   ~~{curves:CurveName}                ->~~ Curve Index Number
+  #   ~~{filters:FilterName}              ->~~ Local Filter Index (nothing or "2")
+  #   ~~{lfo:LfoName}                     ->~~ LFO SFZ tag
+  #   ~~{control:ControlName}             ->~~ Control CC number
+  #   ~~{keyswitches:KeyswitchName}       ->~~ Low Keyswitch Range
+  #   ~~{keyswitches_high:KeyswitchName}  ->~~ High Keyswitch Range
+  #
+  # .h.Keyrange
+  #   The ~~force note~~ attribute removes tonal mapping and instead moves all the simples
+  #   to the one given note, while still respecting the ~~extend~~ setting.
+  #
+  # .h.Snippet
+  #   Inserts a snippet from the template section.
+  #   Can be a single word or a list, where the first entry is
+  #   the snippet name and the following entries are values for placeholder wildcards
+  #   defined in the snippets using ~~$1-$10~~.
+  #
+  # .h.Copy
+  #   Copies YAML data from another part or sequentially from other parts if a list is given.
+  #   When using a list, each following entry in sequence will extend the previous entry,
+  #   leaving already set values unchanged.
+  #
+  # .h.Filters
+  #   Declare Sections with the name of a filter declared in the instrument section
+  #   to include the filter in the part.
+  #   ??There's a **maximum of 2 filters** enforced by the SFZ limitations.
+  #
+  # .h.Equalizer
+  #   Declare a Section with the name of a filter declared in the instrument section
+  #   to include the equalizer's bands.
+  #   ??There's **only one equalizer** per part that can be included.
+  #--
+
+  #--
+  # **Formatting**
+  #--
+  hide: false # keep part from being printed .t.bool.t.
+
+  #--
+  # **Section Settings**
+  #--
+  zones: # zones settings          .t.-> See Section.t.
+  splits: # splits settings        .t.-> See Section.t.
+  generator: # generator settings  .t.-> See Section.t.
+  samples: # samples settings      .t.-> See Section.t.
+  sounds: # sound settings         .t.-> See Section.t.
+  choke: # choke group settings    .t.-> See Section.t.
+  pedals:
+  
+  #--
+  # **Text Insertion**
+  #--
+  copy: # copy YAML data from part(s) .t.string | [string, string, ...].t. .f.partName | [partName1, partName2, ...].f.
+  snippet: # link to a snippet form the template section .t.string | [string, anything].t. .f.snippetName | [snippetName, Argument1, Argument2, ...].f.
+  include: # include data from an external file .t.file | [file_1, file_2,...].t. ++uses relative paths
+  insert: # insert string, optionally in post position when using an array .t.string | [string, string].t.
+
+  #--
+  # **Play Behaviour**
+  #--
+  trigger: Normal # trigger type .t.string.t. .f.normal, release, first, second.f.
+  playmode: Normal # play mode .t.string.t. .f.normal, shot, loop all, loop.f.
+  reverse: False # reverse playback direction .t.bool.t.
+
+  #--
+  # **Release Envelope**
+  #--
+  release envelope: # single release envelope .t.string.t. .f.release envelope name.f.
+
+  #--
+  # **MIDI Context - Tonal**
+  #--
+  note shift: 0 # internal note shift in semitones .t.int.t.
+  keyswitch: # keyswitch name .t.string.t. .f.name of keyswitch.f.
+  keyrange: # definiation of note range .t.section.t.
+    low: 0 # .t.int.t. .f.0-127.f.
+    high: 127 # .t.int.t. .f.0-127.f.
+    disable: false # disables triggering notes with keys .t.bool].t.
+    force note: # forces sample keyrange to a note (range) .t.int | [int, int].t.
+    extend: # extends notes range for non-tonal indexing and lowest and highest notes
+      low: 0 # .t.int.t. .f.0-127.f.
+      high: 0 # .t.int.t. .f.0-127.f.
+
+  #--
+  # **MIDI Context - Conditions**
+  #--
+  cc range: # CC range defining sample availability .t.int | [int, int].t.
+  cc trigger: # CC range used for triggering playback .t.int | [int, int].t.
+  program range: # Program Change range defining sample availability .t.int | [int, int].t.
+
+  #--
+  # **RoundRobins**
+  #--
+  roundrobin: sequence # RoundRobin bevaiour for part .t.string.t.
+
+  #--
+  # **Amp ADSR**
+  #--
+  amp eg: # AmpEG section .t.section.t. ++See ADSR section
+
+  #--
+  # **Audio Processors**
+  #--
+  filters: # filters to be included .t.section.t.
+  equalizer: # equalizer to be included .t.section.t.
+
+  #--
+  # **Pitchbend**
+  #--
+  pitchbend: # pitchbend modulation .t.section.t. ++-> See Pitchbend Section
+
+# ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+# Part : Zones
+# ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+
+zones:
+  #--
+  # Settings for the tonal distribution of a part.
+  #
+  # .h. Crossfade
+  #   Crossfades the tonal range by a given factor.
+  #   ??The crossfades are quantized by semitones, so a high sample count will require a higher factor.
+  #   !!The nature of sampling will most of the time result in a chorus effect
+  #
+  #   The crossfade-curve can be reconfigured:
+  #     ~~linear - ~~linear crossfade
+  #     ~~power - ~~steeper crossfade than linear
+  #--
+  
+  crossfade:
+    depth: 0.0 # crossfade factor .t.double.t. .f.0-1.f.
+    type: power # type of crossfade .t.string.t. .f.linear, power.f.
+
+# ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+# Part : Splits
+# ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+
+splits:
+  #--
+  # Settings for the dynamic distribution of a part.
+  #
+  # If a split contains crossfades that are controlled with something
+  # else than velocity, the level range is ignored since proper CC crossfading across the full range
+  # requires all samples of a note to be played at the same time
+  #
+  # .h.Curve
+  # Exponent that shift the splits aroung logarithmically.
+  # The shift also affects the (optionally) already implemented crossfades.
+  #   ~~values 0 - 1 ->~~ Compressed high level splits, gives low level splits more room
+  #   ~~value 1      ->~~ Splits are spread linear
+  #   ~~values > 1   ->~~ Compressed low level splits, gives high level splits more room
+  #
+  # .h.Crossfade: Control: Type
+  #   ~~velocity        ->~~ Uses default velocity detection for crossfades
+  #   ~~aftertouch      ->~~ Uses channel aftertouch for crossfades
+  #   ~~cc              ->~~ Uses control change with given index for crossfades
+  #   ~~[control name]  ->~~ Uses a control from the lookup section for crossfades
+  #
+  # .h.Crossfade: Control: Source:
+  #   ~~0 - 127         ->~~ Control Change number of type is cc
+  #   ~~[Control]       ->~~ Control name string for picking a control via lookup
+  #
+  # .h.Full Level
+  #   Set to true to ignore levels (keeping the crossfades)
+  #--
+  curve: 1.0 # exponent for shifting spits logarithmically .t.double.t.
+  full level: # .t.bool.t.
+  crossfade:
+    depth: 1.0 # crossfade depth .t.double.t.
+    type: power # type of crossfade .t.string.t. .f.linear, power.f.
+    control: # crossfade control settings .t.section.t.
+      type: velocity # type of crossfade control .t.string.t.
+      source: 0 # control source .t.int | string.t. .f.ccNumber | controlName.f.
+
+# ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+# Part : Generator
+# ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+
+generator:
+  #--
+  # ARIAs internal sound genator.
+  # When used it will automatically disable the "samples" section of a part.
+  #
+  # The keyrange of a part can be copied using the "part" tag, but the given
+  # part must have been created first.
+  #--
+  
+  type: silence # name of the generator .t.string.t.
+  note: 48 # root note of generator .t.int.t. .f.0-127.f.
+  range:
+    key:
+      low: 0 # low note .t.int.t. .f.0-127.f.
+      high: 127 # high note .t.int.t. .f.0-127.f.
+      part: # copy range from part .t.string.t. .f.partName.f.
+    level:
+      low: 0 # low level .t.int.t.
+      high: 127 # high level .t.int.t.
+
+# ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+# Part : Samples
+# ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+
+samples:
+  #--
+  # Samples settings of a part-
+  #
+  # .h.Include
+  # Allows only samples to be mapped that are recognized by the filter.
+  # ??Wildcard "*" is allowed. Can be a list for multiple inclusions.
+  #
+  # .h.Exclude
+  # Skips samples that match the filter.
+  # ??Wildcard "*" is allowed. Can be a list for multiple inclusions.
+  #
+  # .h.Pattern
+  # List that represents the attributes that can be read from a file.
+  # The filename is split using the "split" symbol from the settings and
+  # then scanned using the given pattern to get the attributes.
+  #
+  # ~~name        ->~~ Mame of the sample
+  # ~~note        ->~~ Tonal data, should be single note
+  # ~~level       ->~~ Level data, for level dynamic ordering
+  # ~~roundrobin  ->~~ Roundrobin information, for explict roundrobin declaration
+  #
+  # ??Any attribute that isn't listed here will act as placeholder.
+  #        
+  # .h.Pattern without a note attribute
+  # Relies on the"incremental start" and "incremental step" settings
+  # in order to spread the samples automatically across the tonal range.
+  # A new zone is created everytime there is a change in the name,
+  # which is typical for drum or noise samples.
+  #
+  # .h.Mapping: Type
+  # ~~tonal   -> ~~map the sample tonally
+  # ~~atonal  -> ~~map the sample atonally, using the note information given
+  #
+  # .h.Mapping: Type: Note
+  # ~~step  -> ~~Semitone to increment between notes
+  # ~~start -> ~~Starting note for atonal mapping
+  #
+  # .h.Mapping: Level: Pattern
+  # List of strings used for sorting levels by strings, not numbers.
+  # Can be used for classical velocity notation like ""mezzoforte"" or ""pianissimo""
+  #
+  # .h.Mapping: Note: Detection: Type
+  # ~~direct    -> ~~Grab note directly from a given number
+  # ~~list      -> ~~Use a lookup array from the templates files or a given list of note names
+  # ??The octave is filtered from a number filtered from the file note name
+  # !!List must contain 12 note names as strings, representing the western musical scale
+  #--
+  
+  location: Samples # relative path to the samples .t.string.t.
+  include: "*" # include filter .t.string | [string, string, ...].t.
+  exclude: "" # exclude filter .t.string | [string, string, ...].t.
+  split: _ # split symbol for grabbing file attributes .t.string.t.
+  pattern: [name, note, level, roundrobin] # file attribute pattern .t.[string, string, ...].t.
+  mapping: # mapping settings .t.section.t.
+    type: tonal # mapping type .t.string.t. .f.tonal, atonal.f.
+    level: # mapping settings regarding levels .t.section.t.
+      pattern: null # list for level lookup .t.[string, string, string, ...].t.
+      reverse: false # reverse order of levels .t.bool.t.
+    note: # mapping settings regarding tonality .t.section.t.
+      incremental start: 36 # atonal starting note .t.int.t. .f.0-127.f.
+      incremental step: 12 # atonal incrementation .t.int.t. .f.0-127.f.
+      detection: # note detection settings .t.section.t.
+        type: list # type of note detection .t.string.t. .f.list, direct.f.
+        pattern: classic-b-sharp # pattern used for array detection .t.string | [string, string, ...].t.
+
+# ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+# Part : Sounds
+# ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+
+sounds:
+  #--
+  # Settings for the sounds of a part.
+  #--
+  pitch tracking: 100 # default neutral pitch tracking .t.int.t.

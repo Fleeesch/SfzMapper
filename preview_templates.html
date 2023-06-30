@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Templates_01</title>
+<link rel="stylesheet" href="styles.css?v=20230630171631880798">
+</head>
+<body>
+<div id="grid-wrapper"><div id="settings-bar"> 
+<div id="settings-bar-wrapper">
+<div id="input-filter-wrapper" class="settings-bar-element"> 
+
+    <input type="text" id="input-filter" 
+    onkeyup="filterInput()" 
+    placeholder="Filter...">    
+     </div>
+<div class="flexsettings-bar-element">
+
+<input type="checkbox" id="input-check-comment-blocks" 
+class="settings-checkbox"  
+onchange="checkboxChange(event)" 
+checked="true">
+<label for="input-check-comment-blocks" 
+class="settings-checkbox-label">
+Block Comments
+</label>
+ </div> 
+<div class="settings-bar-element">
+
+<input type="checkbox" id="input-check-comments" 
+class="settings-checkbox"  
+onchange="checkboxChange(event)" 
+checked="true">
+<label for="input-check-comments" 
+class="settings-checkbox-label">
+Inline Comments
+</label>
+</div>
+<div class="settings-bar-element">
+
+<input type="checkbox" id="input-check-values" 
+class="settings-checkbox"  
+onchange="checkboxChange(event)" 
+checked="true">
+<label for="input-check-values" 
+class="settings-checkbox-label">
+Values
+</label>
+</div>
+<div class="settings-bar-element">
+
+<input type="checkbox" id="input-check-code" 
+class="settings-checkbox"  
+onchange="checkboxChange(event)" 
+checked="true">
+<label for="input-check-code" 
+class="settings-checkbox-label">
+Code
+</label>
+</div>
+<div class="settings-bar-element">
+
+<input type="checkbox" id="input-check-hints" 
+class="settings-checkbox"  
+onchange="checkboxChange(event)" 
+checked="true">
+<label for="input-check-hints" 
+class="settings-checkbox-label">
+Hints
+</label>
+</div>
+<div class="settings-bar-element">
+
+<input type="checkbox" id="input-check-warnings" 
+class="settings-checkbox"  
+onchange="checkboxChange(event)" 
+checked="true">
+<label for="input-check-warnings" 
+class="settings-checkbox-label">
+Warnings
+</label>
+</div>
+</div>
+</div>
+
+                        <div id=content>
+                        <ul class="level0">
+<li class=" entry level-0"><div class="line-wrapper level-0 file-reference first-file-entry" id="templates_01.yml" <span>templates_01.yml</span></div>
+</li>
+<li class=" entry level-0"><div class="line-wrapper level-0 file-reference " id="tuning.yml" <span>tuning.yml</span></div>
+</li>
+<li class="section level-0"><div onclick="copyLine(event)" class="line-wrapper level-0" id="snippet@tuning"><span class="section entry-attribute">snippet:</span></div>
+<ul class="level0">
+<li class="section level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="section entry-attribute">CurveTuning:</span></div>
+<ul class="level1">
+<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">steps:</span><span class="entry-value "> true</span></div>
+</li>
+<li class="section level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="section entry-attribute">points:</span></div>
+<ul class="level2">
+<li class="value-only entry level-3"><div onclick="" class="line-wrapper level-3" ><span class="entry-attribute "></span><span class="entry-value ">- [0, 0]</span></div>
+</li>
+<li class="value-only entry level-3"><div onclick="" class="line-wrapper level-3" ><span class="entry-attribute "></span><span class="entry-value ">- [0.0416666666666667, 0]</span></div>
+</li>
+<li class="value-only entry level-3"><div onclick="" class="line-wrapper level-3" ><span class="entry-attribute "></span><span class="entry-value ">- [0.0833333333333333, 0]</span></div>
+</li>
+<li class="value-only entry level-3"><div onclick="" class="line-wrapper level-3" ><span class="entry-attribute "></span><span class="entry-value ">- [0.125, 0]</span></div>
+</li>
+<li class="value-only entry level-3"><div onclick="" class="line-wrapper level-3" ><span class="entry-attribute "></span><span class="entry-value ">- [0.166666666666667, 0]</span></div>
+</li>
+<li class="value-only entry level-3"><div onclick="" class="line-wrapper level-3" ><span class="entry-attribute "></span><span class="entry-value ">- [0.208333333333333, 0]</span></div>
+</li>
+<li class="value-only entry level-3"><div onclick="" class="line-wrapper level-3" ><span class="entry-attribute "></span><span class="entry-value ">- [0.25, 0]</span></div>
+</li>
+<li class="value-only entry level-3"><div onclick="" class="line-wrapper level-3" ><span class="entry-attribute "></span><span class="entry-value ">- [0.291666666666667, 0]</span></div>
+</li>
+<li class="value-only entry level-3"><div onclick="" class="line-wrapper level-3" ><span class="entry-attribute "></span><span class="entry-value ">- [0.333333333333333, 0]</span></div>
+</li>
+<li class="value-only entry level-3"><div onclick="" class="line-wrapper level-3" ><span class="entry-attribute "></span><span class="entry-value ">- [0.375, 0]</span></div>
+</li>
+<li class="value-only entry level-3"><div onclick="" class="line-wrapper level-3" ><span class="entry-attribute "></span><span class="entry-value ">- [0.416666666666667, 0]</span></div>
+</li>
+<li class="value-only entry level-3"><div onclick="" class="line-wrapper level-3" ><span class="entry-attribute "></span><span class="entry-value ">- [0.458333333333333, 0]</span></div>
+</li>
+<li class="value-only entry level-3"><div onclick="" class="line-wrapper level-3" ><span class="entry-attribute "></span><span class="entry-value ">- [0.5, 0]</span></div>
+</li>
+<li class="value-only entry level-3"><div onclick="" class="line-wrapper level-3" ><span class="entry-attribute "></span><span class="entry-value ">- [0.541666666666667, 0]</span></div>
+</li>
+<li class="value-only entry level-3"><div onclick="" class="line-wrapper level-3" ><span class="entry-attribute "></span><span class="entry-value ">- [0.583333333333333, 0]</span></div>
+</li>
+<li class="value-only entry level-3"><div onclick="" class="line-wrapper level-3" ><span class="entry-attribute "></span><span class="entry-value ">- [0.625, 0]</span></div>
+</li>
+<li class="value-only entry level-3"><div onclick="" class="line-wrapper level-3" ><span class="entry-attribute "></span><span class="entry-value ">- [0.666666666666667, 0]</span></div>
+</li>
+<li class="value-only entry level-3"><div onclick="" class="line-wrapper level-3" ><span class="entry-attribute "></span><span class="entry-value ">- [0.708333333333333, 0]</span></div>
+</li>
+<li class="value-only entry level-3"><div onclick="" class="line-wrapper level-3" ><span class="entry-attribute "></span><span class="entry-value ">- [0.75, 0]</span></div>
+</li>
+<li class="value-only entry level-3"><div onclick="" class="line-wrapper level-3" ><span class="entry-attribute "></span><span class="entry-value ">- [0.791666666666667, 0]</span></div>
+</li>
+<li class="value-only entry level-3"><div onclick="" class="line-wrapper level-3" ><span class="entry-attribute "></span><span class="entry-value ">- [0.833333333333333, 0]</span></div>
+</li>
+<li class="value-only entry level-3"><div onclick="" class="line-wrapper level-3" ><span class="entry-attribute "></span><span class="entry-value ">- [0.875, 0]</span></div>
+</li>
+<li class="value-only entry level-3"><div onclick="" class="line-wrapper level-3" ><span class="entry-attribute "></span><span class="entry-value ">- [0.916666666666667, 0]</span></div>
+</li>
+<li class="value-only entry level-3"><div onclick="" class="line-wrapper level-3" ><span class="entry-attribute "></span><span class="entry-value ">- [0.958333333333333, 0]</span></div>
+</li>
+<li class="value-only entry level-3"><div onclick="" class="line-wrapper level-3" ><span class="entry-attribute "></span><span class="entry-value ">- [1, 0]</span></div>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+                        </div>
+                        
+<div id="sidebar">
+<div id="sidebar-wrapper">
+<div id="sidebar-collapse-button" 
+onclick="toggleSidePanel()">
+<div id="sidebar-collapse-button-content">
+</div>
+</div>
+<div id="table-of-contents">
+
+<ul id="table-of-contents-list"></ul>
+</div>
+</div>
+</div>
+</div><script type="text/javascript" src="toc.js" ></script>
+</body>
+</html>

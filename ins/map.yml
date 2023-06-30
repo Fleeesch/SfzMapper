@@ -1,0 +1,280 @@
+---
+sfz:
+  instruments:
+    Normal:
+      equalizers:
+
+      control:
+        Modwheel:
+          cc: 1
+        Breath:
+          cc: 2
+
+      keyswitches:
+        Normal:
+          label: Normal
+          note: 0
+      
+      variables:
+        Macro:
+          modulation:
+            cc:
+              Breath:
+                depth: 1
+      
+      envelopes:
+        simple:
+          sustain: 2
+          points:
+            - [0, 1, 0.5]
+            - [0.25, 0.5]
+            - [0.5, .251]
+            - [0.3, 0.1]
+          modulation:
+            cc:
+              Modwheel:
+                levels:
+                  - 0.5
+                  - 0.259
+                  - 0.2
+                times:
+                  - 0.3
+                  - 0.4
+                  - 0.1
+      
+      curves:
+        Cross:
+          resolution: 1
+          points:
+            - [0, 1]
+            - [0.25, 0.5]
+            - [0.75, 0]
+            - [1, 1]
+
+      parts:
+        Notes:
+          keyswitch: Normal
+
+          roundrobin: sequence
+          
+          splits:
+            curve: 1
+            crossfade:
+              depth: 1.0
+              control:
+                type: aftertouch
+
+          samples:
+            location: "samples/sustain"
+    
+    Drums:
+      curves:
+        Volume:
+          resolution: 0.1
+          points:
+            - [0, 0, 0.15]
+            - [1, 1]
+
+      control:
+        Mic Normal:
+          cc: 20
+          default: 127
+
+        Mic Room:
+          cc: 21
+          default: 0
+
+      parts:
+        M_Normal:
+          hide: true
+
+          cc range:
+            Mic Normal:
+              low: 1
+              high: 127
+
+          volume:
+            depth: 0
+            modulation:
+              cc:
+                Mic Normal:
+                  depth: 90
+                  compensate: 1
+                  curve: Volume
+
+        M_Room:
+          hide: true
+
+          cc range:
+            Mic Room:
+              low: 1
+              high: 127
+
+          volume:
+            depth: 0
+            modulation:
+              cc:
+                Mic Room:
+                  depth: 90
+                  compensate: 1
+                  curve: Volume
+
+        Mask:
+          hide: true
+
+          keyrange:
+            force note: 0
+            extend:
+              high: 1
+
+          sounds:
+            pitch tracking: 0
+
+          roundrobin: random
+
+          playmode: shot
+          
+          samples:
+            exclude: "*"
+            include: "*"
+            location: "samples/Drums"
+            pattern: [name, level, roundrobin]
+            y-map:
+              pattern: [V1, V2, V3]
+
+        # Drums
+        Kick:
+          copy: Mask
+
+          keyrange:
+            force note: 36
+
+          samples:
+            exclude: "*Room*"
+            include: "*Kick*"
+
+        Snare:
+          copy: Mask
+
+          keyrange:
+            force note: 38
+
+          samples:
+            exclude: "*Room*"
+            include: "*Snare*"
+
+        Hat:
+          copy: Mask
+
+          keyrange:
+            force note: 40
+
+          samples:
+            exclude: "*Room*"
+            include: "*Hat-Closed*"
+
+        Hat Open:
+          copy: Mask
+
+          keyrange:
+            force note: 42
+
+          samples:
+            exclude: "*Room*"
+            include: "*Hat-Open*"
+
+        # Kick
+        Kick Normal:
+          hide: false
+          copy:
+            - M_Normal
+            - Kick
+
+          samples:
+            exclude: "*Room*"
+            include: "*Kick*"
+
+        Kick Room:
+          hide: false
+          copy:
+            - M_Room
+            - Kick
+
+          samples:
+            exclude: ""
+            include: "*Kick**Room**"
+
+        # Snare
+        Snare Normal:
+          hide: false
+          copy:
+            - M_Normal
+            - Snare
+
+          samples:
+            exclude: "*Room*"
+            include: "*Snare*"
+
+        Snare Room:
+          hide: false
+          copy:
+            - M_Room
+            - Snare
+
+          samples:
+            exclude: ""
+            include: "*Snare**Room**"
+
+        # Hat
+        Hat Normal:
+          hide: false
+          copy:
+            - M_Normal
+            - Hat
+
+          choke:
+            off by: Hat
+
+          samples:
+            exclude: "*Room*"
+            include: "*Hat-Closed*"
+
+        Hat Room:
+          hide: false
+          copy:
+            - M_Room
+            - Hat
+
+          choke:
+            off by: Hat Room
+
+          samples:
+            exclude: ""
+            include: "*Hat-Closed**Room**"
+
+        # Hat Open
+        Hat Open Normal:
+          hide: false
+          copy:
+            - M_Normal
+            - Hat Open
+
+          choke:
+            off by: Hat
+
+          samples:
+            exclude: "*Room*"
+            include: "*Hat-Open*"
+
+        Hat Open Room:
+          hide: false
+          copy:
+            - M_Room
+            - Hat Open
+
+          choke:
+            off by: Hat Room
+
+          samples:
+            exclude: ""
+            include: "*Hat-Open**Room**"

@@ -1,0 +1,51 @@
+= SfzMapper
+Tool for creating complex SFZ maps on the fly.
+
+
+== HTML Preview
+
+Use the Default and Templates buttons to open an on-the-fly generated preview file
+
+=== Markup Language
+
+==== Symbols
+
+[style=none]
+- *pass:[:-)]* : Smiley
+- *pass:[<- -> <->]* : Left/Right Arrows
+- *pass:[^|]* : Up Arrow
+- *pass:[|^]* : Down Arrow
+- *pass:[=RESULT=]* : Result Marker
+
+=== Blocks
+
+Use The same symbol twice to encapsulate a comment block.
+
+[style=none]
+- *pass:[#--]* : Comment Block, for taking notes placed somewhere in the yaml
+- *pass:[#..]* : Code Block, formatted differently from a comment block to show code
+- *pass:[#??]* : Example Block, similar to Code Block, comes with an small "Example" header
+
+
+=== Markdown
+
+Formatting tools for comments.
+
+==== Double Encapsulation
+[style=none]
+- *pass:[.t.]* : Alternative Comment formatting +
+- *pass:[.f.]* : Another alternative Comment formatting +
+- *pass:[.h.]* : Header, comes with larger font and padding +
+- *pass:[~~]* : Syntax Highlight +
+- *pass:[""]* : Quote +
+- *pass:[**]* : Bold +
+- *pass:[//]* : Italic +
+- *pass:[__]* : Underline +
+- *pass:[--]* : Strike-through +
+
+==== Single Instance -> End of Line
+[style=none]
+- *pass:[++]* : Dimmed out hint +
+- *pass:[!!]* : Warning message +
+- *pass:[??]* : Hint message +
+

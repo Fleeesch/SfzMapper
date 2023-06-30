@@ -1,0 +1,28 @@
+templates:
+  
+  snippet:
+    SnippetTest:
+
+      level: 125
+
+sfz:
+  
+  name: Vibraphone Renaissance
+  
+  instruments:
+    
+    $Vibraphone:
+      
+      parts:
+        
+        Hit:
+          
+          pitch:
+              snippet: SnippetTest
+          
+          samples:
+            
+            location: samples/hit_unlooped
+            
+            pattern: [name, note]
+

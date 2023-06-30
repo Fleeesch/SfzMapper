@@ -1,0 +1,1955 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Defaults</title>
+<link rel="stylesheet" href="styles.css?v=20230630171630275943">
+</head>
+<body>
+<div id="grid-wrapper"><div id="settings-bar"> 
+<div id="settings-bar-wrapper">
+<div id="input-filter-wrapper" class="settings-bar-element"> 
+
+    <input type="text" id="input-filter" 
+    onkeyup="filterInput()" 
+    placeholder="Filter...">    
+     </div>
+<div class="flexsettings-bar-element">
+
+<input type="checkbox" id="input-check-comment-blocks" 
+class="settings-checkbox"  
+onchange="checkboxChange(event)" 
+checked="true">
+<label for="input-check-comment-blocks" 
+class="settings-checkbox-label">
+Block Comments
+</label>
+ </div> 
+<div class="settings-bar-element">
+
+<input type="checkbox" id="input-check-comments" 
+class="settings-checkbox"  
+onchange="checkboxChange(event)" 
+checked="true">
+<label for="input-check-comments" 
+class="settings-checkbox-label">
+Inline Comments
+</label>
+</div>
+<div class="settings-bar-element">
+
+<input type="checkbox" id="input-check-values" 
+class="settings-checkbox"  
+onchange="checkboxChange(event)" 
+checked="true">
+<label for="input-check-values" 
+class="settings-checkbox-label">
+Values
+</label>
+</div>
+<div class="settings-bar-element">
+
+<input type="checkbox" id="input-check-code" 
+class="settings-checkbox"  
+onchange="checkboxChange(event)" 
+checked="true">
+<label for="input-check-code" 
+class="settings-checkbox-label">
+Code
+</label>
+</div>
+<div class="settings-bar-element">
+
+<input type="checkbox" id="input-check-hints" 
+class="settings-checkbox"  
+onchange="checkboxChange(event)" 
+checked="true">
+<label for="input-check-hints" 
+class="settings-checkbox-label">
+Hints
+</label>
+</div>
+<div class="settings-bar-element">
+
+<input type="checkbox" id="input-check-warnings" 
+class="settings-checkbox"  
+onchange="checkboxChange(event)" 
+checked="true">
+<label for="input-check-warnings" 
+class="settings-checkbox-label">
+Warnings
+</label>
+</div>
+</div>
+</div>
+
+                        <div id=content>
+                        <ul class="level0">
+<li class="section level-0"><div onclick="copyLine(event)" class="line-wrapper level-0" id="templates@defaults"><span class="section entry-attribute">templates:</span></div>
+<ul class="level0">
+<li class=" entry level-0"><div class="comment comment-block"><p>
+<pre class="comment">This section will be merged with the template files in the <span class="string-syntax">/tmp</span> folder</pre>
+<pre class="comment">and the template section of the local sfz-mapping file.</pre>
+<pre class="comment"><span class="string-hint"> It's best to keep the structure in place and make changes with external files</span></pre>
+<pre class="comment"><span class="string-warning"> Do not remove the <span class="string-syntax">Blank</span> entries</span></pre>
+</p>
+</div>
+</li>
+<li class="section level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="section entry-attribute">placeholder:</span></div>
+<ul class="level1">
+<li class=" entry level-0"><div class="comment comment-block"><p>
+<pre class="comment">Can be used for dynamic replacement by using the Syntax <span class="string-syntax">...PlaceholderName...</span></pre>
+<pre class="comment"><span class="string-hint"> Placeholders from the raw YAML file will be replaced before any processing</span></pre>
+</p>
+</div>
+</li>
+<li class=" entry level-0"><div class="comment code-block example"><div class="example-block-header">Example</div><pre class="comment">TestPlaceholder: 1.25</pre>
+<pre class="comment"><span class="symbol-arrow-right"></span></pre>
+<pre class="comment">Element: ...TestPlaceholder...</pre>
+<pre class="comment"><span class="symbol-arrow-right"></span></pre>
+<pre class="comment">Element: 1.25</pre>
+</div>
+</li>
+<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">Blank:</span><span class="entry-value "> 0</span></div>
+</li>
+</ul>
+</li>
+<li class="section level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="section entry-attribute">snippet:</span></div>
+<ul class="level1">
+<li class=" entry level-0"><div class="comment comment-block"><p>
+<pre class="comment">Pre-made dicts with optional arguments <span class="string-syntax">$1-$10</span>.</pre>
+<pre class="comment">State the arguments sequentially by using a list as the snippet reference.</pre>
+</p>
+</div>
+</li>
+<li class=" entry level-0"><div class="comment code-block example"><div class="example-block-header">Example</div><pre class="comment">TestSnippet:</pre>
+<pre class="comment">  EntryA: $1</pre>
+<pre class="comment">  EntryB: 1.2</pre>
+<pre class="comment"><span class="symbol-arrow-right"></span></pre>
+<pre class="comment">pitch:</pre>
+<pre class="comment">  snippet: [TestSnippet, 99]</pre>
+<pre class="comment"><span class="symbol-arrow-right"></span></pre>
+<pre class="comment">pitch:</pre>
+<pre class="comment">  EntryA: 99</pre>
+<pre class="comment">  EntryB: 1.2</pre>
+</div>
+</li>
+<li class="section level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="section entry-attribute">Blank:</span></div>
+<ul class="level2">
+<li class=" entry level-3"><div onclick="copyLine(event)" class="line-wrapper level-3" ><span class="entry-attribute ">Blank:</span><span class="entry-value "> $1</span></div>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="section level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="section entry-attribute">pattern:</span></div>
+<ul class="level1">
+<li class=" entry level-0"><div class="comment comment-block"><p>
+<pre class="comment">Patterns used by the mapping process.</pre>
+</p><p>
+<pre class="comment">...level... patterns are for level mapping (Y-Axis),</pre>
+<pre class="comment">...tonal... patterns are for note mapping (X-Axis)</pre>
+<pre class="comment"><span class="string-warning">Tonal patterns must have 12 entries to cover the western scale</span></pre>
+</p>
+</div>
+</li>
+<li class="section level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="section entry-attribute">    level: </span> <span class="comment comment-inline"><span class="comment-format">string list</span></span></div>
+<ul class="level2">
+<li class=" entry level-3"><div onclick="copyLine(event)" class="line-wrapper level-3" ><span class="entry-attribute ">pattern a:</span><span class="entry-value "> ["1", "2"]</span></div>
+</li>
+<li class=" entry level-3"><div onclick="copyLine(event)" class="line-wrapper level-3" ><span class="entry-attribute ">pattern b:</span><span class="entry-value "> ["01", "02"]</span></div>
+</li>
+</ul>
+</li>
+<li class="section level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="section entry-attribute">    tonal: </span> <span class="comment comment-inline"><span class="comment-format">string list</span></span></div>
+<ul class="level2">
+<li class=" entry level-3"><div onclick="copyLine(event)" class="line-wrapper level-3" ><span class="entry-attribute ">classic-h-sharp:</span><span class="entry-value "> [c, c#, d, d#, e, f, f#, g, g#, a, a#, h]</span></div>
+</li>
+<li class=" entry level-3"><div onclick="copyLine(event)" class="line-wrapper level-3" ><span class="entry-attribute ">classic-b-sharp:</span><span class="entry-value "> [c, c#, d, d#, e, f, f#, g, g#, a, a#, b]</span></div>
+</li>
+<li class=" entry level-3"><div onclick="copyLine(event)" class="line-wrapper level-3" ><span class="entry-attribute ">classic-h-b:</span><span class="entry-value "> [c, db, d, eb, e, f, gb, g, ab, a, bb, h]</span></div>
+</li>
+<li class=" entry level-3"><div onclick="copyLine(event)" class="line-wrapper level-3" ><span class="entry-attribute ">classic-b-b:</span><span class="entry-value "> [c, db, d, eb, e, f, gb, g, ab, a, hb, b]</span></div>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="section level-0"><div onclick="copyLine(event)" class="line-wrapper level-0" id="sfz@defaults"><span class="section entry-attribute">sfz:</span></div>
+<ul class="level0">
+<li class=" entry level-0"><div class="comment comment-block"><p>
+<pre class="comment">Global SFZ file information, shared accross all SFZ files created for an instrument.</pre>
+</p>
+</div>
+</li>
+<li class=" entry level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="entry-attribute ">  name:</span><span class="entry-value "> SFZ Instrument </span> <span class="comment comment-inline">First Part of the Sfz filename <span class="comment-appendix">Sfz Name - Instrument Name</span></span></div>
+</li>
+<li class="section level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="section entry-attribute">symbols:</span></div>
+<ul class="level1">
+<li class=" entry level-0"><div class="comment comment-block"><p>
+<pre class="comment"><span class="string-warning">Partially deprecated, but still mandatory for proper functionality</span></pre>
+</p>
+</div>
+</li>
+<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">    tab:</span><span class="entry-value "> ". . " </span> <span class="comment comment-inline"><span class="comment-format">string</span></span></div>
+</li>
+<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">    line placeholder:</span><span class="entry-value "> "$l" </span> <span class="comment comment-inline"><span class="comment-format">string</span></span></div>
+</li>
+<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">    comment line placeholder:</span><span class="entry-value "> "$c" </span> <span class="comment comment-inline"><span class="comment-format">string</span></span></div>
+</li>
+<li class="section level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="section entry-attribute">comment:</span></div>
+<ul class="level2">
+<li class=" entry level-3"><div onclick="copyLine(event)" class="line-wrapper level-3" ><span class="entry-attribute ">      line:</span><span class="entry-value "> "- - - - - - - - - - - - - - - - - - - - -" </span> <span class="comment comment-inline"><span class="comment-format">string</span></span></div>
+</li>
+<li class=" entry level-3"><div onclick="copyLine(event)" class="line-wrapper level-3" ><span class="entry-attribute ">      subline:</span><span class="entry-value "> "* * * * * * * * * * * * * * * * *" </span> <span class="comment comment-inline"><span class="comment-format">string</span></span></div>
+</li>
+<li class="section level-3"><div onclick="copyLine(event)" class="line-wrapper level-3" ><span class="section entry-attribute">large header:</span></div>
+<ul class="level3">
+<li class="value-only entry level-4"><div onclick="" class="line-wrapper level-4" ><span class="entry-attribute "></span><span class="entry-value ">        - "= = = = = = = = = = = = = = = = = = = = = = = = = =" </span> <span class="comment comment-inline"><span class="comment-format">string</span></span></div>
+</li>
+<li class="value-only entry level-4"><div onclick="" class="line-wrapper level-4" ><span class="entry-attribute "></span><span class="entry-value ">        - "- - - - - - - - - - - - - - - - - - - - - - - - - -" </span> <span class="comment comment-inline"><span class="comment-format">string</span></span></div>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="section level-0"><div onclick="copyLine(event)" class="line-wrapper level-0" id="instruments@defaults"><span class="section entry-attribute">instruments:</span></div>
+<ul class="level0">
+<li class=" entry level-0"><div class="comment comment-block"><p>
+<pre class="comment">Every Instrument represents a single SFZ file that shares</pre>
+<pre class="comment">its attributes with all containing elements.</pre>
+</p><p>
+<pre class="comment"><span class="string-header">Name of element</span></pre>
+<pre class="comment">The instrument section name represents the second part of the sfz file.</pre>
+<pre class="comment">Use <span class="string-syntax">$InstrumentName</span> to skip the first part of the name from the <span class="string-syntax">sfz:</span> section.</pre>
+</p><p>
+<pre class="comment"><span class="string-header">Data-Structure</span></pre>
+<pre class="comment">sfz:</pre>
+<pre class="comment">  instruments:</pre>
+<pre class="comment">    Instrument Name:</pre>
+<pre class="comment">      <span class="string-syntax">data <span class="font-bold"><span class="symbol-arrow-left"></span> this section</span></span></pre>
+<pre class="comment">      parts:</pre>
+<pre class="comment">        Part name:</pre>
+<pre class="comment">          Part data:</pre>
+<pre class="comment">          ...</pre>
+<pre class="comment"><span class="string-header">copy:</span></pre>
+<pre class="comment">Copies YAML data from another instrument or sequentially if a list is given.</pre>
+</p>
+</div>
+</li>
+<li class=" entry level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="entry-attribute ">  copy:</span><span class="entry-value "> </span> <span class="comment comment-inline">copies YAML data from instrument(s) <span class="comment-format">str | [str, str]</span></span></div>
+</li>
+<li class=" entry level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="entry-attribute ">  hide:</span><span class="entry-value "> false </span> <span class="comment comment-inline">refuse to write instrument to a SFZ file, but still collect it's data <span class="comment-format">bool</span></span></div>
+</li>
+<li class=" entry level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="entry-attribute ">  control:</span><span class="entry-value "> </span> <span class="comment comment-inline"><span class="comment-type">section</span></span></div>
+</li>
+<li class=" entry level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="entry-attribute ">  envelopes:</span><span class="entry-value "> </span> <span class="comment comment-inline"><span class="comment-type">section</span></span></div>
+</li>
+<li class=" entry level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="entry-attribute ">  curves:</span><span class="entry-value "> </span> <span class="comment comment-inline"><span class="comment-type">section</span></span></div>
+</li>
+<li class=" entry level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="entry-attribute ">  variables:</span><span class="entry-value "> </span> <span class="comment comment-inline"><span class="comment-type">section</span></span></div>
+</li>
+<li class=" entry level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="entry-attribute ">  release envelopes:</span><span class="entry-value "> </span> <span class="comment comment-inline"><span class="comment-type">section</span></span></div>
+</li>
+<li class=" entry level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="entry-attribute ">  filters:</span><span class="entry-value "> </span> <span class="comment comment-inline"><span class="comment-type">section</span></span></div>
+</li>
+<li class=" entry level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="entry-attribute ">  equalizers:</span><span class="entry-value "> </span> <span class="comment comment-inline"><span class="comment-type">section</span></span></div>
+</li>
+<li class=" entry level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="entry-attribute ">  lfo:</span><span class="entry-value "> </span> <span class="comment comment-inline"><span class="comment-type">section</span></span></div>
+</li>
+<li class=" entry level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="entry-attribute ">  choke:</span><span class="entry-value "> </span> <span class="comment comment-inline"><span class="comment-type">section</span></span></div>
+</li>
+<li class=" entry level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="entry-attribute ">  velocity tracking:</span><span class="entry-value "> 0 </span> <span class="comment comment-inline">disable velocity tracking by default</span></div>
+</li>
+<li class="section level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="section entry-attribute">  keyswitches: </span> <span class="comment comment-inline"><span class="comment-type">section</span></span></div>
+<ul class="level1">
+<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">    default:</span><span class="entry-value "> </span> <span class="comment comment-inline">default keyswitch on startup <span class="comment-type">string</span></span></div>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="section level-0"><div onclick="copyLine(event)" class="line-wrapper level-0" id="include@defaults"><span class="section entry-attribute">include:</span></div>
+<ul class="level0">
+<li class=" entry level-0"><div class="comment comment-block"><p>
+<pre class="comment">Text from files that gets inserted before or after the</pre>
+<pre class="comment">generated content. Multiple files can be used when stating a list.</pre>
+</p>
+</div>
+</li>
+<li class=" entry level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="entry-attribute ">  pre:</span><span class="entry-value "> </span> <span class="comment comment-inline"><span class="comment-type">string | [string, string]</span></span></div>
+</li>
+<li class=" entry level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="entry-attribute ">  post:</span><span class="entry-value "> </span> <span class="comment comment-inline"><span class="comment-type">string | [string, string]</span></span></div>
+</li>
+</ul>
+</li>
+<li class="section level-0"><div onclick="copyLine(event)" class="line-wrapper level-0" id="insert@defaults"><span class="section entry-attribute">insert:</span></div>
+<ul class="level0">
+<li class=" entry level-0"><div class="comment comment-block"><p>
+<pre class="comment">Custom strings that can be inserted before or after the</pre>
+<pre class="comment">generated content. Multiple strings can be used when stating a list.</pre>
+</p>
+</div>
+</li>
+<li class=" entry level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="entry-attribute ">  pre:</span><span class="entry-value "> </span> <span class="comment comment-inline"><span class="comment-type">string | [string, string]</span></span></div>
+</li>
+<li class=" entry level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="entry-attribute ">  post:</span><span class="entry-value "> </span> <span class="comment comment-inline"><span class="comment-type">string | [string, string]</span></span></div>
+</li>
+</ul>
+</li>
+<li class="section level-0"><div onclick="copyLine(event)" class="line-wrapper level-0" id="control@defaults"><span class="section entry-attribute">control:</span></div>
+<ul class="level0">
+<li class=" entry level-0"><div class="comment comment-block"><p>
+<pre class="comment">ControlChange addresses that also function as a</pre>
+<pre class="comment">self-generating ARIA-control-map section.</pre>
+</p>
+</div>
+</li>
+<li class=" entry level-0"><div class="comment comment-block"><p>
+<pre class="comment"><span class="string-header">Default controls, always listed</span></pre>
+<pre class="comment"><span class="string-warning">Overriding ARIA's volume & pan controls seems to disable their interface-functionality</span></pre>
+</p>
+</div>
+</li>
+<li class="section level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="section entry-attribute">Bend:</span></div>
+<ul class="level1">
+<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">cc:</span><span class="entry-value "> 20</span></div>
+</li>
+<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">default:</span><span class="entry-value "> 0</span></div>
+</li>
+</ul>
+</li>
+<li class="section level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="section entry-attribute">Velocity:</span></div>
+<ul class="level1">
+<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">cc:</span><span class="entry-value "> 131</span></div>
+</li>
+<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">default:</span><span class="entry-value "> 0</span></div>
+</li>
+<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">hide:</span><span class="entry-value "> true</span></div>
+</li>
+</ul>
+</li>
+<li class="section level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="section entry-attribute">Release Velocity:</span></div>
+<ul class="level1">
+<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">cc:</span><span class="entry-value "> 132</span></div>
+</li>
+<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">default:</span><span class="entry-value "> 0</span></div>
+</li>
+<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">hide:</span><span class="entry-value "> true</span></div>
+</li>
+</ul>
+</li>
+<li class="section level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="section entry-attribute">Channel AT:</span></div>
+<ul class="level1">
+<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">cc:</span><span class="entry-value "> 129</span></div>
+</li>
+<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">default:</span><span class="entry-value "> 0</span></div>
+</li>
+</ul>
+</li>
+<li class="section level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="section entry-attribute">Volume:</span></div>
+<ul class="level1">
+<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">cc:</span><span class="entry-value "> 7</span></div>
+</li>
+</ul>
+</li>
+<li class="section level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="section entry-attribute">Pan:</span></div>
+<ul class="level1">
+<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">cc:</span><span class="entry-value "> 10</span></div>
+</li>
+<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">default:</span><span class="entry-value "> 64</span></div>
+</li>
+</ul>
+</li>
+<li class="section level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="section entry-attribute">Pitchbend:</span></div>
+<ul class="level1">
+<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">cc:</span><span class="entry-value "> 128</span></div>
+</li>
+<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">default:</span><span class="entry-value "> 0</span></div>
+</li>
+</ul>
+</li>
+<li class=" entry level-0"><div class="comment comment-block"><p>
+<pre class="comment"><span class="string-header">Unlisted ARIA Controls</span></pre>
+</p>
+</div>
+</li>
+<li class="section level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="section entry-attribute">Poly AT:</span></div>
+<ul class="level1">
+<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">cc:</span><span class="entry-value "> 130</span></div>
+</li>
+<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">default:</span><span class="entry-value "> 0</span></div>
+</li>
+<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">hide:</span><span class="entry-value "> True</span></div>
+</li>
+</ul>
+</li>
+<li class="section level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="section entry-attribute">Note:</span></div>
+<ul class="level1">
+<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">cc:</span><span class="entry-value "> 133</span></div>
+</li>
+<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">hide:</span><span class="entry-value "> true</span></div>
+</li>
+</ul>
+</li>
+<li class="section level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="section entry-attribute">Gate:</span></div>
+<ul class="level1">
+<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">cc:</span><span class="entry-value "> 134</span></div>
+</li>
+<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">hide:</span><span class="entry-value "> true</span></div>
+</li>
+</ul>
+</li>
+<li class="section level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="section entry-attribute">Random Unipolar:</span></div>
+<ul class="level1">
+<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">cc:</span><span class="entry-value "> 135</span></div>
+</li>
+<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">hide:</span><span class="entry-value "> true</span></div>
+</li>
+</ul>
+</li>
+<li class="section level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="section entry-attribute">Random Bipolar:</span></div>
+<ul class="level1">
+<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">cc:</span><span class="entry-value "> 136</span></div>
+</li>
+<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">hide:</span><span class="entry-value "> true</span></div>
+</li>
+</ul>
+</li>
+<li class="section level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="section entry-attribute">Alternate:</span></div>
+<ul class="level1">
+<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">cc:</span><span class="entry-value "> 137</span></div>
+</li>
+<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">hide:</span><span class="entry-value "> true</span></div>
+</li>
+</ul>
+</li>
+<li class="section level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="section entry-attribute">Keydelta:</span></div>
+<ul class="level1">
+<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">cc:</span><span class="entry-value "> 140</span></div>
+</li>
+<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">hide:</span><span class="entry-value "> True</span></div>
+</li>
+</ul>
+</li>
+<li class="section level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="section entry-attribute">Keydelta ABS:</span></div>
+<ul class="level1">
+<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">cc:</span><span class="entry-value "> 141</span></div>
+</li>
+<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">hide:</span><span class="entry-value "> True</span></div>
+</li>
+</ul>
+</li>
+<li class="section level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="section entry-attribute">Host BPM:</span></div>
+<ul class="level1">
+<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">cc:</span><span class="entry-value "> 142</span></div>
+</li>
+<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">hide:</span><span class="entry-value "> True</span></div>
+</li>
+</ul>
+</li>
+<li class="section level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="section entry-attribute">Host Transport:</span></div>
+<ul class="level1">
+<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">cc:</span><span class="entry-value "> 143</span></div>
+</li>
+<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">hide:</span><span class="entry-value "> True</span></div>
+</li>
+</ul>
+</li>
+<li class="section level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="section entry-attribute">Host Samplerate:</span></div>
+<ul class="level1">
+<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">cc:</span><span class="entry-value "> 144</span></div>
+</li>
+<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">hide:</span><span class="entry-value "> True</span></div>
+</li>
+</ul>
+</li>
+<li class="section level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="section entry-attribute">Time Engine:</span></div>
+<ul class="level1">
+<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">cc:</span><span class="entry-value "> 145</span></div>
+</li>
+<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">hide:</span><span class="entry-value "> True</span></div>
+</li>
+</ul>
+</li>
+<li class="section level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="section entry-attribute">Timesig A:</span></div>
+<ul class="level1">
+<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">cc:</span><span class="entry-value "> 146</span></div>
+</li>
+<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">hide:</span><span class="entry-value "> True</span></div>
+</li>
+</ul>
+</li>
+<li class="section level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="section entry-attribute">Timesig B:</span></div>
+<ul class="level1">
+<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">cc:</span><span class="entry-value "> 147</span></div>
+</li>
+<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">hide:</span><span class="entry-value "> True</span></div>
+</li>
+</ul>
+</li>
+<li class="section level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="section entry-attribute">QN Position ABS:</span></div>
+<ul class="level1">
+<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">cc:</span><span class="entry-value "> 148</span></div>
+</li>
+<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">hide:</span><span class="entry-value "> True</span></div>
+</li>
+</ul>
+</li>
+<li class="section level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="section entry-attribute">QN Position:</span></div>
+<ul class="level1">
+<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">cc:</span><span class="entry-value "> 149</span></div>
+</li>
+<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">hide:</span><span class="entry-value "> True</span></div>
+</li>
+</ul>
+</li>
+<li class="section level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="section entry-attribute">Time Instrument:</span></div>
+<ul class="level1">
+<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">cc:</span><span class="entry-value "> 150</span></div>
+</li>
+<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">hide:</span><span class="entry-value "> True</span></div>
+</li>
+</ul>
+</li>
+<li class="section level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="section entry-attribute">Time LastKeyOn:</span></div>
+<ul class="level1">
+<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">cc:</span><span class="entry-value "> 151</span></div>
+</li>
+<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">hide:</span><span class="entry-value "> True</span></div>
+</li>
+</ul>
+</li>
+<li class="section level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="section entry-attribute">Time LastKeyOff:</span></div>
+<ul class="level1">
+<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">cc:</span><span class="entry-value "> 152</span></div>
+</li>
+<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">hide:</span><span class="entry-value "> True</span></div>
+</li>
+</ul>
+</li>
+<li class="section level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="section entry-attribute">Keycount:</span></div>
+<ul class="level1">
+<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">cc:</span><span class="entry-value "> 153</span></div>
+</li>
+<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">hide:</span><span class="entry-value "> True</span></div>
+</li>
+</ul>
+</li>
+<li class="section level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="section entry-attribute">Voicecount:</span></div>
+<ul class="level1">
+<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">cc:</span><span class="entry-value "> 154</span></div>
+</li>
+<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">hide:</span><span class="entry-value "> True</span></div>
+</li>
+</ul>
+</li>
+<li class="section level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="section entry-attribute">Offset:</span></div>
+<ul class="level1">
+<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">cc:</span><span class="entry-value "> 155</span></div>
+</li>
+<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">hide:</span><span class="entry-value "> True</span></div>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="section level-0"><div onclick="copyLine(event)" class="line-wrapper level-0" id="controlelement@defaults"><span class="section entry-attribute">control element:</span></div>
+<ul class="level0">
+<li class=" entry level-0"><div class="comment comment-block"><p>
+<pre class="comment">Element of the control section.</pre>
+</p>
+</div>
+</li>
+<li class=" entry level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="entry-attribute ">  cc:</span><span class="entry-value "> 0 </span> <span class="comment comment-inline">cc number <span class="comment-type">int</span></span></div>
+</li>
+<li class=" entry level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="entry-attribute ">  default:</span><span class="entry-value "> null </span> <span class="comment comment-inline">default value <span class="comment-format">0 - 127</span></span></div>
+</li>
+<li class=" entry level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="entry-attribute ">  hide:</span><span class="entry-value "> false </span> <span class="comment comment-inline">hide control from ARIA control section <span class="comment-type">bool</span></span></div>
+</li>
+<li class=" entry level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="entry-attribute ">  show cc:</span><span class="entry-value "> true </span> <span class="comment comment-inline">show cc index number <span class="comment-type">bool</span></span></div>
+</li>
+</ul>
+</li>
+<li class="section level-0"><div onclick="copyLine(event)" class="line-wrapper level-0" id="equalizers@defaults"><span class="section entry-attribute">equalizers:</span></div>
+<ul class="level0">
+<li class=" entry level-0"><div class="comment comment-block"><p>
+<pre class="comment">Prepared Equalizers, limited to the SFZ-3-band-count.</pre>
+<pre class="comment"><span class="string-hint">One equalizer can be inserted per part.</span></pre>
+</p>
+</div>
+</li>
+<li class="section level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="section entry-attribute">Blank:</span></div>
+<ul class="level1">
+<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">dynamic:</span><span class="entry-value "> true</span></div>
+</li>
+<li class="section level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="section entry-attribute">bands:</span></div>
+<ul class="level2">
+<li class="value-only entry level-3"><div onclick="" class="line-wrapper level-3" ><span class="entry-attribute "></span><span class="entry-value ">- [0, 1, 2]</span></div>
+</li>
+<li class="value-only entry level-3"><div onclick="" class="line-wrapper level-3" ><span class="entry-attribute "></span><span class="entry-value ">- [200, 20, 2]</span></div>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="section level-0"><div onclick="copyLine(event)" class="line-wrapper level-0" id="equalizerelement@defaults"><span class="section entry-attribute">equalizer element:</span></div>
+<ul class="level0">
+<li class=" entry level-0"><div class="comment comment-block"><p>
+<pre class="comment">Placeholder section defining an equalizer.</pre>
+</p>
+</div>
+</li>
+<li class=" entry level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="entry-attribute ">  dynamic:</span><span class="entry-value "> false </span> <span class="comment comment-inline">dynamic recalculation of times during playback <span class="comment-type">bool</span></span></div>
+</li>
+<li class=" entry level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="entry-attribute ">  bands:</span><span class="entry-value "> </span> <span class="comment comment-inline">list of bands <span class="comment-type">[double, double, double]</span> <span class="comment-format">[frequency, gain, bandwidth]</span></span></div>
+</li>
+</ul>
+</li>
+<li class="section level-0"><div onclick="copyLine(event)" class="line-wrapper level-0" id="partequalizerelement@defaults"><span class="section entry-attribute">part equalizer element:</span></div>
+<ul class="level0">
+<li class=" entry level-0"><div class="comment comment-block"><p>
+<pre class="comment">Equalizer section of a part.</pre>
+<pre class="comment">A part can load a prepared instrument equalizer by stating its name as a section.</pre>
+<pre class="comment">Individual modulation can then be applied per part.</pre>
+</p><p>
+<pre class="comment"><span class="string-header">Data-Structure</span></pre>
+<pre class="comment">equalizer:</pre>
+<pre class="comment">  <span class="string-syntax">equalizer name:</span></pre>
+<pre class="comment">    modulation:</pre>
+<pre class="comment">      ...</pre>
+</p>
+</div>
+</li>
+<li class="section level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="section entry-attribute">modulation:</span></div>
+<ul class="level1">
+<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">    band 1:</span><span class="entry-value "> </span> <span class="comment comment-inline"><span class="comment-type">section</span></span></div>
+</li>
+<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">    band 2:</span><span class="entry-value "> </span> <span class="comment comment-inline"><span class="comment-type">section</span></span></div>
+</li>
+<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">    band 3:</span><span class="entry-value "> </span> <span class="comment comment-inline"><span class="comment-type">section</span></span></div>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="section level-0"><div onclick="copyLine(event)" class="line-wrapper level-0" id="equalizerbandmodulation@defaults"><span class="section entry-attribute">equalizer band modulation:</span></div>
+<ul class="level0">
+<li class=" entry level-0"><div class="comment comment-block"><p>
+<pre class="comment">Equalizer band modulation within a part.</pre>
+<pre class="comment">Follows the conventional modulation section.</pre>
+</p>
+</div>
+</li>
+<li class="section level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="section entry-attribute">frequency:</span></div>
+<ul class="level1">
+<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">    type:</span><span class="entry-value "> </span> <span class="comment comment-inline">type of modulation <span class="comment-type">string</span> <span class="comment-format">add, multiply</span></span></div>
+</li>
+<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">    compensation:</span><span class="entry-value "> </span> <span class="comment comment-inline">compensation factor <span class="comment-type">double</span></span></div>
+</li>
+<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">    cc:</span><span class="entry-value "> </span> <span class="comment comment-inline"><span class="comment-type">section</span></span></div>
+</li>
+<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">    lfo:</span><span class="entry-value "> </span> <span class="comment comment-inline"><span class="comment-type">section</span></span></div>
+</li>
+<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">    variables:</span><span class="entry-value "> </span> <span class="comment comment-inline"><span class="comment-type">section</span></span></div>
+</li>
+<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">    envelopes:</span><span class="entry-value "> </span> <span class="comment comment-inline"><span class="comment-type">section</span></span></div>
+</li>
+</ul>
+</li>
+<li class="section level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="section entry-attribute">bandwidth:</span></div>
+<ul class="level1">
+<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">    type:</span><span class="entry-value "> </span> <span class="comment comment-inline">type of modulation <span class="comment-type">string</span> <span class="comment-format">add, multiply</span></span></div>
+</li>
+<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">    compensation:</span><span class="entry-value "> </span> <span class="comment comment-inline">compensation factor <span class="comment-type">double</span></span></div>
+</li>
+<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">    cc:</span><span class="entry-value "> </span> <span class="comment comment-inline"><span class="comment-type">section</span></span></div>
+</li>
+<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">    lfo:</span><span class="entry-value "> </span> <span class="comment comment-inline"><span class="comment-type">section</span></span></div>
+</li>
+<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">    variables:</span><span class="entry-value "> </span> <span class="comment comment-inline"><span class="comment-type">section</span></span></div>
+</li>
+<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">    envelopes:</span><span class="entry-value "> </span> <span class="comment comment-inline"><span class="comment-type">section</span></span></div>
+</li>
+</ul>
+</li>
+<li class="section level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="section entry-attribute">gain:</span></div>
+<ul class="level1">
+<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">    type:</span><span class="entry-value "> </span> <span class="comment comment-inline">type of modulation <span class="comment-type">string</span> <span class="comment-format">add, multiply</span></span></div>
+</li>
+<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">    compensation:</span><span class="entry-value "> </span> <span class="comment comment-inline">compensation factor <span class="comment-type">double</span></span></div>
+</li>
+<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">    cc:</span><span class="entry-value "> </span> <span class="comment comment-inline"><span class="comment-type">section</span></span></div>
+</li>
+<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">    lfo:</span><span class="entry-value "> </span> <span class="comment comment-inline"><span class="comment-type">section</span></span></div>
+</li>
+<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">    variables:</span><span class="entry-value "> </span> <span class="comment comment-inline"><span class="comment-type">section</span></span></div>
+</li>
+<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">    envelopes:</span><span class="entry-value "> </span> <span class="comment comment-inline"><span class="comment-type">section</span></span></div>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="section level-0"><div onclick="copyLine(event)" class="line-wrapper level-0" id="filters@defaults"><span class="section entry-attribute">filters:</span></div>
+<ul class="level0">
+<li class=" entry level-0"><div class="comment comment-block"><p>
+<pre class="comment">Filter section of an instrument.</pre>
+<pre class="comment">Use the section for declaration so that the filters</pre>
+<pre class="comment">can be implemented in a part.</pre>
+</p>
+</div>
+</li>
+<li class="section level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="section entry-attribute">  Blank: </span> <span class="comment comment-inline">name of the filter <span class="comment-type">string</span></span></div>
+<ul class="level1">
+<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">type:</span><span class="entry-value "> lowpass</span></div>
+</li>
+<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">poles:</span><span class="entry-value "> 2</span></div>
+</li>
+<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">frequency:</span><span class="entry-value "> 100</span></div>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="section level-0"><div onclick="copyLine(event)" class="line-wrapper level-0" id="filterelement@defaults"><span class="section entry-attribute">filter element:</span></div>
+<ul class="level0">
+<li class=" entry level-0"><div class="comment comment-block"><p>
+<pre class="comment">Placeholder values for a newly created filter.</pre>
+</p><p>
+<pre class="comment"><span class="string-header">Types</span></pre>
+<pre class="comment"><span class="string-syntax">lowpass, highpass, bandpass,</span></pre>
+<pre class="comment"><span class="string-syntax">notch, allpass, comb, pink</span></pre>
+<pre class="comment"><span class="string-syntax">low-shelf, high-shelf, eq</span></pre>
+</p><p>
+<pre class="comment"><span class="string-header">Poles</span></pre>
+<pre class="comment">lowpass: <span class="string-syntax">1,2,4,6</span></pre>
+<pre class="comment">highpass: <span class="string-syntax">1,2,4,6</span></pre>
+<pre class="comment">bandpass: <span class="string-syntax">1,2</span></pre>
+<pre class="comment">allpass: <span class="string-syntax">1</span></pre>
+<pre class="comment"><span class="string-warning">Highpass 1-Pole seems to be ignored by ARIA</span></pre>
+</p>
+</div>
+</li>
+<li class=" entry level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="entry-attribute ">  type:</span><span class="entry-value "> lowpass </span> <span class="comment comment-inline">type of filter <span class="comment-type">string</span></span></div>
+</li>
+<li class=" entry level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="entry-attribute ">  poles:</span><span class="entry-value "> 1 </span> <span class="comment comment-inline">count of poles <span class="comment-type">int</span></span></div>
+</li>
+<li class=" entry level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="entry-attribute ">  frequency:</span><span class="entry-value "> 9600 </span> <span class="comment comment-inline">frequency <span class="comment-type">int</span> <span class="comment-appendix">seems to be maxed at 9600</span></span></div>
+</li>
+<li class=" entry level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="entry-attribute ">  resonance:</span><span class="entry-value "> 0 </span> <span class="comment comment-inline">resonance <span class="comment-type">double</span></span></div>
+</li>
+<li class=" entry level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="entry-attribute ">  gain:</span><span class="entry-value "> 0 </span> <span class="comment comment-inline">gain on shelf and eq <span class="comment-type">double</span></span></div>
+</li>
+<li class=" entry level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="entry-attribute ">  key tracking:</span><span class="entry-value "> 0 </span> <span class="comment comment-inline">key tracking <span class="comment-type">int</span></span></div>
+</li>
+<li class=" entry level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="entry-attribute ">  key tracking center:</span><span class="entry-value "> 64 </span> <span class="comment comment-inline"><span class="comment-type">int</span></span></div>
+</li>
+<li class=" entry level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="entry-attribute ">  velocity tracking:</span><span class="entry-value "> 0 </span> <span class="comment comment-inline"><span class="comment-type">int</span></span></div>
+</li>
+</ul>
+</li>
+<li class="section level-0"><div onclick="copyLine(event)" class="line-wrapper level-0" id="partfilterelement@defaults"><span class="section entry-attribute">part filter element:</span></div>
+<ul class="level0">
+<li class=" entry level-0"><div class="comment comment-block"><p>
+<pre class="comment">Filter that gets inserted into a part.</pre>
+<pre class="comment">Parts allow a maximum of 2 filters, limited by the SFZ standard.</pre>
+</p><p>
+<pre class="comment">The filter source comes from a declared filter in the instrument section,</pre>
+<pre class="comment">modulation can be applied individually per part.</pre>
+</p><p>
+<pre class="comment"><span class="string-header">Data-Structure</span></pre>
+<pre class="comment">filters:</pre>
+<pre class="comment">  <span class="string-syntax">filter name:</span></pre>
+<pre class="comment">    modulation:</pre>
+<pre class="comment">      ...</pre>
+</p>
+</div>
+</li>
+<li class="section level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="section entry-attribute">modulation:</span></div>
+<ul class="level1">
+<li class="section level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="section entry-attribute">frequency:</span></div>
+<ul class="level2">
+<li class=" entry level-3"><div onclick="copyLine(event)" class="line-wrapper level-3" ><span class="entry-attribute ">      type:</span><span class="entry-value "> </span> <span class="comment comment-inline">type of modulation <span class="comment-type">string</span> <span class="comment-format">add, multiply</span></span></div>
+</li>
+<li class=" entry level-3"><div onclick="copyLine(event)" class="line-wrapper level-3" ><span class="entry-attribute ">      compensation:</span><span class="entry-value "> </span> <span class="comment comment-inline">compensation factor <span class="comment-type">double</span></span></div>
+</li>
+<li class=" entry level-3"><div onclick="copyLine(event)" class="line-wrapper level-3" ><span class="entry-attribute ">      cc:</span><span class="entry-value "> </span> <span class="comment comment-inline"><span class="comment-type">section</span></span></div>
+</li>
+<li class=" entry level-3"><div onclick="copyLine(event)" class="line-wrapper level-3" ><span class="entry-attribute ">      lfo:</span><span class="entry-value "> </span> <span class="comment comment-inline"><span class="comment-type">section</span></span></div>
+</li>
+<li class=" entry level-3"><div onclick="copyLine(event)" class="line-wrapper level-3" ><span class="entry-attribute ">      variables:</span><span class="entry-value "> </span> <span class="comment comment-inline"><span class="comment-type">section</span></span></div>
+</li>
+<li class=" entry level-3"><div onclick="copyLine(event)" class="line-wrapper level-3" ><span class="entry-attribute ">      envelopes:</span><span class="entry-value "> </span> <span class="comment comment-inline"><span class="comment-type">section</span></span></div>
+</li>
+</ul>
+</li>
+<li class="section level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="section entry-attribute">resonance:</span></div>
+<ul class="level2">
+<li class=" entry level-3"><div onclick="copyLine(event)" class="line-wrapper level-3" ><span class="entry-attribute ">      type:</span><span class="entry-value "> </span> <span class="comment comment-inline">type of modulation <span class="comment-type">string</span> <span class="comment-format">add, multiply</span></span></div>
+</li>
+<li class=" entry level-3"><div onclick="copyLine(event)" class="line-wrapper level-3" ><span class="entry-attribute ">      compensation:</span><span class="entry-value "> </span> <span class="comment comment-inline">compensation factor <span class="comment-type">double</span></span></div>
+</li>
+<li class=" entry level-3"><div onclick="copyLine(event)" class="line-wrapper level-3" ><span class="entry-attribute ">      cc:</span><span class="entry-value "> </span> <span class="comment comment-inline"><span class="comment-type">section</span></span></div>
+</li>
+<li class=" entry level-3"><div onclick="copyLine(event)" class="line-wrapper level-3" ><span class="entry-attribute ">      lfo:</span><span class="entry-value "> </span> <span class="comment comment-inline"><span class="comment-type">section</span></span></div>
+</li>
+<li class=" entry level-3"><div onclick="copyLine(event)" class="line-wrapper level-3" ><span class="entry-attribute ">      variables:</span><span class="entry-value "> </span> <span class="comment comment-inline"><span class="comment-type">section</span></span></div>
+</li>
+<li class=" entry level-3"><div onclick="copyLine(event)" class="line-wrapper level-3" ><span class="entry-attribute ">      envelopes:</span><span class="entry-value "> </span> <span class="comment comment-inline"><span class="comment-type">section</span></span></div>
+</li>
+</ul>
+</li>
+<li class="section level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="section entry-attribute">gain:</span></div>
+<ul class="level2">
+<li class=" entry level-3"><div onclick="copyLine(event)" class="line-wrapper level-3" ><span class="entry-attribute ">      type:</span><span class="entry-value "> </span> <span class="comment comment-inline">type of modulation <span class="comment-type">string</span> <span class="comment-format">add, multiply</span></span></div>
+</li>
+<li class=" entry level-3"><div onclick="copyLine(event)" class="line-wrapper level-3" ><span class="entry-attribute ">      compensation:</span><span class="entry-value "> </span> <span class="comment comment-inline">compensation factor <span class="comment-type">double</span></span></div>
+</li>
+<li class=" entry level-3"><div onclick="copyLine(event)" class="line-wrapper level-3" ><span class="entry-attribute ">      cc:</span><span class="entry-value "> </span> <span class="comment comment-inline"><span class="comment-type">section</span></span></div>
+</li>
+<li class=" entry level-3"><div onclick="copyLine(event)" class="line-wrapper level-3" ><span class="entry-attribute ">      lfo:</span><span class="entry-value "> </span> <span class="comment comment-inline"><span class="comment-type">section</span></span></div>
+</li>
+<li class=" entry level-3"><div onclick="copyLine(event)" class="line-wrapper level-3" ><span class="entry-attribute ">      variables:</span><span class="entry-value "> </span> <span class="comment comment-inline"><span class="comment-type">section</span></span></div>
+</li>
+<li class=" entry level-3"><div onclick="copyLine(event)" class="line-wrapper level-3" ><span class="entry-attribute ">      envelopes:</span><span class="entry-value "> </span> <span class="comment comment-inline"><span class="comment-type">section</span></span></div>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="section level-0"><div onclick="copyLine(event)" class="line-wrapper level-0" id="releaseenvelopes@defaults"><span class="section entry-attribute">release envelopes:</span></div>
+<ul class="level0">
+<li class=" entry level-0"><div class="comment comment-block"><p>
+<pre class="comment">Release Envelopes are triggered by release samples.</pre>
+</p>
+</div>
+</li>
+<li class="section level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="section entry-attribute">  Normal: </span> <span class="comment comment-inline">name of release envelope <span class="comment-type">string</span></span></div>
+<ul class="level1">
+<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">decay:</span><span class="entry-value "></span></div>
+</li>
+<li class="section level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="section entry-attribute">    points: </span> <span class="comment comment-inline">list of envelope points [double, double]</span></div>
+<ul class="level2">
+<li class="value-only entry level-3"><div onclick="" class="line-wrapper level-3" ><span class="entry-attribute "></span><span class="entry-value ">- [0, 1]</span></div>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="section level-0"><div onclick="copyLine(event)" class="line-wrapper level-0" id="releaseenvelopeelement@defaults"><span class="section entry-attribute">release envelope element:</span></div>
+<ul class="level0">
+<li class=" entry level-0"><div class="comment comment-block"><p>
+<pre class="comment">Placeholder values for a newly created release envelope.</pre>
+</p>
+</div>
+</li>
+<li class="section level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="section entry-attribute">points:</span></div>
+<ul class="level1">
+<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">    decay:</span><span class="entry-value "> </span> <span class="comment comment-inline">amount of volume lost by time [double] <span class="comment-appendix">high number <span class="symbol-arrow-right"></span> faster decay</span></span></div>
+</li>
+<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">    points:</span><span class="entry-value "> </span> <span class="comment comment-inline">envelope points <span class="comment-type">[double, double]</span> <span class="comment-format">[time, depth]</span></span></div>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="section level-0"><div onclick="copyLine(event)" class="line-wrapper level-0" id="modulationelement@defaults"><span class="section entry-attribute">modulation element:</span></div>
+<ul class="level0">
+<li class=" entry level-0"><div class="comment comment-block"><p>
+<pre class="comment">Universal modulation section,</pre>
+<pre class="comment">used for almost any element that allow modulation.</pre>
+</p><p>
+<pre class="comment">Has a compensation factor that offsets the source value</pre>
+<pre class="comment">based on the given factor, respecting other modulators</pre>
+<pre class="comment">accessing the attribute, too.</pre>
+</p><p>
+<pre class="comment">Curves can be used to change the shape of the modulation</pre>
+<pre class="comment">by stating the name of a curve created in the instrument section.</pre>
+</p><p>
+<pre class="comment"><span class="string-warning">Some modulations are not possible because of a lack of support, use trial and error</span></pre>
+</p>
+</div>
+</li>
+<li class=" entry level-0"><div class="comment comment-block"><p>
+<pre class="comment"><span class="string-header">Modulating Modulators</span></pre>
+<pre class="comment">Envelopes and LFOs can act as modulators,</pre>
+<pre class="comment">while at the same time be modulated by other modulators.</pre>
+</p>
+</div>
+</li>
+<li class=" entry level-0"><div class="comment code-block example"><div class="example-block-header">Example</div><pre class="comment">Modulating the pitch using an LFO,</pre>
+<pre class="comment">while the Modwheel controls the LFOs depth.</pre>
+<pre class="comment"></pre>
+<pre class="comment">pitch:</pre>
+<pre class="comment">  modulation:</pre>
+<pre class="comment">    lfo:</pre>
+<pre class="comment">      TestLFO:</pre>
+<pre class="comment">        modulation:</pre>
+<pre class="comment">          cc:</pre>
+<pre class="comment">            Modwheel:</pre>
+<pre class="comment">              detph: 100</pre>
+</div>
+</li>
+<li class=" entry level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="entry-attribute ">  depth:</span><span class="entry-value "> 0 </span> <span class="comment comment-inline">depth of modulation <span class="comment-type">double</span></span></div>
+</li>
+<li class=" entry level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="entry-attribute ">  curve:</span><span class="entry-value "> </span> <span class="comment comment-inline">curve name used from lookup <span class="comment-type">string</span></span></div>
+</li>
+<li class=" entry level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="entry-attribute ">  compensate:</span><span class="entry-value "> 0 </span> <span class="comment comment-inline">compensation factor <span class="comment-type">double</span></span></div>
+</li>
+<li class=" entry level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="entry-attribute ">  smooth:</span><span class="entry-value "> 25 </span> <span class="comment comment-inline">smoothing factor <span class="comment-type">double</span> <span class="comment-appendix">higher value <span class="symbol-arrow-right"></span> smoother signal</span></span></div>
+</li>
+<li class=" entry level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="entry-attribute ">  step:</span><span class="entry-value "> 0 </span> <span class="comment comment-inline">stepping of the signal <span class="comment-type">double</span> <span class="comment-appendix">leave at 0 for a smooth signal</span></span></div>
+</li>
+<li class=" entry level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="entry-attribute ">  modulation:</span><span class="entry-value "> </span> <span class="comment comment-inline">nested modulation <span class="comment-type">section</span> <span class="comment-appendix">supported by envelopes and LFOs</span></span></div>
+</li>
+</ul>
+</li>
+<li class="section level-0"><div onclick="copyLine(event)" class="line-wrapper level-0" id="envelopeelement@defaults"><span class="section entry-attribute">envelope element:</span></div>
+<ul class="level0">
+<li class=" entry level-0"><div class="comment comment-block"><p>
+<pre class="comment">Part Envelope element used for modulation.</pre>
+<pre class="comment">Can be modulated itself for continuous depth control.</pre>
+</p>
+</div>
+</li>
+<li class=" entry level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="entry-attribute ">  depth:</span><span class="entry-value "> 0 </span> <span class="comment comment-inline">depth of modulation <span class="comment-type">double</span></span></div>
+</li>
+<li class=" entry level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="entry-attribute ">  modulation:</span><span class="entry-value "> </span> <span class="comment comment-inline">nested modulation <span class="comment-type">section</span></span></div>
+</li>
+</ul>
+</li>
+<li class="section level-0"><div onclick="copyLine(event)" class="line-wrapper level-0" id="modulationenvelopeelement@defaults"><span class="section entry-attribute">modulation envelope element:</span></div>
+<ul class="level0">
+<li class=" entry level-0"><div class="comment comment-block"><p>
+<pre class="comment">Modulation of an envelope itself in the instrument section.</pre>
+<pre class="comment">Allows the modulation of the individual envelope points,</pre>
+<pre class="comment">including point-exclusive curve assignment.</pre>
+</p><p>
+<pre class="comment"><span class="string-header">Data-Structure</span></pre>
+<pre class="comment">envelopes:</pre>
+<pre class="comment">  <span class="string-syntax">name of envelope:</span></pre>
+<pre class="comment">    modulation:</pre>
+<pre class="comment">      cc:</pre>
+<pre class="comment">        <span class="string-syntax">name of control:</span></pre>
+<pre class="comment">          <span class="string-syntax">points: <span class="symbol-arrow-left"></span> <span class="font-bold">this section</span></span></pre>
+<pre class="comment">            - [time, level] <span class="comment-type">[double, double]</span></pre>
+<pre class="comment">            - [time, level] <span class="comment-type">[double, double]</span></pre>
+<pre class="comment">            [h] Alternatively....</pre>
+<pre class="comment">            - [time, curve, level, curve] <span class="comment-type">[double, str, double, str]</span></pre>
+<pre class="comment">            - [time, curve, level, curve] <span class="comment-type">[double, str, double, str]</span></pre>
+<pre class="comment">            - ...</pre>
+<pre class="comment">      variables:</pre>
+<pre class="comment">      ...</pre>
+<pre class="comment"><span class="string-hint">stating a curve value of null will ignore the curve assigment</span></pre>
+</p>
+</div>
+</li>
+<li class=" entry level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="entry-attribute ">  points:</span><span class="entry-value "> </span> <span class="comment comment-inline">modulation of envelope points <span class="comment-type">section</span></span></div>
+</li>
+</ul>
+</li>
+<li class="section level-0"><div onclick="copyLine(event)" class="line-wrapper level-0" id="modulationadsrelement@defaults"><span class="section entry-attribute">modulation adsr element:</span></div>
+<ul class="level0">
+<li class=" entry level-0"><div class="comment comment-block"><p>
+<pre class="comment">Modulation section of an ADSR segment.</pre>
+</p>
+</div>
+</li>
+<li class=" entry level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="entry-attribute ">  depth:</span><span class="entry-value "> 0 </span> <span class="comment comment-inline">depth value <span class="comment-type">double</span></span></div>
+</li>
+<li class=" entry level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="entry-attribute ">  curve:</span><span class="entry-value "> </span> <span class="comment comment-inline">curve assignment <span class="comment-type">string</span></span></div>
+</li>
+<li class=" entry level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="entry-attribute ">  compensate:</span><span class="entry-value "> 0 </span> <span class="comment comment-inline">compensation factor <span class="comment-type">double</span></span></div>
+</li>
+<li class=" entry level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="entry-attribute ">  smooth:</span><span class="entry-value "> 25 </span> <span class="comment comment-inline">smoothing factor <span class="comment-type">double</span> <span class="comment-appendix">higher value <span class="symbol-arrow-right"></span> smoother signal</span></span></div>
+</li>
+<li class=" entry level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="entry-attribute ">  step:</span><span class="entry-value "> 0 </span> <span class="comment comment-inline">stepping of the signal <span class="comment-type">double</span> <span class="comment-appendix">leave at 0 for a smooth signal</span></span></div>
+</li>
+</ul>
+</li>
+<li class="section level-0"><div onclick="copyLine(event)" class="line-wrapper level-0" id="modulationlfoelement@defaults"><span class="section entry-attribute">modulation lfo element:</span></div>
+<ul class="level0">
+<li class=" entry level-0"><div class="comment comment-block"><p>
+<pre class="comment">Modulation through an LFO within a part.</pre>
+<pre class="comment">The depth can be dynamically modulated with a CC.</pre>
+</p>
+</div>
+</li>
+<li class=" entry level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="entry-attribute ">  depth:</span><span class="entry-value "> </span> <span class="comment comment-inline">depth of modulation <span class="comment-type">double</span></span></div>
+</li>
+<li class=" entry level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="entry-attribute ">  compensate:</span><span class="entry-value "> 0 </span> <span class="comment comment-inline">compensation factor <span class="comment-type">double</span></span></div>
+</li>
+<li class="section level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="section entry-attribute">  modulation: </span> <span class="comment comment-inline">depth modulation by cc <span class="comment-type">section</span></span></div>
+<ul class="level1">
+<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">    cc:</span><span class="entry-value "> </span> <span class="comment comment-inline"><span class="comment-type">section</span></span></div>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="section level-0"><div onclick="copyLine(event)" class="line-wrapper level-0" id="pitchbend@defaults"><span class="section entry-attribute">pitchbend:</span></div>
+<ul class="level0">
+<li class=" entry level-0"><div class="comment comment-block"><p>
+<pre class="comment">Pitchbend modulation section of a part.</pre>
+</p>
+</div>
+</li>
+<li class=" entry level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="entry-attribute ">  range:</span><span class="entry-value "> 100 </span> <span class="comment comment-inline">range in cents <span class="comment-type">int | [int, int]</span> <span class="comment-format">up, down</span></span></div>
+</li>
+<li class=" entry level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="entry-attribute ">  step:</span><span class="entry-value "> 0 </span> <span class="comment comment-inline">step value (quantization) <span class="comment-type">int | [int, int]</span> <span class="comment-format">up, down</span></span></div>
+</li>
+<li class=" entry level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="entry-attribute ">  smooth:</span><span class="entry-value "> 25 </span> <span class="comment comment-inline">smoothing factor <span class="comment-type">double</span> <span class="comment-appendix">higher value <span class="symbol-arrow-right"></span> smoother signal</span></span></div>
+</li>
+</ul>
+</li>
+<li class="section level-0"><div onclick="copyLine(event)" class="line-wrapper level-0" id="variableelement@defaults"><span class="section entry-attribute">variable element:</span></div>
+<ul class="level0">
+<li class=" entry level-0"><div class="comment comment-block"><p>
+<pre class="comment">Variable declaration of an instrument.</pre>
+<pre class="comment">Can be modulated by CCs in order to change its value.</pre>
+</p><p>
+<pre class="comment"><span class="string-header">variables:</span></pre>
+<pre class="comment">  <span class="string-syntax">variable name:</span></pre>
+<pre class="comment">    modulation:</pre>
+<pre class="comment">      cc:</pre>
+<pre class="comment">        <span class="string-syntax">name of control]:</span></pre>
+<pre class="comment">          depth:</pre>
+<pre class="comment">          curve:</pre>
+<pre class="comment">          smooth</pre>
+<pre class="comment">        ...</pre>
+</p>
+</div>
+</li>
+<li class="section level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="section entry-attribute">modulation:</span></div>
+<ul class="level1">
+<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">    type:</span><span class="entry-value "> </span> <span class="comment comment-inline">type of modulation <span class="comment-type">string</span> <span class="comment-format">add, multiply</span></span></div>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="section level-0"><div onclick="copyLine(event)" class="line-wrapper level-0" id="ampeg@defaults"><span class="section entry-attribute">amp eg:</span></div>
+<ul class="level0">
+<li class=" entry level-0"><div class="comment comment-block"><p>
+<pre class="comment">Placeholder values for a newly created Volume ADSR.</pre>
+</p><p>
+<pre class="comment"><span class="string-header">Data-Structure</span></pre>
+<pre class="comment">amp eg:</pre>
+<pre class="comment">  <span class="string-syntax">ampeg segment:</span></pre>
+<pre class="comment">    level:</pre>
+<pre class="comment">    shape:</pre>
+<pre class="comment">    modulation:</pre>
+<pre class="comment">      cc:</pre>
+<pre class="comment">        <span class="string-syntax">control name:</span></pre>
+<pre class="comment">          depth:</pre>
+<pre class="comment">      ....</pre>
+</p>
+</div>
+</li>
+<li class=" entry level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="entry-attribute ">  dynamic:</span><span class="entry-value "> false </span> <span class="comment comment-inline">dynamic recalcuation of segment time during playback <span class="comment-type">bool</span></span></div>
+</li>
+<li class="section level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="section entry-attribute">delay:</span></div>
+<ul class="level1">
+<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">    level:</span><span class="entry-value "> 0 </span> <span class="comment comment-inline">level of value <span class="comment-type">double</span></span></div>
+</li>
+<li class="section level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="section entry-attribute">    modulation: </span> <span class="comment comment-inline">see default modulation section <span class="symbol-arrow-right"></span> <span class="comment-type">section</span></span></div>
+<ul class="level2">
+<li class=" entry level-3"><div onclick="copyLine(event)" class="line-wrapper level-3" ><span class="entry-attribute ">type:</span><span class="entry-value "></span></div>
+</li>
+<li class=" entry level-3"><div onclick="copyLine(event)" class="line-wrapper level-3" ><span class="entry-attribute ">cc:</span><span class="entry-value "></span></div>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="section level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="section entry-attribute">attack:</span></div>
+<ul class="level1">
+<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">level:</span><span class="entry-value "> 0.005</span></div>
+</li>
+<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">    shape:</span><span class="entry-value "> 0 </span> <span class="comment comment-inline">shape of the segment <span class="comment-type">double</span> <span class="comment-appendix"><0 <span class="symbol-arrow-right"></span> slow attack, >0 <span class="symbol-arrow-right"></span> fast attack</span></span></div>
+</li>
+<li class="section level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="section entry-attribute">modulation:</span></div>
+<ul class="level2">
+<li class=" entry level-3"><div onclick="copyLine(event)" class="line-wrapper level-3" ><span class="entry-attribute ">type:</span><span class="entry-value "></span></div>
+</li>
+<li class=" entry level-3"><div onclick="copyLine(event)" class="line-wrapper level-3" ><span class="entry-attribute ">cc:</span><span class="entry-value "></span></div>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="section level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="section entry-attribute">hold:</span></div>
+<ul class="level1">
+<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">level:</span><span class="entry-value "> 0</span></div>
+</li>
+<li class="section level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="section entry-attribute">modulation:</span></div>
+<ul class="level2">
+<li class=" entry level-3"><div onclick="copyLine(event)" class="line-wrapper level-3" ><span class="entry-attribute ">type:</span><span class="entry-value "></span></div>
+</li>
+<li class=" entry level-3"><div onclick="copyLine(event)" class="line-wrapper level-3" ><span class="entry-attribute ">cc:</span><span class="entry-value "></span></div>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="section level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="section entry-attribute">decay:</span></div>
+<ul class="level1">
+<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">level:</span><span class="entry-value "> 0.01</span></div>
+</li>
+<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">shape:</span><span class="entry-value "> 0</span></div>
+</li>
+<li class="section level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="section entry-attribute">modulation:</span></div>
+<ul class="level2">
+<li class=" entry level-3"><div onclick="copyLine(event)" class="line-wrapper level-3" ><span class="entry-attribute ">type:</span><span class="entry-value "></span></div>
+</li>
+<li class=" entry level-3"><div onclick="copyLine(event)" class="line-wrapper level-3" ><span class="entry-attribute ">cc:</span><span class="entry-value "></span></div>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="section level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="section entry-attribute">sustain:</span></div>
+<ul class="level1">
+<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">level:</span><span class="entry-value "> 1</span></div>
+</li>
+<li class="section level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="section entry-attribute">modulation:</span></div>
+<ul class="level2">
+<li class=" entry level-3"><div onclick="copyLine(event)" class="line-wrapper level-3" ><span class="entry-attribute ">type:</span><span class="entry-value "></span></div>
+</li>
+<li class=" entry level-3"><div onclick="copyLine(event)" class="line-wrapper level-3" ><span class="entry-attribute ">cc:</span><span class="entry-value "></span></div>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="section level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="section entry-attribute">release:</span></div>
+<ul class="level1">
+<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">level:</span><span class="entry-value "> 0.01</span></div>
+</li>
+<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">shape:</span><span class="entry-value "> 0</span></div>
+</li>
+<li class="section level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="section entry-attribute">modulation:</span></div>
+<ul class="level2">
+<li class=" entry level-3"><div onclick="copyLine(event)" class="line-wrapper level-3" ><span class="entry-attribute ">type:</span><span class="entry-value "></span></div>
+</li>
+<li class=" entry level-3"><div onclick="copyLine(event)" class="line-wrapper level-3" ><span class="entry-attribute ">cc:</span><span class="entry-value "></span></div>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="section level-0"><div onclick="copyLine(event)" class="line-wrapper level-0" id="lfo@defaults"><span class="section entry-attribute">lfo:</span></div>
+<ul class="level0">
+<li class=" entry level-0"><div class="comment comment-block"><p>
+<pre class="comment">Placeholder values for a newly created LFO in the instrument section.</pre>
+</p><p>
+<pre class="comment"><span class="string-header">Waveform-Names</span></pre>
+<pre class="comment">sine, tri, saw, hold, square</pre>
+</p>
+</div>
+</li>
+<li class=" entry level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="entry-attribute ">  waveform:</span><span class="entry-value "> 0 </span> <span class="comment comment-inline">waveform name or number <span class="comment-type">string | int</span></span></div>
+</li>
+<li class=" entry level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="entry-attribute ">  rate:</span><span class="entry-value "> 1 </span> <span class="comment comment-inline">rate of LFO <span class="comment-type">double</span> <span class="comment-format">hertz</span></span></div>
+</li>
+<li class=" entry level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="entry-attribute ">  phase:</span><span class="entry-value "> 0 </span> <span class="comment comment-inline">phase offset <span class="comment-type">double</span> <span class="comment-format">0-1</span></span></div>
+</li>
+<li class=" entry level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="entry-attribute ">  delay:</span><span class="entry-value "> 0 </span> <span class="comment comment-inline">delay before LFO starts <span class="comment-type">double</span></span></div>
+</li>
+<li class=" entry level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="entry-attribute ">  fade:</span><span class="entry-value "> 0 </span> <span class="comment comment-inline">fade-in of LFO depth <span class="comment-type">double</span></span></div>
+</li>
+<li class=" entry level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="entry-attribute ">  offset:</span><span class="entry-value "> 0 </span> <span class="comment comment-inline"><span class="string-warning">no idea what this one does</span></span></div>
+</li>
+<li class=" entry level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="entry-attribute ">  smooth:</span><span class="entry-value "> 25 </span> <span class="comment comment-inline">smoothing of the lfo <span class="comment-type">double</span></span></div>
+</li>
+<li class="section level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="section entry-attribute">sub:</span></div>
+<ul class="level1">
+<li class=" entry level-0"><div class="comment comment-block"><p>
+<pre class="comment">Additional LFOs layered on top of the original LFO</pre>
+</p>
+</div>
+</li>
+<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">    mix:</span><span class="entry-value "> 1 </span> <span class="comment comment-inline">mix-in factor <span class="comment-type">double</span></span></div>
+</li>
+<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">    list:</span><span class="entry-value "> </span> <span class="comment comment-inline">list of LFOs <span class="comment-type">[double,double,double,double]</span> <span class="comment-format">[waveform, ratio, scale, offset]</span></span></div>
+</li>
+</ul>
+</li>
+<li class="section level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="section entry-attribute">modulation:</span></div>
+<ul class="level1">
+<li class=" entry level-0"><div class="comment comment-block"><p>
+<pre class="comment">Modulation of the LFO attributes.</pre>
+</p><p>
+<pre class="comment">The rules of the default modulation section</pre>
+<pre class="comment">can be applied here for almost every element.</pre>
+<pre class="comment"><span class="string-warning">Some elements might not support certain modulation, use trial and error</span></pre>
+</p>
+</div>
+</li>
+<li class="section level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="section entry-attribute">depth add:</span></div>
+<ul class="level2">
+<li class=" entry level-3"><div onclick="copyLine(event)" class="line-wrapper level-3" ><span class="entry-attribute ">cc:</span><span class="entry-value "></span></div>
+</li>
+<li class=" entry level-3"><div onclick="copyLine(event)" class="line-wrapper level-3" ><span class="entry-attribute ">compensation:</span><span class="entry-value "></span></div>
+</li>
+<li class=" entry level-3"><div onclick="copyLine(event)" class="line-wrapper level-3" ><span class="entry-attribute ">lfo:</span><span class="entry-value "></span></div>
+</li>
+<li class=" entry level-3"><div onclick="copyLine(event)" class="line-wrapper level-3" ><span class="entry-attribute ">envelopes:</span><span class="entry-value "></span></div>
+</li>
+</ul>
+</li>
+<li class="section level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="section entry-attribute">depth:</span></div>
+<ul class="level2">
+<li class=" entry level-3"><div onclick="copyLine(event)" class="line-wrapper level-3" ><span class="entry-attribute ">cc:</span><span class="entry-value "></span></div>
+</li>
+<li class=" entry level-3"><div onclick="copyLine(event)" class="line-wrapper level-3" ><span class="entry-attribute ">compensation:</span><span class="entry-value "></span></div>
+</li>
+<li class=" entry level-3"><div onclick="copyLine(event)" class="line-wrapper level-3" ><span class="entry-attribute ">lfo:</span><span class="entry-value "></span></div>
+</li>
+<li class=" entry level-3"><div onclick="copyLine(event)" class="line-wrapper level-3" ><span class="entry-attribute ">envelopes:</span><span class="entry-value "></span></div>
+</li>
+</ul>
+</li>
+<li class="section level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="section entry-attribute">waveform:</span></div>
+<ul class="level2">
+<li class=" entry level-3"><div onclick="copyLine(event)" class="line-wrapper level-3" ><span class="entry-attribute ">type:</span><span class="entry-value "></span></div>
+</li>
+<li class=" entry level-3"><div onclick="copyLine(event)" class="line-wrapper level-3" ><span class="entry-attribute ">compensation:</span><span class="entry-value "></span></div>
+</li>
+<li class=" entry level-3"><div onclick="copyLine(event)" class="line-wrapper level-3" ><span class="entry-attribute ">cc:</span><span class="entry-value "></span></div>
+</li>
+<li class=" entry level-3"><div onclick="copyLine(event)" class="line-wrapper level-3" ><span class="entry-attribute ">envelopes:</span><span class="entry-value "></span></div>
+</li>
+</ul>
+</li>
+<li class="section level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="section entry-attribute">rate:</span></div>
+<ul class="level2">
+<li class=" entry level-3"><div onclick="copyLine(event)" class="line-wrapper level-3" ><span class="entry-attribute ">type:</span><span class="entry-value "></span></div>
+</li>
+<li class=" entry level-3"><div onclick="copyLine(event)" class="line-wrapper level-3" ><span class="entry-attribute ">compensation:</span><span class="entry-value "></span></div>
+</li>
+<li class=" entry level-3"><div onclick="copyLine(event)" class="line-wrapper level-3" ><span class="entry-attribute ">cc:</span><span class="entry-value "></span></div>
+</li>
+<li class=" entry level-3"><div onclick="copyLine(event)" class="line-wrapper level-3" ><span class="entry-attribute ">lfo:</span><span class="entry-value "></span></div>
+</li>
+<li class=" entry level-3"><div onclick="copyLine(event)" class="line-wrapper level-3" ><span class="entry-attribute ">envelopes:</span><span class="entry-value "></span></div>
+</li>
+</ul>
+</li>
+<li class="section level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="section entry-attribute">phase:</span></div>
+<ul class="level2">
+<li class=" entry level-3"><div onclick="copyLine(event)" class="line-wrapper level-3" ><span class="entry-attribute ">type:</span><span class="entry-value "></span></div>
+</li>
+<li class=" entry level-3"><div onclick="copyLine(event)" class="line-wrapper level-3" ><span class="entry-attribute ">compensation:</span><span class="entry-value "></span></div>
+</li>
+<li class=" entry level-3"><div onclick="copyLine(event)" class="line-wrapper level-3" ><span class="entry-attribute ">cc:</span><span class="entry-value "></span></div>
+</li>
+<li class=" entry level-3"><div onclick="copyLine(event)" class="line-wrapper level-3" ><span class="entry-attribute ">envelopes:</span><span class="entry-value "></span></div>
+</li>
+</ul>
+</li>
+<li class="section level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="section entry-attribute">delay:</span></div>
+<ul class="level2">
+<li class=" entry level-3"><div onclick="copyLine(event)" class="line-wrapper level-3" ><span class="entry-attribute ">type:</span><span class="entry-value "></span></div>
+</li>
+<li class=" entry level-3"><div onclick="copyLine(event)" class="line-wrapper level-3" ><span class="entry-attribute ">compensation:</span><span class="entry-value "></span></div>
+</li>
+<li class=" entry level-3"><div onclick="copyLine(event)" class="line-wrapper level-3" ><span class="entry-attribute ">cc:</span><span class="entry-value "></span></div>
+</li>
+<li class=" entry level-3"><div onclick="copyLine(event)" class="line-wrapper level-3" ><span class="entry-attribute ">envelopes:</span><span class="entry-value "></span></div>
+</li>
+</ul>
+</li>
+<li class="section level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="section entry-attribute">fade:</span></div>
+<ul class="level2">
+<li class=" entry level-3"><div onclick="copyLine(event)" class="line-wrapper level-3" ><span class="entry-attribute ">type:</span><span class="entry-value "></span></div>
+</li>
+<li class=" entry level-3"><div onclick="copyLine(event)" class="line-wrapper level-3" ><span class="entry-attribute ">compensation:</span><span class="entry-value "></span></div>
+</li>
+<li class=" entry level-3"><div onclick="copyLine(event)" class="line-wrapper level-3" ><span class="entry-attribute ">cc:</span><span class="entry-value "></span></div>
+</li>
+<li class=" entry level-3"><div onclick="copyLine(event)" class="line-wrapper level-3" ><span class="entry-attribute ">envelopes:</span><span class="entry-value "></span></div>
+</li>
+</ul>
+</li>
+<li class="section level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="section entry-attribute">smooth:</span></div>
+<ul class="level2">
+<li class=" entry level-3"><div onclick="copyLine(event)" class="line-wrapper level-3" ><span class="entry-attribute ">type:</span><span class="entry-value "></span></div>
+</li>
+<li class=" entry level-3"><div onclick="copyLine(event)" class="line-wrapper level-3" ><span class="entry-attribute ">compensation:</span><span class="entry-value "></span></div>
+</li>
+<li class=" entry level-3"><div onclick="copyLine(event)" class="line-wrapper level-3" ><span class="entry-attribute ">cc:</span><span class="entry-value "></span></div>
+</li>
+<li class=" entry level-3"><div onclick="copyLine(event)" class="line-wrapper level-3" ><span class="entry-attribute ">envelopes:</span><span class="entry-value "></span></div>
+</li>
+</ul>
+</li>
+<li class="section level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="section entry-attribute">offset:</span></div>
+<ul class="level2">
+<li class=" entry level-3"><div onclick="copyLine(event)" class="line-wrapper level-3" ><span class="entry-attribute ">type:</span><span class="entry-value "></span></div>
+</li>
+<li class=" entry level-3"><div onclick="copyLine(event)" class="line-wrapper level-3" ><span class="entry-attribute ">compensation:</span><span class="entry-value "></span></div>
+</li>
+<li class=" entry level-3"><div onclick="copyLine(event)" class="line-wrapper level-3" ><span class="entry-attribute ">cc:</span><span class="entry-value "></span></div>
+</li>
+<li class=" entry level-3"><div onclick="copyLine(event)" class="line-wrapper level-3" ><span class="entry-attribute ">envelopes:</span><span class="entry-value "></span></div>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="section level-0"><div onclick="copyLine(event)" class="line-wrapper level-0" id="envelopes@defaults"><span class="section entry-attribute">envelopes:</span></div>
+<ul class="level0">
+<li class=" entry level-0"><div class="comment comment-block"><p>
+<pre class="comment">Envelope declaration of an instrument section.</pre>
+</p><p>
+<pre class="comment"><span class="string-header">Sustain Point</span></pre>
+<pre class="comment">Sustain point of the envelope will be automatically</pre>
+<pre class="comment">calculated if no number is given.</pre>
+<pre class="comment">A <span class="string-syntax">positive number</span> will lead to a fixed sustain point,</pre>
+<pre class="comment">a <span class="string-syntax">negative number</span> will use a sustain point at the relative</pre>
+<pre class="comment">offset from the last point.</pre>
+</p><p>
+<pre class="comment"><span class="string-header">Curves</span></pre>
+<pre class="comment">The <span class="string-syntax">curve</span> tag within the point map</pre>
+<pre class="comment">can be used to apply a custom curve</pre>
+<pre class="comment">to the envelope segment</pre>
+</p><p>
+<pre class="comment"><span class="string-hint">Modulation can be applied individually per point <span class="font-bold"><span class="symbol-arrow-right"></span> See Section</span></span></pre>
+<pre class="comment"><span class="string-hint">Left out point values will be replaced with default values</span></pre>
+</p>
+</div>
+</li>
+<li class=" entry level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="entry-attribute ">  sustain:</span><span class="entry-value "> </span> <span class="comment comment-inline">sustain point [int]</span></div>
+</li>
+<li class=" entry level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="entry-attribute ">  dynamic:</span><span class="entry-value "> false </span> <span class="comment comment-inline">dynamic recalculation of times during playback <span class="comment-type">bool</span></span></div>
+</li>
+<li class="section level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="section entry-attribute">  modulation: </span> <span class="comment comment-inline"><span class="comment-type">section</span></span></div>
+<ul class="level1">
+<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">type:</span><span class="entry-value "></span></div>
+</li>
+<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">cc:</span><span class="entry-value "></span></div>
+</li>
+</ul>
+</li>
+<li class=" entry level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="entry-attribute ">  points:</span><span class="entry-value "> </span> <span class="comment comment-inline">list of points <span class="comment-type">[double,double,double,double]</span> <span class="comment-format">[time, level, curvature, curve]</span></span></div>
+</li>
+</ul>
+</li>
+<li class="section level-0"><div onclick="copyLine(event)" class="line-wrapper level-0" id="curveelement@defaults"><span class="section entry-attribute">curve element:</span></div>
+<ul class="level0">
+<li class=" entry level-0"><div class="comment comment-block"><p>
+<pre class="comment">Placeholder values for a declared curve.</pre>
+</p><p>
+<pre class="comment"><span class="string-header">Non-linearity</span></pre>
+<pre class="comment">If an exponent is defined the curve will be interpolated</pre>
+<pre class="comment">for the given section.</pre>
+<pre class="comment"><span class="string-header">Resolution</span></pre>
+<pre class="comment">By picking a resolution value between 0 - 1 the amount of points</pre>
+<pre class="comment">can be reduced. Lower values will reduce the curve points to its fraction.</pre>
+<pre class="comment"><span class="string-header">Stepped Curve</span></pre>
+<pre class="comment">Activating <span class="string-syntax">steps</span> will transform the curve into a stepped one,</pre>
+<pre class="comment">eliminating any interpolation introduced by the SFZ playback engine.</pre>
+</p>
+</div>
+</li>
+<li class=" entry level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="entry-attribute ">  resolution:</span><span class="entry-value "> 1 </span> <span class="comment comment-inline">factor for point reduction <span class="comment-type">double</span></span></div>
+</li>
+<li class=" entry level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="entry-attribute ">  points:</span><span class="entry-value "> </span> <span class="comment comment-inline">list of points <span class="comment-type">[double,double,double]</span> <span class="comment-format">[level, position, exponent]</span></span></div>
+</li>
+<li class=" entry level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="entry-attribute ">  steps:</span><span class="entry-value "> false </span> <span class="comment comment-inline">creates a stepped curve <span class="comment-type">bool</span></span></div>
+</li>
+</ul>
+</li>
+<li class="section level-0"><div onclick="copyLine(event)" class="line-wrapper level-0" id="choke@defaults"><span class="section entry-attribute">choke:</span></div>
+<ul class="level0">
+<li class=" entry level-0"><div class="comment comment-block"><p>
+<pre class="comment">Group Choke section of a part.</pre>
+</p><p>
+<pre class="comment">Groups are created on the fly when a name is given</pre>
+<pre class="comment">and used universally accross the instrument</pre>
+</p><p>
+<pre class="comment">The creation of Choke Groups always leadds to phantom zones</pre>
+<pre class="comment">that act as choke agents for samples. It's a hack that</pre>
+<pre class="comment">allows authentic Choke Groups with crossfaded samples.</pre>
+</p><p>
+<pre class="comment"><span class="string-header">Polymono</span></pre>
+<pre class="comment">Bypasses the "group" and "off by" settings and creates</pre>
+<pre class="comment">per note mono-groups. Used for authentic per-key-monophony.</pre>
+</p>
+</div>
+</li>
+<li class=" entry level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="entry-attribute ">  polymono:</span><span class="entry-value "> false </span> <span class="comment comment-inline">polyphonic one-voice-per-key overrite <span class="comment-type">bool</span></span></div>
+</li>
+<li class=" entry level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="entry-attribute ">  auto increment:</span><span class="entry-value "> false </span> <span class="comment comment-inline">pics the next available group number <span class="comment-type">bool</span></span></div>
+</li>
+<li class=" entry level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="entry-attribute ">  group:</span><span class="entry-value "> </span> <span class="comment comment-inline">group the part belongs tobelonging <span class="comment-type">string</span></span></div>
+</li>
+<li class=" entry level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="entry-attribute ">  off by:</span><span class="entry-value "> </span> <span class="comment comment-inline">group that chokes the part <span class="comment-type">string</span></span></div>
+</li>
+<li class=" entry level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="entry-attribute ">  hard off:</span><span class="entry-value "> false </span> <span class="comment comment-inline">ignores the voice release when turned on <span class="comment-type">bool</span></span></div>
+</li>
+<li class=" entry level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="entry-attribute ">  time:</span><span class="entry-value "> </span> <span class="comment comment-inline">fadeout time <span class="comment-type">double</span></span></div>
+</li>
+<li class=" entry level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="entry-attribute ">  shape:</span><span class="entry-value "> </span> <span class="comment comment-inline">fadeout curve shape <span class="comment-type">double</span></span></div>
+</li>
+</ul>
+</li>
+<li class="section level-0"><div onclick="copyLine(event)" class="line-wrapper level-0" id="pedals@defaults"><span class="section entry-attribute">pedals:</span></div>
+<ul class="level0">
+<li class=" entry level-0"><div class="comment comment-block"><p>
+<pre class="comment">Reconfiguration of standardized Footpedals.</pre>
+<pre class="comment">Empty fields will jump back to default values.</pre>
+</p>
+</div>
+</li>
+<li class="section level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="section entry-attribute">sustain:</span></div>
+<ul class="level1">
+<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">    bypass:</span><span class="entry-value "> false </span> <span class="comment comment-inline">bypass pedal <span class="comment-type">bool</span></span></div>
+</li>
+<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">    cc:</span><span class="entry-value "> </span> <span class="comment comment-inline">cc number of pedal <span class="comment-type">int</span></span></div>
+</li>
+<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">    off value:</span><span class="entry-value "> </span> <span class="comment comment-inline">off value <span class="comment-type">double</span></span></div>
+</li>
+</ul>
+</li>
+<li class="section level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="section entry-attribute">sostenuto:</span></div>
+<ul class="level1">
+<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">    bypass:</span><span class="entry-value "> false </span> <span class="comment comment-inline">bypass pedal <span class="comment-type">bool</span></span></div>
+</li>
+<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">    cc:</span><span class="entry-value "> </span> <span class="comment comment-inline">cc number of pedal <span class="comment-type">int</span></span></div>
+</li>
+<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">    off value:</span><span class="entry-value "> </span> <span class="comment comment-inline">off value <span class="comment-type">double</span></span></div>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="section level-0"><div onclick="copyLine(event)" class="line-wrapper level-0" id="attributes@defaults"><span class="section entry-attribute">attributes:</span></div>
+<ul class="level0">
+<li class=" entry level-0"><div class="comment comment-block"><p>
+<pre class="comment">Universal placeholder values for attributes.</pre>
+<pre class="comment">Attributes are defined by their modulability.</pre>
+</p><p>
+<pre class="comment"><span class="string-header">Compensation</span></pre>
+<pre class="comment">The <span class="string-syntax">modulation<span class="symbol-arrow-right"></span>compensation</span> value has 2 options:</pre>
+<pre class="comment">  <span class="string-syntax">sum:</span> sum of all compensations</pre>
+<pre class="comment">  <span class="string-syntax">average:</span> average of all compensation</pre>
+<pre class="comment">If left empty the <span class="string-syntax">sum</span> value will be used by default.</pre>
+</p>
+</div>
+</li>
+<li class=" entry level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="entry-attribute ">  level:</span><span class="entry-value "> 0 </span> <span class="comment comment-inline">level of attribute <span class="comment-type">double</span></span></div>
+</li>
+<li class="section level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="section entry-attribute">modulation:</span></div>
+<ul class="level1">
+<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">    compensation:</span><span class="entry-value "> </span> <span class="comment comment-inline">compensation type <span class="comment-type">string</span> <span class="comment-format">sum, average</span></span></div>
+</li>
+<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">    type:</span><span class="entry-value "> </span> <span class="comment comment-inline">type of modulation <span class="comment-type">string</span> <span class="comment-format">add, multiply</span></span></div>
+</li>
+<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">    lfo:</span><span class="entry-value "> </span> <span class="comment comment-inline"><span class="comment-type">section</span> <span class="comment-appendix"><span class="symbol-arrow-right"></span>see modulation section</span></span></div>
+</li>
+<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">    cc:</span><span class="entry-value "> </span> <span class="comment comment-inline"><span class="comment-type">section</span> <span class="comment-appendix"><span class="symbol-arrow-right"></span>see modulation section</span></span></div>
+</li>
+<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">    envelopes:</span><span class="entry-value "> </span> <span class="comment comment-inline"><span class="comment-type">section</span> <span class="comment-appendix"><span class="symbol-arrow-right"></span>see modulation section</span></span></div>
+</li>
+<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">    variables:</span><span class="entry-value "> </span> <span class="comment comment-inline"><span class="comment-type">section</span> <span class="comment-appendix"><span class="symbol-arrow-right"></span>see modulation section</span></span></div>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="section level-0"><div onclick="copyLine(event)" class="line-wrapper level-0" id="rangeelement@defaults"><span class="section entry-attribute">range element:</span></div>
+<ul class="level0">
+<li class=" entry level-0"><div class="comment comment-block"><p>
+<pre class="comment">Placeholder for elements that cover ranges,</pre>
+</p>
+</div>
+</li>
+<li class=" entry level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="entry-attribute ">  low:</span><span class="entry-value "> 0 </span> <span class="comment comment-inline">low range <span class="comment-type">int</span></span></div>
+</li>
+<li class=" entry level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="entry-attribute ">  high:</span><span class="entry-value "> 127 </span> <span class="comment comment-inline">high range <span class="comment-type">int</span></span></div>
+</li>
+</ul>
+</li>
+<li class="section level-0"><div onclick="copyLine(event)" class="line-wrapper level-0" id="keyswitchelement@defaults"><span class="section entry-attribute">keyswitch element:</span></div>
+<ul class="level0">
+<li class=" entry level-0"><div class="comment comment-block"><p>
+<pre class="comment">Keyswitch declaration in the instrument section.</pre>
+<pre class="comment">The name of the keyswitch defines its name in the ARIA interface.</pre>
+<pre class="comment"><span class="string-warning"><span class="string-syntax">label</span> is deprecated</span></pre>
+</p>
+</div>
+</li>
+<li class=" entry level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="entry-attribute ">  label:</span><span class="entry-value "> Keyswitch </span> <span class="comment comment-inline">label shown in the ARIA interface <span class="comment-type">string</span></span></div>
+</li>
+<li class=" entry level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="entry-attribute ">  note:</span><span class="entry-value "> </span> <span class="comment comment-inline">single note or section <span class="comment-type">int | [int, int]</span> <span class="comment-format">0-127</span></span></div>
+</li>
+</ul>
+</li>
+<li class="section level-0"><div onclick="copyLine(event)" class="line-wrapper level-0" id="parts@defaults"><span class="section entry-attribute">parts:</span></div>
+<ul class="level0">
+<li class=" entry level-0"><div class="comment comment-block"><p>
+<pre class="comment">Part of an Instrument, representing a sound source with its modulations.</pre>
+<pre class="comment">It is summarized via the <span class="string-syntax"><group></span> tag and includes every single sample</pre>
+<pre class="comment">or generator individually as a <span class="string-syntax"><region></span>.</pre>
+</p><p>
+<pre class="comment">Parts are used for...</pre>
+<pre class="comment">  - multi-layered sounds</pre>
+<pre class="comment">  - keyswitches</pre>
+<pre class="comment">  - conditional sounds</pre>
+<pre class="comment">  - hack-layers <span class="font-italic">(mute keys)</span></pre>
+</p><p>
+<pre class="comment"><span class="string-header">Trigger</span></pre>
+<pre class="comment">  <span class="string-syntax">normal  <span class="symbol-arrow-right"></span> </span>Always trigger the note</pre>
+<pre class="comment">  <span class="string-syntax">release <span class="symbol-arrow-right"></span> </span>Trigger on release</pre>
+<pre class="comment">  <span class="string-syntax">first   <span class="symbol-arrow-right"></span> </span>First key when no other key is activated</pre>
+<pre class="comment">  <span class="string-syntax">second  <span class="symbol-arrow-right"></span> </span>Follow-up keys after the first key is held down</pre>
+<pre class="comment"><span class="string-hint">Release Trigger always requires amnactivated Voice in ARIAs playback engine</span></pre>
+</p><p>
+<pre class="comment"><span class="string-header">Generator</span></pre>
+<pre class="comment">  Access to ARIAs internal sound generators.</pre>
+<pre class="comment">  Overwrites existing samples since there can be only one sound source.</pre>
+</p><p>
+<pre class="comment"><span class="string-header">Playmode</span></pre>
+<pre class="comment">  <span class="string-syntax">normal   <span class="symbol-arrow-right"></span> </span>Straight forward playing of the sample</pre>
+<pre class="comment">  <span class="string-syntax">shot     <span class="symbol-arrow-right"></span> </span>One Shot trigger, play full sample, ignoring the note release</pre>
+<pre class="comment">  <span class="string-syntax">loop all <span class="symbol-arrow-right"></span> </span>Loop sample all the time even during note release</pre>
+<pre class="comment">  <span class="string-syntax">loop     <span class="symbol-arrow-right"></span> </span>Loop sample, but escape the loop during note release</pre>
+</p><p>
+<pre class="comment"><span class="string-header">Roundrobin</span></pre>
+<pre class="comment">  <span class="string-syntax">sequence  <span class="symbol-arrow-right"></span> </span>Play Roundrobins in a sequential order</pre>
+<pre class="comment">  <span class="string-syntax">random    <span class="symbol-arrow-right"></span> </span>Play Roundrobins in a randomized order</pre>
+<pre class="comment">  <span class="string-syntax">hybrid    <span class="symbol-arrow-right"></span> </span>Split Roundrobins into two sequential sections, each using a randomized order</pre>
+<pre class="comment">  <span class="string-warning"><span class="string-syntax">Hybrid</span> is broken in ARIA because the sequence tracking isn't globally synced</span></pre>
+</p><p>
+<pre class="comment"><span class="string-header">Include</span></pre>
+<pre class="comment">  A single item or list of files that can be included.</pre>
+<pre class="comment">  The raw content of the file is inserted into the final SFZ, without any pre-processing or checkups.</pre>
+</p><p>
+<pre class="comment"><span class="string-header">Insert</span></pre>
+<pre class="comment">  Raw text input that is inserted into the final SFZ file.</pre>
+<pre class="comment">  This section can make use of several sections of the instrument by using</pre>
+<pre class="comment">  a syntax of <span class="string-syntax">{section:elementName}</span>:</pre>
+<pre class="comment">  <span class="string-syntax">{envelopes:EnvelopeName}          <span class="symbol-arrow-right"></span></span> Envelope SFZ tag</pre>
+<pre class="comment">  <span class="string-syntax">{curves:CurveName}                <span class="symbol-arrow-right"></span></span> Curve Index Number</pre>
+<pre class="comment">  <span class="string-syntax">{filters:FilterName}              <span class="symbol-arrow-right"></span></span> Local Filter Index (nothing or "2")</pre>
+<pre class="comment">  <span class="string-syntax">{lfo:LfoName}                     <span class="symbol-arrow-right"></span></span> LFO SFZ tag</pre>
+<pre class="comment">  <span class="string-syntax">{control:ControlName}             <span class="symbol-arrow-right"></span></span> Control CC number</pre>
+<pre class="comment">  <span class="string-syntax">{keyswitches:KeyswitchName}       <span class="symbol-arrow-right"></span></span> Low Keyswitch Range</pre>
+<pre class="comment">  <span class="string-syntax">{keyswitches_high:KeyswitchName}  <span class="symbol-arrow-right"></span></span> High Keyswitch Range</pre>
+</p><p>
+<pre class="comment"><span class="string-header">Keyrange</span></pre>
+<pre class="comment">  The <span class="string-syntax">force note</span> attribute removes tonal mapping and instead moves all the simples</pre>
+<pre class="comment">  to the one given note, while still respecting the <span class="string-syntax">extend</span> setting.</pre>
+</p><p>
+<pre class="comment"><span class="string-header">Snippet</span></pre>
+<pre class="comment">  Inserts a snippet from the template section.</pre>
+<pre class="comment">  Can be a single word or a list, where the first entry is</pre>
+<pre class="comment">  the snippet name and the following entries are values for placeholder wildcards</pre>
+<pre class="comment">  defined in the snippets using <span class="string-syntax">$1-$10</span>.</pre>
+</p><p>
+<pre class="comment"><span class="string-header">Copy</span></pre>
+<pre class="comment">  Copies YAML data from another part or sequentially from other parts if a list is given.</pre>
+<pre class="comment">  When using a list, each following entry in sequence will extend the previous entry,</pre>
+<pre class="comment">  leaving already set values unchanged.</pre>
+</p><p>
+<pre class="comment"><span class="string-header">Filters</span></pre>
+<pre class="comment">  Declare Sections with the name of a filter declared in the instrument section</pre>
+<pre class="comment">  to include the filter in the part.</pre>
+<pre class="comment">  <span class="string-hint">There's a <span class="font-bold">maximum of 2 filters</span> enforced by the SFZ limitations.</span></pre>
+</p><p>
+<pre class="comment"><span class="string-header">Equalizer</span></pre>
+<pre class="comment">  Declare a Section with the name of a filter declared in the instrument section</pre>
+<pre class="comment">  to include the equalizer's bands.</pre>
+<pre class="comment">  <span class="string-hint">There's <span class="font-bold">only one equalizer</span> per part that can be included.</span></pre>
+</p>
+</div>
+</li>
+<li class=" entry level-0"><div class="comment comment-block"><p>
+<pre class="comment"><span class="font-bold">Formatting</span></pre>
+</p>
+</div>
+</li>
+<li class=" entry level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="entry-attribute ">  hide:</span><span class="entry-value "> false </span> <span class="comment comment-inline">keep part from being printed <span class="comment-type">bool</span></span></div>
+</li>
+<li class=" entry level-0"><div class="comment comment-block"><p>
+<pre class="comment"><span class="font-bold">Section Settings</span></pre>
+</p>
+</div>
+</li>
+<li class=" entry level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="entry-attribute ">  zones:</span><span class="entry-value "> </span> <span class="comment comment-inline">zones settings          <span class="comment-type"><span class="symbol-arrow-right"></span> See Section</span></span></div>
+</li>
+<li class=" entry level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="entry-attribute ">  splits:</span><span class="entry-value "> </span> <span class="comment comment-inline">splits settings        <span class="comment-type"><span class="symbol-arrow-right"></span> See Section</span></span></div>
+</li>
+<li class=" entry level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="entry-attribute ">  generator:</span><span class="entry-value "> </span> <span class="comment comment-inline">generator settings  <span class="comment-type"><span class="symbol-arrow-right"></span> See Section</span></span></div>
+</li>
+<li class=" entry level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="entry-attribute ">  samples:</span><span class="entry-value "> </span> <span class="comment comment-inline">samples settings      <span class="comment-type"><span class="symbol-arrow-right"></span> See Section</span></span></div>
+</li>
+<li class=" entry level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="entry-attribute ">  sounds:</span><span class="entry-value "> </span> <span class="comment comment-inline">sound settings         <span class="comment-type"><span class="symbol-arrow-right"></span> See Section</span></span></div>
+</li>
+<li class=" entry level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="entry-attribute ">  choke:</span><span class="entry-value "> </span> <span class="comment comment-inline">choke group settings    <span class="comment-type"><span class="symbol-arrow-right"></span> See Section</span></span></div>
+</li>
+<li class=" entry level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="entry-attribute ">pedals:</span><span class="entry-value "></span></div>
+</li>
+<li class=" entry level-0"><div class="comment comment-block"><p>
+<pre class="comment"><span class="font-bold">Text Insertion</span></pre>
+</p>
+</div>
+</li>
+<li class=" entry level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="entry-attribute ">  copy:</span><span class="entry-value "> </span> <span class="comment comment-inline">copy YAML data from part(s) <span class="comment-type">string | [string, string, ...]</span> <span class="comment-format">partName | [partName1, partName2, ...]</span></span></div>
+</li>
+<li class=" entry level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="entry-attribute ">  snippet:</span><span class="entry-value "> </span> <span class="comment comment-inline">link to a snippet form the template section <span class="comment-type">string | [string, anything]</span> <span class="comment-format">snippetName | [snippetName, Argument1, Argument2, ...]</span></span></div>
+</li>
+<li class=" entry level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="entry-attribute ">  include:</span><span class="entry-value "> </span> <span class="comment comment-inline">include data from an external file <span class="comment-type">file | [file_1, file_2,...]</span> <span class="comment-appendix">uses relative paths</span></span></div>
+</li>
+<li class=" entry level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="entry-attribute ">  insert:</span><span class="entry-value "> </span> <span class="comment comment-inline">insert string, optionally in post position when using an array <span class="comment-type">string | [string, string]</span></span></div>
+</li>
+<li class=" entry level-0"><div class="comment comment-block"><p>
+<pre class="comment"><span class="font-bold">Play Behaviour</span></pre>
+</p>
+</div>
+</li>
+<li class=" entry level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="entry-attribute ">  trigger:</span><span class="entry-value "> Normal </span> <span class="comment comment-inline">trigger type <span class="comment-type">string</span> <span class="comment-format">normal, release, first, second</span></span></div>
+</li>
+<li class=" entry level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="entry-attribute ">  playmode:</span><span class="entry-value "> Normal </span> <span class="comment comment-inline">play mode <span class="comment-type">string</span> <span class="comment-format">normal, shot, loop all, loop</span></span></div>
+</li>
+<li class=" entry level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="entry-attribute ">  reverse:</span><span class="entry-value "> False </span> <span class="comment comment-inline">reverse playback direction <span class="comment-type">bool</span></span></div>
+</li>
+<li class=" entry level-0"><div class="comment comment-block"><p>
+<pre class="comment"><span class="font-bold">Release Envelope</span></pre>
+</p>
+</div>
+</li>
+<li class=" entry level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="entry-attribute ">  release envelope:</span><span class="entry-value "> </span> <span class="comment comment-inline">single release envelope <span class="comment-type">string</span> <span class="comment-format">release envelope name</span></span></div>
+</li>
+<li class=" entry level-0"><div class="comment comment-block"><p>
+<pre class="comment"><span class="font-bold">MIDI Context - Tonal</span></pre>
+</p>
+</div>
+</li>
+<li class=" entry level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="entry-attribute ">  note shift:</span><span class="entry-value "> 0 </span> <span class="comment comment-inline">internal note shift in semitones <span class="comment-type">int</span></span></div>
+</li>
+<li class=" entry level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="entry-attribute ">  keyswitch:</span><span class="entry-value "> </span> <span class="comment comment-inline">keyswitch name <span class="comment-type">string</span> <span class="comment-format">name of keyswitch</span></span></div>
+</li>
+<li class="section level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="section entry-attribute">  keyrange: </span> <span class="comment comment-inline">definiation of note range <span class="comment-type">section</span></span></div>
+<ul class="level1">
+<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">    low:</span><span class="entry-value "> 0 </span> <span class="comment comment-inline"><span class="comment-type">int</span> <span class="comment-format">0-127</span></span></div>
+</li>
+<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">    high:</span><span class="entry-value "> 127 </span> <span class="comment comment-inline"><span class="comment-type">int</span> <span class="comment-format">0-127</span></span></div>
+</li>
+<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">    disable:</span><span class="entry-value "> false </span> <span class="comment comment-inline">disables triggering notes with keys <span class="comment-type">bool]</span></span></div>
+</li>
+<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">    force note:</span><span class="entry-value "> </span> <span class="comment comment-inline">forces sample keyrange to a note (range) <span class="comment-type">int | [int, int]</span></span></div>
+</li>
+<li class="section level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="section entry-attribute">    extend: </span> <span class="comment comment-inline">extends notes range for non-tonal indexing and lowest and highest notes</span></div>
+<ul class="level2">
+<li class=" entry level-3"><div onclick="copyLine(event)" class="line-wrapper level-3" ><span class="entry-attribute ">      low:</span><span class="entry-value "> 0 </span> <span class="comment comment-inline"><span class="comment-type">int</span> <span class="comment-format">0-127</span></span></div>
+</li>
+<li class=" entry level-3"><div onclick="copyLine(event)" class="line-wrapper level-3" ><span class="entry-attribute ">      high:</span><span class="entry-value "> 0 </span> <span class="comment comment-inline"><span class="comment-type">int</span> <span class="comment-format">0-127</span></span></div>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class=" entry level-0"><div class="comment comment-block"><p>
+<pre class="comment"><span class="font-bold">MIDI Context - Conditions</span></pre>
+</p>
+</div>
+</li>
+<li class=" entry level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="entry-attribute ">  cc range:</span><span class="entry-value "> </span> <span class="comment comment-inline">CC range defining sample availability <span class="comment-type">int | [int, int]</span></span></div>
+</li>
+<li class=" entry level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="entry-attribute ">  cc trigger:</span><span class="entry-value "> </span> <span class="comment comment-inline">CC range used for triggering playback <span class="comment-type">int | [int, int]</span></span></div>
+</li>
+<li class=" entry level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="entry-attribute ">  program range:</span><span class="entry-value "> </span> <span class="comment comment-inline">Program Change range defining sample availability <span class="comment-type">int | [int, int]</span></span></div>
+</li>
+<li class=" entry level-0"><div class="comment comment-block"><p>
+<pre class="comment"><span class="font-bold">RoundRobins</span></pre>
+</p>
+</div>
+</li>
+<li class=" entry level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="entry-attribute ">  roundrobin:</span><span class="entry-value "> sequence </span> <span class="comment comment-inline">RoundRobin bevaiour for part <span class="comment-type">string</span></span></div>
+</li>
+<li class=" entry level-0"><div class="comment comment-block"><p>
+<pre class="comment"><span class="font-bold">Amp ADSR</span></pre>
+</p>
+</div>
+</li>
+<li class=" entry level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="entry-attribute ">  amp eg:</span><span class="entry-value "> </span> <span class="comment comment-inline">AmpEG section <span class="comment-type">section</span> <span class="comment-appendix">See ADSR section</span></span></div>
+</li>
+<li class=" entry level-0"><div class="comment comment-block"><p>
+<pre class="comment"><span class="font-bold">Audio Processors</span></pre>
+</p>
+</div>
+</li>
+<li class=" entry level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="entry-attribute ">  filters:</span><span class="entry-value "> </span> <span class="comment comment-inline">filters to be included <span class="comment-type">section</span></span></div>
+</li>
+<li class=" entry level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="entry-attribute ">  equalizer:</span><span class="entry-value "> </span> <span class="comment comment-inline">equalizer to be included <span class="comment-type">section</span></span></div>
+</li>
+<li class=" entry level-0"><div class="comment comment-block"><p>
+<pre class="comment"><span class="font-bold">Pitchbend</span></pre>
+</p>
+</div>
+</li>
+<li class=" entry level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="entry-attribute ">  pitchbend:</span><span class="entry-value "> </span> <span class="comment comment-inline">pitchbend modulation <span class="comment-type">section</span> <span class="comment-appendix"><span class="symbol-arrow-right"></span> See Pitchbend Section</span></span></div>
+</li>
+</ul>
+</li>
+<li class="section level-0"><div onclick="copyLine(event)" class="line-wrapper level-0" id="zones@defaults"><span class="section entry-attribute">zones:</span></div>
+<ul class="level0">
+<li class=" entry level-0"><div class="comment comment-block"><p>
+<pre class="comment">Settings for the tonal distribution of a part.</pre>
+</p><p>
+<pre class="comment"><span class="string-header"> Crossfade</span></pre>
+<pre class="comment">  Crossfades the tonal range by a given factor.</pre>
+<pre class="comment">  <span class="string-hint">The crossfades are quantized by semitones, so a high sample count will require a higher factor.</span></pre>
+<pre class="comment">  <span class="string-warning">The nature of sampling will most of the time result in a chorus effect</span></pre>
+</p><p>
+<pre class="comment">  The crossfade-curve can be reconfigured:</pre>
+<pre class="comment">    <span class="string-syntax">linear - </span>linear crossfade</pre>
+<pre class="comment">    <span class="string-syntax">power - </span>steeper crossfade than linear</pre>
+</p>
+</div>
+</li>
+<li class="section level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="section entry-attribute">crossfade:</span></div>
+<ul class="level1">
+<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">    depth:</span><span class="entry-value "> 0.0 </span> <span class="comment comment-inline">crossfade factor <span class="comment-type">double</span> <span class="comment-format">0-1</span></span></div>
+</li>
+<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">    type:</span><span class="entry-value "> power </span> <span class="comment comment-inline">type of crossfade <span class="comment-type">string</span> <span class="comment-format">linear, power</span></span></div>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="section level-0"><div onclick="copyLine(event)" class="line-wrapper level-0" id="splits@defaults"><span class="section entry-attribute">splits:</span></div>
+<ul class="level0">
+<li class=" entry level-0"><div class="comment comment-block"><p>
+<pre class="comment">Settings for the dynamic distribution of a part.</pre>
+</p><p>
+<pre class="comment">If a split contains crossfades that are controlled with something</pre>
+<pre class="comment">else than velocity, the level range is ignored since proper CC crossfading across the full range</pre>
+<pre class="comment">requires all samples of a note to be played at the same time</pre>
+</p><p>
+<pre class="comment"><span class="string-header">Curve</span></pre>
+<pre class="comment">Exponent that shift the splits aroung logarithmically.</pre>
+<pre class="comment">The shift also affects the (optionally) already implemented crossfades.</pre>
+<pre class="comment">  <span class="string-syntax">values 0 - 1 <span class="symbol-arrow-right"></span></span> Compressed high level splits, gives low level splits more room</pre>
+<pre class="comment">  <span class="string-syntax">value 1      <span class="symbol-arrow-right"></span></span> Splits are spread linear</pre>
+<pre class="comment">  <span class="string-syntax">values > 1   <span class="symbol-arrow-right"></span></span> Compressed low level splits, gives high level splits more room</pre>
+</p><p>
+<pre class="comment"><span class="string-header">Crossfade: Control: Type</span></pre>
+<pre class="comment">  <span class="string-syntax">velocity        <span class="symbol-arrow-right"></span></span> Uses default velocity detection for crossfades</pre>
+<pre class="comment">  <span class="string-syntax">aftertouch      <span class="symbol-arrow-right"></span></span> Uses channel aftertouch for crossfades</pre>
+<pre class="comment">  <span class="string-syntax">cc              <span class="symbol-arrow-right"></span></span> Uses control change with given index for crossfades</pre>
+<pre class="comment">  <span class="string-syntax">[control name]  <span class="symbol-arrow-right"></span></span> Uses a control from the lookup section for crossfades</pre>
+</p><p>
+<pre class="comment"><span class="string-header">Crossfade: Control: Source:</span></pre>
+<pre class="comment">  <span class="string-syntax">0 - 127         <span class="symbol-arrow-right"></span></span> Control Change number of type is cc</pre>
+<pre class="comment">  <span class="string-syntax">[Control]       <span class="symbol-arrow-right"></span></span> Control name string for picking a control via lookup</pre>
+</p><p>
+<pre class="comment"><span class="string-header">Full Level</span></pre>
+<pre class="comment">  Set to true to ignore levels (keeping the crossfades)</pre>
+</p>
+</div>
+</li>
+<li class=" entry level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="entry-attribute ">  curve:</span><span class="entry-value "> 1.0 </span> <span class="comment comment-inline">exponent for shifting spits logarithmically <span class="comment-type">double</span></span></div>
+</li>
+<li class=" entry level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="entry-attribute ">  full level:</span><span class="entry-value "> </span> <span class="comment comment-inline"><span class="comment-type">bool</span></span></div>
+</li>
+<li class="section level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="section entry-attribute">crossfade:</span></div>
+<ul class="level1">
+<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">    depth:</span><span class="entry-value "> 1.0 </span> <span class="comment comment-inline">crossfade depth <span class="comment-type">double</span></span></div>
+</li>
+<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">    type:</span><span class="entry-value "> power </span> <span class="comment comment-inline">type of crossfade <span class="comment-type">string</span> <span class="comment-format">linear, power</span></span></div>
+</li>
+<li class="section level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="section entry-attribute">    control: </span> <span class="comment comment-inline">crossfade control settings <span class="comment-type">section</span></span></div>
+<ul class="level2">
+<li class=" entry level-3"><div onclick="copyLine(event)" class="line-wrapper level-3" ><span class="entry-attribute ">      type:</span><span class="entry-value "> velocity </span> <span class="comment comment-inline">type of crossfade control <span class="comment-type">string</span></span></div>
+</li>
+<li class=" entry level-3"><div onclick="copyLine(event)" class="line-wrapper level-3" ><span class="entry-attribute ">      source:</span><span class="entry-value "> 0 </span> <span class="comment comment-inline">control source <span class="comment-type">int | string</span> <span class="comment-format">ccNumber | controlName</span></span></div>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="section level-0"><div onclick="copyLine(event)" class="line-wrapper level-0" id="generator@defaults"><span class="section entry-attribute">generator:</span></div>
+<ul class="level0">
+<li class=" entry level-0"><div class="comment comment-block"><p>
+<pre class="comment">ARIAs internal sound genator.</pre>
+<pre class="comment">When used it will automatically disable the "samples" section of a part.</pre>
+</p><p>
+<pre class="comment">The keyrange of a part can be copied using the "part" tag, but the given</pre>
+<pre class="comment">part must have been created first.</pre>
+</p>
+</div>
+</li>
+<li class=" entry level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="entry-attribute ">  type:</span><span class="entry-value "> silence </span> <span class="comment comment-inline">name of the generator <span class="comment-type">string</span></span></div>
+</li>
+<li class=" entry level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="entry-attribute ">  note:</span><span class="entry-value "> 48 </span> <span class="comment comment-inline">root note of generator <span class="comment-type">int</span> <span class="comment-format">0-127</span></span></div>
+</li>
+<li class="section level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="section entry-attribute">range:</span></div>
+<ul class="level1">
+<li class="section level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="section entry-attribute">key:</span></div>
+<ul class="level2">
+<li class=" entry level-3"><div onclick="copyLine(event)" class="line-wrapper level-3" ><span class="entry-attribute ">      low:</span><span class="entry-value "> 0 </span> <span class="comment comment-inline">low note <span class="comment-type">int</span> <span class="comment-format">0-127</span></span></div>
+</li>
+<li class=" entry level-3"><div onclick="copyLine(event)" class="line-wrapper level-3" ><span class="entry-attribute ">      high:</span><span class="entry-value "> 127 </span> <span class="comment comment-inline">high note <span class="comment-type">int</span> <span class="comment-format">0-127</span></span></div>
+</li>
+<li class=" entry level-3"><div onclick="copyLine(event)" class="line-wrapper level-3" ><span class="entry-attribute ">      part:</span><span class="entry-value "> </span> <span class="comment comment-inline">copy range from part <span class="comment-type">string</span> <span class="comment-format">partName</span></span></div>
+</li>
+</ul>
+</li>
+<li class="section level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="section entry-attribute">level:</span></div>
+<ul class="level2">
+<li class=" entry level-3"><div onclick="copyLine(event)" class="line-wrapper level-3" ><span class="entry-attribute ">      low:</span><span class="entry-value "> 0 </span> <span class="comment comment-inline">low level <span class="comment-type">int</span></span></div>
+</li>
+<li class=" entry level-3"><div onclick="copyLine(event)" class="line-wrapper level-3" ><span class="entry-attribute ">      high:</span><span class="entry-value "> 127 </span> <span class="comment comment-inline">high level <span class="comment-type">int</span></span></div>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="section level-0"><div onclick="copyLine(event)" class="line-wrapper level-0" id="samples@defaults"><span class="section entry-attribute">samples:</span></div>
+<ul class="level0">
+<li class=" entry level-0"><div class="comment comment-block"><p>
+<pre class="comment">Samples settings of a part-</pre>
+</p><p>
+<pre class="comment"><span class="string-header">Include</span></pre>
+<pre class="comment">Allows only samples to be mapped that are recognized by the filter.</pre>
+<pre class="comment"><span class="string-hint">Wildcard "*" is allowed. Can be a list for multiple inclusions.</span></pre>
+</p><p>
+<pre class="comment"><span class="string-header">Exclude</span></pre>
+<pre class="comment">Skips samples that match the filter.</pre>
+<pre class="comment"><span class="string-hint">Wildcard "*" is allowed. Can be a list for multiple inclusions.</span></pre>
+</p><p>
+<pre class="comment"><span class="string-header">Pattern</span></pre>
+<pre class="comment">List that represents the attributes that can be read from a file.</pre>
+<pre class="comment">The filename is split using the "split" symbol from the settings and</pre>
+<pre class="comment">then scanned using the given pattern to get the attributes.</pre>
+</p><p>
+<pre class="comment"><span class="string-syntax">name        <span class="symbol-arrow-right"></span></span> Mame of the sample</pre>
+<pre class="comment"><span class="string-syntax">note        <span class="symbol-arrow-right"></span></span> Tonal data, should be single note</pre>
+<pre class="comment"><span class="string-syntax">level       <span class="symbol-arrow-right"></span></span> Level data, for level dynamic ordering</pre>
+<pre class="comment"><span class="string-syntax">roundrobin  <span class="symbol-arrow-right"></span></span> Roundrobin information, for explict roundrobin declaration</pre>
+</p><p>
+<pre class="comment"><span class="string-hint">Any attribute that isn't listed here will act as placeholder.</span></pre>
+</p><p>
+<pre class="comment"><span class="string-header">Pattern without a note attribute</span></pre>
+<pre class="comment">Relies on the"incremental start" and "incremental step" settings</pre>
+<pre class="comment">in order to spread the samples automatically across the tonal range.</pre>
+<pre class="comment">A new zone is created everytime there is a change in the name,</pre>
+<pre class="comment">which is typical for drum or noise samples.</pre>
+</p><p>
+<pre class="comment"><span class="string-header">Mapping: Type</span></pre>
+<pre class="comment"><span class="string-syntax">tonal   <span class="symbol-arrow-right"></span> </span>map the sample tonally</pre>
+<pre class="comment"><span class="string-syntax">atonal  <span class="symbol-arrow-right"></span> </span>map the sample atonally, using the note information given</pre>
+</p><p>
+<pre class="comment"><span class="string-header">Mapping: Type: Note</span></pre>
+<pre class="comment"><span class="string-syntax">step  <span class="symbol-arrow-right"></span> </span>Semitone to increment between notes</pre>
+<pre class="comment"><span class="string-syntax">start <span class="symbol-arrow-right"></span> </span>Starting note for atonal mapping</pre>
+</p><p>
+<pre class="comment"><span class="string-header">Mapping: Level: Pattern</span></pre>
+<pre class="comment">List of strings used for sorting levels by strings, not numbers.</pre>
+<pre class="comment">Can be used for classical velocity notation like <span class="string-quote">mezzoforte</span> or <span class="string-quote">pianissimo</span></pre>
+</p><p>
+<pre class="comment"><span class="string-header">Mapping: Note: Detection: Type</span></pre>
+<pre class="comment"><span class="string-syntax">direct    <span class="symbol-arrow-right"></span> </span>Grab note directly from a given number</pre>
+<pre class="comment"><span class="string-syntax">list      <span class="symbol-arrow-right"></span> </span>Use a lookup array from the templates files or a given list of note names</pre>
+<pre class="comment"><span class="string-hint">The octave is filtered from a number filtered from the file note name</span></pre>
+<pre class="comment"><span class="string-warning">List must contain 12 note names as strings, representing the western musical scale</span></pre>
+</p>
+</div>
+</li>
+<li class=" entry level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="entry-attribute ">  location:</span><span class="entry-value "> Samples </span> <span class="comment comment-inline">relative path to the samples <span class="comment-type">string</span></span></div>
+</li>
+<li class=" entry level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="entry-attribute ">  include:</span><span class="entry-value "> "*" </span> <span class="comment comment-inline">include filter <span class="comment-type">string | [string, string, ...]</span></span></div>
+</li>
+<li class=" entry level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="entry-attribute ">  exclude:</span><span class="entry-value "> "" </span> <span class="comment comment-inline">exclude filter <span class="comment-type">string | [string, string, ...]</span></span></div>
+</li>
+<li class=" entry level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="entry-attribute ">  split:</span><span class="entry-value "> _ </span> <span class="comment comment-inline">split symbol for grabbing file attributes <span class="comment-type">string</span></span></div>
+</li>
+<li class=" entry level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="entry-attribute ">  pattern:</span><span class="entry-value "> [name, note, level, roundrobin] </span> <span class="comment comment-inline">file attribute pattern <span class="comment-type">[string, string, ...]</span></span></div>
+</li>
+<li class="section level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="section entry-attribute">  mapping: </span> <span class="comment comment-inline">mapping settings <span class="comment-type">section</span></span></div>
+<ul class="level1">
+<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">    type:</span><span class="entry-value "> tonal </span> <span class="comment comment-inline">mapping type <span class="comment-type">string</span> <span class="comment-format">tonal, atonal</span></span></div>
+</li>
+<li class="section level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="section entry-attribute">    level: </span> <span class="comment comment-inline">mapping settings regarding levels <span class="comment-type">section</span></span></div>
+<ul class="level2">
+<li class=" entry level-3"><div onclick="copyLine(event)" class="line-wrapper level-3" ><span class="entry-attribute ">      pattern:</span><span class="entry-value "> null </span> <span class="comment comment-inline">list for level lookup <span class="comment-type">[string, string, string, ...]</span></span></div>
+</li>
+<li class=" entry level-3"><div onclick="copyLine(event)" class="line-wrapper level-3" ><span class="entry-attribute ">      reverse:</span><span class="entry-value "> false </span> <span class="comment comment-inline">reverse order of levels <span class="comment-type">bool</span></span></div>
+</li>
+</ul>
+</li>
+<li class="section level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="section entry-attribute">    note: </span> <span class="comment comment-inline">mapping settings regarding tonality <span class="comment-type">section</span></span></div>
+<ul class="level2">
+<li class=" entry level-3"><div onclick="copyLine(event)" class="line-wrapper level-3" ><span class="entry-attribute ">      incremental start:</span><span class="entry-value "> 36 </span> <span class="comment comment-inline">atonal starting note <span class="comment-type">int</span> <span class="comment-format">0-127</span></span></div>
+</li>
+<li class=" entry level-3"><div onclick="copyLine(event)" class="line-wrapper level-3" ><span class="entry-attribute ">      incremental step:</span><span class="entry-value "> 12 </span> <span class="comment comment-inline">atonal incrementation <span class="comment-type">int</span> <span class="comment-format">0-127</span></span></div>
+</li>
+<li class="section level-3"><div onclick="copyLine(event)" class="line-wrapper level-3" ><span class="section entry-attribute">      detection: </span> <span class="comment comment-inline">note detection settings <span class="comment-type">section</span></span></div>
+<ul class="level3">
+<li class=" entry level-4"><div onclick="copyLine(event)" class="line-wrapper level-4" ><span class="entry-attribute ">        type:</span><span class="entry-value "> list </span> <span class="comment comment-inline">type of note detection <span class="comment-type">string</span> <span class="comment-format">list, direct</span></span></div>
+</li>
+<li class=" entry level-4"><div onclick="copyLine(event)" class="line-wrapper level-4" ><span class="entry-attribute ">        pattern:</span><span class="entry-value "> classic-b-sharp </span> <span class="comment comment-inline">pattern used for array detection <span class="comment-type">string | [string, string, ...]</span></span></div>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="section level-0"><div onclick="copyLine(event)" class="line-wrapper level-0" id="sounds@defaults"><span class="section entry-attribute">sounds:</span></div>
+<ul class="level0">
+<li class=" entry level-0"><div class="comment comment-block"><p>
+<pre class="comment">Settings for the sounds of a part.</pre>
+</p>
+</div>
+</li>
+<li class=" entry level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="entry-attribute ">  pitch tracking:</span><span class="entry-value "> 100 </span> <span class="comment comment-inline">default neutral pitch tracking <span class="comment-type">int</span></span></div>
+</li>
+</ul>
+</li>
+</ul>
+
+                        </div>
+                        
+<div id="sidebar">
+<div id="sidebar-wrapper">
+<div id="sidebar-collapse-button" 
+onclick="toggleSidePanel()">
+<div id="sidebar-collapse-button-content">
+</div>
+</div>
+<div id="table-of-contents">
+
+<ul id="table-of-contents-list"></ul>
+</div>
+</div>
+</div>
+</div><script type="text/javascript" src="toc.js" ></script>
+</body>
+</html>

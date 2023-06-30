@@ -1,0 +1,823 @@
+/* - - - - - - - - - - - - - - - - - - - - -
+    Variables
+ - - - - - - - - - - - - - - - - - - - - - - */
+
+:root {
+
+    /* ::: font */
+    --font-main: "Calibri";
+    --font-code: "Courier New";
+    
+    /* ::: animation */
+    --animation-speed: 0.15s;
+
+    /* ::: colors */
+
+    /* Content - Global */
+    --color-content-bg: #303030;
+    --color-content-bg-alt: #2C2C2C;
+    --color-content-font: #d8d8d8;
+    --color-content-font-quote: #E0E0E0;
+    --color-content-font-syntax: #C0C0F0;
+
+    /* Content - File */
+    --color-content-file-bg: #00000040;
+    --color-content-file-font: #d4a61d;
+    --color-content-file-border: #fafafa20;
+
+    /* Content - Header */
+    --color-content-header-font: #b2b0a4;
+    --color-content-header-shadow: #00000050;
+    --color-content-header-shadow-alt: #0d0d0d50;
+    --color-content-header-hover: #FFFFFF18;
+
+    /* Content - Root Header */
+    --color-content-root-font: #d0c194;
+    --color-content-root-shadow: #ffffff1c;
+    --color-content-root-hover: #ffffff32;
+
+    /* Content - Value */
+    --color-content-value-font: #b3b3e3;
+
+    /* Content - Code Block */
+    --color-content-code-bg: #3c3550;
+    --color-content-code-font: #ffffffa2;
+    
+    /* Content - Example */
+    --color-content-example-bg: var(--color-content-code-bg);
+    --color-content-example-font: var(--color-content-code-font);
+    --color-content-example-header-font: #ffffff59;
+
+    /* Content - Marker */
+    --color-content-marked-bg: #f1545416;
+    --color-content-marked-font-marked: #ed6666;
+    --color-content-marked-font-dim: #ff0000;
+
+    /* Content - Comment */
+    --color-content-comment-inline-bg: #00000018;
+    --color-content-comment-font: #ad9e50;
+    --color-content-comment-appendix: #a07a32;
+    --color-content-comment-type: #8bc25c;
+    --color-content-comment-format: #3dbc9c;
+    --color-content-comment-warning: #d77676;
+    --color-content-comment-header: #d4cd8b;
+    --color-content-comment-hint: #70c873;
+    --color-content-comment-quote: #e3e3e3;
+    
+    /* Content - Comment Block */
+    --color-content-comment-block-bg: #00000027;
+    --color-content-comment-block-font: #c2b488;
+
+    /* Content - Table of Contents */
+    --color-toc-bg: #202020;
+    --color-toc-bg-center: #ffffff15;
+    --color-toc-divider: #FFFFFF50;
+    --color-toc-file-bg: #00000030;
+    --color-toc-font: hsl(0, 0%, 61%);
+    --color-toc-font-center: #c4c4c4;
+    --color-toc-font-hover: #d9d9d9;
+    --color-toc-font-file: var(--color-content-file-font);
+    --color-toc-collapse-normal: #525252;
+    --color-toc-collapse-hover: #6a6a6a;
+    --color-toc-highlight: #fefefe7e;
+    --color-toc-collapse-button: #00000080;
+
+    /* Content - Settings */
+    --color-settings-bg: var(--color-toc-bg);
+    --color-settings-input-bg: #3b3b3b;
+    --color-settings-input-font: #d1d1d1;
+    /* !! */
+    --color-settings-check-on: #aeaeae;
+    --color-settings-check-off: #888888;
+
+    /* ::: dimensioning*/
+    --dim-padding: 0.5em;
+    --dim-border-radius: 0.15em;
+    --dim-file-border: 0.6em;
+    --dim-toc-width: 16em;
+    --dim-toc-collapse-width: 1.5em;
+    --dim-toc-collapse-border: 0.5em;
+}
+
+
+/* - - - - - - - - - - - - - - - - - - - - -
+    Basic Element
+ - - - - - - - - - - - - - - - - - - - - - - */
+
+* {
+    padding: 0em;
+    margin: 0em;
+}
+
+body {
+    background-color: var(--color-content-bg);
+    color: var(--color-content-font);
+    font-family: var(--font-main);
+    white-space: nowrap;
+
+}
+
+pre {
+    line-height: 1.5em;
+}
+
+#content ul:first-child {
+    width: 100%;
+}
+
+ul {
+    list-style-type: none;
+}
+
+ul ul {
+
+    padding-left: 1em;
+
+}
+
+a {
+    
+    color: inherit;
+    text-decoration: none;
+
+    cursor: pointer;
+    transition-duration: var(--animation-speed);
+}
+
+a:hover {
+    transition-duration: var(--animation-speed);
+}
+
+/* - - - - - - - - - - - - - - - - - - - - -
+    Page Layout
+ - - - - - - - - - - - - - - - - - - - - - - */
+
+/* Page Wrapper */
+#grid-wrapper {
+
+    display: grid;
+    grid-template-rows: auto 1fr;
+    grid-template-columns: var(--dim-toc-width) 1fr;
+    grid-template-areas:
+        "sidebar top-bar"
+        "sidebar content";
+    height: 100vh;
+
+}
+
+/* Page Wrapper - Collapsed Sidebar */
+#grid-wrapper.collapsed {
+
+    grid-template-columns: var(--dim-toc-collapse-width) 1fr;
+
+}
+
+
+/* Top Bar */
+#settings-bar {
+    background-color: var(--color-settings-bg);
+
+    grid-area: top-bar;
+    padding: var(--dim-padding);
+}
+
+#settings-bar-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: left;
+    justify-content: left;
+
+}
+
+.settings-bar-element {
+    flex: 0 0 auto;
+}
+
+
+
+/* List of Entries */
+#content {
+    background-color: var(--color-content-bg);
+    color: var(--color-content-font);
+    font-family: "Calibri";
+    white-space: nowrap;
+
+    grid-area: content;
+    padding: 0;
+    padding-bottom: 10em;
+
+    overflow: auto;
+
+
+
+}
+
+/* Sidebar - Table of Contents */
+#sidebar {
+    background-color: var(--color-toc-bg);
+    
+    grid-area: sidebar;
+
+    padding: 0;
+    padding-right: var(padding);
+
+    overflow-y: auto;
+    overflow-x: hidden;
+
+}
+
+/* Collapsed sidebar */
+.collapsed #sidebar {
+    overflow: hidden;
+}
+
+/* Grid Wrapper (Collapse Button | TOC) */
+#sidebar-wrapper {
+    display: grid;
+    grid-template-rows: auto;
+    grid-template-columns: var(--dim-toc-collapse-width) 1fr;
+    grid-template-areas:
+        "sb-collapse sb-toc";
+    width: 100%;
+    height: 100%;
+
+}
+
+
+/* Collapse Button Wrapper */
+#sidebar-collapse {
+    grid-area: sb-collapse;
+}
+
+/* TOC Wrapper */
+#table-of-contents {
+    grid-area: sb-toc;
+
+}
+
+/* List containing TOC entries */
+#table-of-contents-list {
+    max-height: 100%;
+}
+
+
+#table-of-contents-list a {
+    color: var(--color-toc-font);
+    width: 100%;
+    display: inline-block;
+}
+
+#table-of-contents-list a:hover {
+    color: var(--color-toc-font-hover) !important;
+
+}
+
+#table-of-contents-list .highlight {
+    border-left: 0.25em solid var(--color-toc-highlight);
+    color: var(--color-toc-font-center);
+    background-color: var(--color-toc-bg-center);
+}
+
+#table-of-contents-list a.highlight {
+    padding-left: 1em;
+}
+
+#table-of-contents-list .table-of-contents-file-reference a {
+    color: var(--color-toc-font-file);
+    border-top: 0.1em solid var(--color-toc-divider);
+    background-color: var(--color-toc-file-bg);
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    width: 100%;
+    display: block;
+
+}
+
+
+/* - - - - - - - - - - - - - - - - - - - - -
+    Entries
+ - - - - - - - - - - - - - - - - - - - - - - */
+
+/* YAML File */
+.file-reference {
+    
+    margin-top: 2em;
+    margin-bottom: 0.5em;
+    
+    padding: 0.5em;
+    
+    border-top: var(--dim-file-border) solid var(--color-content-file-border);
+    
+    color: var(--color-content-file-font);
+    
+    font-size: 1.5em;
+    
+    background-color: var(--color-content-file-bg);
+
+
+}
+
+.file-reference.first-file-entry {
+    margin-top: 0;
+}
+
+#content>ul{
+    display:inline-block;
+}
+
+
+
+/* YAML Section */
+.section {
+    color: var(--color-content-header-font);
+
+}
+
+
+/* Section Line Wrapper */
+.section>.line-wrapper {
+    font-weight: bold;
+    
+    margin-bottom: 0.2em;
+    
+    background-color: var(--color-content-header-shadow);
+}
+
+.value-only {}
+
+
+/* Root-Level Line-Wrapper */
+.section.level-0>.line-wrapper {
+    
+    background: var(--color-content-root-shadow);
+    
+    font-size: 1.1em;
+    font-weight: normal;
+    
+    border: none !important;
+
+}
+
+/* Root-Level Line-Wrapper Entry     */
+.section.level-0>.line-wrapper .entry-attribute {
+    color: var(--color-content-root-font);
+    
+    text-shadow: 0.1em 0.1em #000000A0;
+}
+
+/* Entry of a YAML Section */
+.entry {
+    color: var(--color-content-font);
+    
+    font-weight: normal;
+}
+
+/* Line Wrapper - DIV Container of single Entry */
+.line-wrapper {
+    transition-duration: var(--animation-speed);
+    
+    display: block;
+    
+    height:100%;
+
+    cursor: pointer;
+    padding-bottom: 0.15em;
+    
+
+}
+
+/* Line Wrapper - Hover */
+.line-wrapper:hover {
+    transition-duration: var(--animation-speed);
+    background-color: var(--color-content-header-hover) !important;
+}
+
+.value-only .line-wrapper:hover {
+    cursor:default;
+}
+
+.line-wrapper.file-reference:hover {
+    cursor:default;
+}
+
+.section.level-0>.line-wrapper:hover {
+    transition-duration: var(--animation-speed);
+    background-color: var(--color-content-root-hover) !important;
+
+}
+
+/* Alternating Section Background */
+.section .section:nth-child(2n)>.line-wrapper {
+    background-color: var(--color-content-header-shadow-alt);
+}
+
+
+/* Alternating Entrry Background */
+li.section li.entry:nth-child(2n) {
+    background: var(--color-content-bg-alt);
+}
+
+/* Inner Section Padding */
+.section .section{
+    padding-top:0.2em;
+}
+
+/* Last Section Entry Padding */
+.section li:last-child .line-wrapper{
+    padding-bottom:0.5em;    
+}
+
+/* Line Spacing */
+.line-wrapper{
+    padding-top:0.05em;
+    padding-bottom:0.2em;
+}
+
+
+/* Entry Attribute - [attribute]:value */
+.entry-attribute {}
+
+/* Entry Value - attribute:[value] */
+.entry-value {
+    color: var(--color-content-value-font);
+    margin-left: 0.2em;
+}
+
+
+
+
+/* - - - - - - - - - - - - - - - - - - - - -
+    Comments
+ - - - - - - - - - - - - - - - - - - - - - - */
+
+/* General Comment  */
+.comment {
+    color: var(--color-content-comment-font);
+}
+
+
+/* Inline-Comment  */
+.comment-inline {
+    font-style: italic;
+    font-weight: normal;
+    margin-left: 0.5em;
+    padding: 0 0.25em 0 0.25em;
+    background-color: var(--color-content-comment-inline-bg);
+}
+
+
+/* Comment Block */
+.comment-block {
+    
+    display: inline-block;
+    
+    padding: 0.5em;
+    
+    margin: 0.5em 0 0.5em 0;
+    
+    background-color: var(--color-content-comment-block-bg);
+    border-radius: var(--dim-border-radius);
+}
+
+/* Comment Block - Paragraph */
+.comment-block p{
+    padding-bottom: 0.5em;
+}
+
+/* Comment Block - Paragraph (first and last one) */
+.comment-block p:first-child, .comment-block p:last-child{
+    padding-top: 0;
+    padding-bottom: 0em;
+}
+
+/* Comment Block Entries */
+.comment-block .comment {
+    color: var(--color-content-comment-block-font);
+}
+
+
+/* Code Block */
+.code-block {
+    display: inline-block;
+
+    padding: 0.5em;
+    margin: 0.5em 0 0.5em 0;
+
+    border: 0.1em solid #0000008f;
+
+    background-color: var(--color-content-code-bg);
+    border-radius: var(--dim-border-radius);
+
+    box-shadow: 0.2em 0.2em #00000020;
+}
+
+/* Code Block Entries */
+.code-block .comment {
+    font-family: var(--font-code);
+    font-size: 0.8em;
+
+    color: var(--color-content-code-font);
+}
+
+/* Example Block */
+.example-block {
+    display: inline-block;
+
+    background-color: var(--color-content-example-bg);
+}
+
+/* Example Block Entries */
+.code-block.example .comment {
+    color: var(--color-content-example-font);
+}
+
+/* Example Block Header */
+.example-block-header {
+    font-size: 0.9em;
+    font-style: italic;
+
+    margin-left: 0.5em;
+    margin-bottom: 0.2em;
+
+    color: var(--color-content-example-header-font)
+}
+
+/* - - - - - - - - - - - - - - - - - - - - -
+    Symbols
+ - - - - - - - - - - - - - - - - - - - - - - */
+
+.symbol-smiley:after {
+    content: "\1F642";
+}
+
+.symbol-arrow-left:after {
+    content: "\2190";
+}
+
+.symbol-arrow-right:after {
+    content: "\2192";
+}
+
+.symbol-arrow-left-right:after {
+    content: "\2194";
+}
+
+.symbol-arrow-up:after {
+    content: "\2191";
+}
+
+.symbol-arrow-down:after {
+    content: "\2193";
+}
+
+.symbol-result:after {
+    content: "===";
+}
+
+
+/* - - - - - - - - - - - - - - - - - - - - -
+    String Formatting
+ - - - - - - - - - - - - - - - - - - - - - - */
+
+.string-warning::before {
+    content: '\25C6\00a0';
+}
+
+.string-warning {
+    color: var(--color-content-comment-warning);
+    font-weight: bold
+}
+
+.string-hint::before {
+    content: "\27A4\00a0";
+
+}
+
+.string-hint {
+    color: var(--color-content-comment-hint);
+
+}
+
+.string-hint,
+.string-warning {
+    display: inline-block;
+
+    padding-left: 1em;
+    padding-top: 0.5em;
+}
+
+.string-syntax {
+    color: var(--color-content-font-syntax);
+    font-weight: bold;
+}
+
+.string-quote::before,
+.string-quote::after {
+    content: '"';
+}
+
+.string-quote {
+    color: var(--color-content-comment-quote);
+    font-style: italic;
+}
+
+
+.string-header {
+    
+    display: inline-block;
+    
+    margin-bottom: 0.5em;
+    
+    font-weight: bold;
+    font-size: 1.2em;
+    
+    color: var(--color-content-comment-header);
+
+}
+
+.font-bold {
+    font-weight: bold;
+}
+
+.font-italic {
+    font-style: italic;
+}
+
+.font-underline {
+    text-decoration: underline;
+}
+
+.font-strike {
+    text-decoration: line-through;
+}
+
+
+.comment-type, .comment-format {
+    padding-left:0.25em;
+    padding-right:0.25em;
+}
+
+.comment-type {
+    color: var(--color-content-comment-type);
+}
+
+.comment-format {
+    color: var(--color-content-comment-format);
+}
+
+.comment-appendix {
+    color: var(--color-content-comment-appendix);
+    padding-left: 0.5em;
+}
+
+
+/* - - - - - - - - - - - - - - - - - - - - -
+    Interactive Elements
+ - - - - - - - - - - - - - - - - - - - - - - */
+
+
+input[type='text'] {
+    background-color: var(--color-settings-input-bg);
+    color: var(--color-settings-input-font);
+
+    font-size: 0.9em;
+    padding: 0.2em;
+    border: none;
+    margin-left: 1em;
+
+}
+
+#input-filter {
+    width: 100%;
+}
+
+#input-filter-wrapper {
+
+    flex: 1 0 0;
+    min-width: 3em;
+    padding-right: 1.25em;
+
+}
+
+input:focus {
+    outline: none;
+}
+
+/* Clickable Sidebar-Collapse-Bar */
+#sidebar-collapse-button {
+    transition-duration: var(--animation-speed);
+    background-color: var(--color-toc-collapse-normal);
+    
+    padding: 0em;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    
+    box-sizing: border-box;
+    
+    border: none;
+    border-right: var(--dim-toc-collapse-border) solid var(--color-toc-bg);
+
+}
+
+#sidebar-collapse-button:hover {
+    transition-duration: var(--animation-speed);
+    background-color: var(--color-toc-collapse-hover);
+}
+
+
+#sidebar-collapse-button-content {
+    background: none;
+    color: var(--color-toc-collapse-button);
+    font-size: 1em;
+    padding-left: 0.2em;
+    
+    position:absolute; 
+    top: calc(50% - 0.2em);
+
+}
+
+.collapsed #sidebar-collapse-button-content::after {
+    content: '\276F';
+}
+
+#sidebar-collapse-button-content::after {
+    content: '\276E';
+}
+
+input[type='checkbox'] {
+    width: 0;
+    visibility: hidden;
+    user-select: none;
+    transition-duration: var(--animation-speed);
+}
+
+label.settings-checkbox-label {
+    user-select: none;
+    color: var(--color-settings-check-off);
+    transition-duration: var(--animation-speed);
+}
+
+input[type='checkbox']:checked+label {
+    color: var(--color-settings-check-on)
+}
+
+input[type='checkbox']+label::before {
+    content: '\2610';
+    display: inline-block;
+    visibility: visible;
+}
+
+input[type='checkbox']:checked+label::before {
+    content: '\2611';
+    display: inline-block;
+    visibility: visible;
+    color: var(--color-settings-check-on)
+}
+
+
+/* - - - - - - - - - - - - - - - - - - - - -
+    Context Markers
+ - - - - - - - - - - - - - - - - - - - - - - */
+
+/* Elements to be hidden */
+.hidden {
+    visibility: hidden !important;
+    display: none !important;
+    margin: 0;
+    padding: 0;
+}
+
+/* Elements to be hidden all the time (overwriting filter) */
+.hidden-overwrite {
+    visibility: hidden !important;
+    display: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+
+/* Clipboard-Marker */
+.marked.line-wrapper {
+    width: 100%;
+    background-color: var(--color-content-marked-bg);
+}
+
+.entry-attribute::before {
+    transition-duration: var(--animation-speed);
+    color: var(--color-content-marked-font-marked);
+    
+    content: "\2764\00a0";
+    opacity: 0.0;
+    
+    text-shadow: 0.1em 0.1em #00000080;
+
+}
+
+.marked .entry-attribute::before {
+    transition-duration: var(--animation-speed);
+    color: var(--color-content-marked-font-marked);
+    
+    opacity: 0.8;
+
+}
