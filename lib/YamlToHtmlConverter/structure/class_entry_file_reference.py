@@ -42,7 +42,6 @@ class FileReference(Entry):
     # ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
 
     def get_html_line(self) -> str:
-
         line = ""
 
         class_first_entry = ""
@@ -52,7 +51,8 @@ class FileReference(Entry):
 
         # line-wrapping div container
         line += f'<div ' \
-                f'class="{lookup.html_class_line_wrapper} {lookup.html_class_level}-0 {lookup.html_class_file_reference} {class_first_entry}" ' \
+                f'class="{lookup.html_class_line_wrapper} {lookup.html_class_level}-0 ' \
+                f'{lookup.html_class_file_reference} {class_first_entry}" ' \
                 f'id="{self.file.file_name}{self.file.file_extension}" ' \
                 f'<span>{self.file.file_name}{self.file.file_extension}</span>' \
                 f'</div>'
