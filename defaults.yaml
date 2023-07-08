@@ -1301,6 +1301,11 @@ samples:
   # end of the sample name.
   # ??File extensions won't be affected.
   #
+  # .h.Split
+  # Symbol for separating the attributes.
+  # Can be a list of symbols when multiple ones occur.
+  # !!List of split symbols will use string-replace, use with caution
+  #
   # .h.Pattern
   # List that represents the attributes that can be read from a file.
   # The filename is split using the "split" symbol from the settings and
@@ -1341,7 +1346,7 @@ samples:
   location: Samples # relative path to the samples .t.string.t.
   include: "*" # include filter .t.string | [string, string, ...].t.
   exclude: "" # exclude filter .t.string | [string, string, ...].t.
-  split: _ # split symbol for grabbing file attributes .t.string.t.
+  split: _ # split symbol for grabbing file attributes .t.string | [string, string, ....t.
   edit:
     remove:
       string: null # removes one or multiple matching strings .t.string | [string, string, ...].t.

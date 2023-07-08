@@ -2,7 +2,7 @@
 <html>
 <head>
 <title>Defaults</title>
-<link rel="stylesheet" href="styles.css?v=20230708022820561355">
+<link rel="stylesheet" href="styles.css?v=20230708125218286548">
 </head>
 <body>
 <div id="grid-wrapper"><div id="settings-bar"> 
@@ -1837,25 +1837,32 @@ Warnings
 <pre class="comment"><span class="string-header">Include</span></pre>
 <pre class="comment">Allows only samples to be mapped that are recognized by the filter.</pre>
 <pre class="comment"><span class="string-hint">Wildcard "*" is allowed. Can be a list for multiple inclusions.</span></pre>
+<pre class="comment"><span class="string-hint">Editing won't affect the Filter</span></pre>
 </p><p>
 <pre class="comment"><span class="string-header">Exclude</span></pre>
 <pre class="comment">Skips samples that match the filter.</pre>
 <pre class="comment"><span class="string-hint">Wildcard "*" is allowed. Can be a list for multiple inclusions.</span></pre>
+<pre class="comment"><span class="string-hint">Editing won't affect the Filter</span></pre>
 </p><p>
-<pre class="comment"><span class="string-header">Remove</span></pre>
+<pre class="comment"><span class="string-header">Edit: Remove</span></pre>
 <pre class="comment">Allows the removal of a string or a certain number of characters</pre>
 <pre class="comment">from either the beginning or the end.</pre>
 <pre class="comment"><span class="string-hint">Removal is non-destructive and happens before any processing</span></pre>
-<pre class="comment"><span class="string-hint"> File extensions won't be affected.</span></pre>
+<pre class="comment"><span class="string-hint">File extensions won't be affected.</span></pre>
 </p><p>
-<pre class="comment"><span class="string-header">Replace</span></pre>
+<pre class="comment"><span class="string-header">Edit: Replace</span></pre>
 <pre class="comment">Allows string replacement before the sample is processed.</pre>
-<pre class="comment"><span class="string-hint"> File extensions won't be affected.</span></pre>
+<pre class="comment"><span class="string-hint">File extensions won't be affected.</span></pre>
 </p><p>
-<pre class="comment"><span class="string-header">Insert</span></pre>
+<pre class="comment"><span class="string-header">Edit: Insert</span></pre>
 <pre class="comment">Allows the insertion of strings at the beginning or the</pre>
 <pre class="comment">end of the sample name.</pre>
-<pre class="comment"><span class="string-hint"> File extensions won't be affected.</span></pre>
+<pre class="comment"><span class="string-hint">File extensions won't be affected.</span></pre>
+</p><p>
+<pre class="comment"><span class="string-header">Split</span></pre>
+<pre class="comment">Symbol for separating the attributes.</pre>
+<pre class="comment">Can be a list of symbols when multiple ones occur.</pre>
+<pre class="comment"><span class="string-warning">List of split symbols will use string-replace, use with caution</span></pre>
 </p><p>
 <pre class="comment"><span class="string-header">Pattern</span></pre>
 <pre class="comment">List that represents the attributes that can be read from a file.</pre>
@@ -1901,31 +1908,35 @@ Warnings
 </li>
 <li class=" entry level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="entry-attribute ">  exclude:</span><span class="entry-value "> "" </span> <span class="comment comment-inline">exclude filter <span class="comment-type">string | [string, string, ...]</span></span></div>
 </li>
-<li class=" entry level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="entry-attribute ">  split:</span><span class="entry-value "> _ </span> <span class="comment comment-inline">split symbol for grabbing file attributes <span class="comment-type">string</span></span></div>
+<li class=" entry level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="entry-attribute ">  split:</span><span class="entry-value "> _ </span> <span class="comment comment-inline">split symbol for grabbing file attributes <span class="comment-type">string | [string, string, ...</span></span></div>
 </li>
-<li class="section level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="section entry-attribute">remove:</span></div>
+<li class="section level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="section entry-attribute">edit:</span></div>
 <ul class="level1">
-<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">    string:</span><span class="entry-value "> null </span> <span class="comment comment-inline">removes one or multiple matching strings <span class="comment-type">string | [string, string, ...]</span></span></div>
+<li class="section level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="section entry-attribute">remove:</span></div>
+<ul class="level2">
+<li class=" entry level-3"><div onclick="copyLine(event)" class="line-wrapper level-3" ><span class="entry-attribute ">      string:</span><span class="entry-value "> null </span> <span class="comment comment-inline">removes one or multiple matching strings <span class="comment-type">string | [string, string, ...]</span></span></div>
 </li>
-<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">    start:</span><span class="entry-value "> 0 </span> <span class="comment comment-inline">removes certain amount of letters from the beginning <span class="comment-type">int</span></span></div>
+<li class=" entry level-3"><div onclick="copyLine(event)" class="line-wrapper level-3" ><span class="entry-attribute ">      start:</span><span class="entry-value "> 0 </span> <span class="comment comment-inline">removes certain amount of letters from the beginning <span class="comment-type">int</span></span></div>
 </li>
-<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">    end:</span><span class="entry-value "> 0 </span> <span class="comment comment-inline">removes certain amount of letters from the end <span class="comment-type">int</span></span></div>
+<li class=" entry level-3"><div onclick="copyLine(event)" class="line-wrapper level-3" ><span class="entry-attribute ">      end:</span><span class="entry-value "> 0 </span> <span class="comment comment-inline">removes certain amount of letters from the end <span class="comment-type">int</span></span></div>
 </li>
 </ul>
 </li>
-<li class="section level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="section entry-attribute">replace:</span></div>
-<ul class="level1">
-<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">    original:</span><span class="entry-value "> "" </span> <span class="comment comment-inline">original string to replace <span class="comment-type">string</span></span></div>
+<li class="section level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="section entry-attribute">replace:</span></div>
+<ul class="level2">
+<li class=" entry level-3"><div onclick="copyLine(event)" class="line-wrapper level-3" ><span class="entry-attribute ">      original:</span><span class="entry-value "> </span> <span class="comment comment-inline">original string to replace <span class="comment-type">string</span></span></div>
 </li>
-<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">    new:</span><span class="entry-value "> "" </span> <span class="comment comment-inline">replacement string <span class="comment-type">string</span></span></div>
+<li class=" entry level-3"><div onclick="copyLine(event)" class="line-wrapper level-3" ><span class="entry-attribute ">      new:</span><span class="entry-value "> </span> <span class="comment comment-inline">replacement string <span class="comment-type">string</span></span></div>
 </li>
 </ul>
 </li>
-<li class="section level-1"><div onclick="copyLine(event)" class="line-wrapper level-1" ><span class="section entry-attribute">insert:</span></div>
-<ul class="level1">
-<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">    start:</span><span class="entry-value "> </span> <span class="comment comment-inline">string inserted at the beginning <span class="comment-type">string</span></span></div>
+<li class="section level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="section entry-attribute">insert:</span></div>
+<ul class="level2">
+<li class=" entry level-3"><div onclick="copyLine(event)" class="line-wrapper level-3" ><span class="entry-attribute ">      start:</span><span class="entry-value "> </span> <span class="comment comment-inline">string inserted at the beginning <span class="comment-type">string</span></span></div>
 </li>
-<li class=" entry level-2"><div onclick="copyLine(event)" class="line-wrapper level-2" ><span class="entry-attribute ">    end:</span><span class="entry-value "> </span> <span class="comment comment-inline">string inserted at the end <span class="comment-type">string</span></span></div>
+<li class=" entry level-3"><div onclick="copyLine(event)" class="line-wrapper level-3" ><span class="entry-attribute ">      end:</span><span class="entry-value "> </span> <span class="comment comment-inline">string inserted at the end <span class="comment-type">string</span></span></div>
+</li>
+</ul>
 </li>
 </ul>
 </li>

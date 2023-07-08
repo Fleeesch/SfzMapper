@@ -787,6 +787,21 @@ class Part(SfzStructure):
             if skip:
                 continue
 
+            # prepare filename if multiple split symbols are given
+            if type(self.map_data["samples"]["split"]) is list:
+
+                # get first split symbol
+                split_smb_first = self.map_data["samples"]["split"][0]
+
+                # go through split symbols
+                for s in self.map_data["samples"]["split"]:
+
+                    # replace split symbol with first split symbol
+                    filename_cut = filename_cut.replace(s, split_smb_first)
+
+                # replace split symbol list with first symbol
+                self.map_data["samples"]["split"] = split_smb_first
+
             # split filename into attributes
             data = filename_cut.split(self.map_data["samples"]["split"])
 
