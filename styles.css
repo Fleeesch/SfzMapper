@@ -3,7 +3,7 @@
  - - - - - - - - - - - - - - - - - - - - - - */
 
 :root {
-
+    
     /* ::: font */
     --font-main: "Calibri";
     --font-code: "Courier New";
@@ -24,7 +24,7 @@
     --color-content-file-bg: #00000040;
     --color-content-file-font: #d4a61d;
     --color-content-file-border: #fafafa20;
-
+    
     /* Content - Header */
     --color-content-header-font: #b2b0a4;
     --color-content-header-shadow: #00000050;
@@ -47,7 +47,7 @@
     --color-content-example-bg: var(--color-content-code-bg);
     --color-content-example-font: var(--color-content-code-font);
     --color-content-example-header-font: #ffffff59;
-
+    
     /* Content - Marker */
     --color-content-marked-bg: #f1545416;
     --color-content-marked-font-marked: #ed6666;
@@ -130,9 +130,9 @@ ul {
 }
 
 ul ul {
-
+    
     padding-left: 1em;
-
+    
 }
 
 a {
@@ -199,7 +199,6 @@ a:hover {
 #content {
     background-color: var(--color-content-bg);
     color: var(--color-content-font);
-    font-family: "Calibri";
     white-space: nowrap;
 
     grid-area: content;

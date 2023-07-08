@@ -676,6 +676,50 @@ class Part(SfzStructure):
             return False
 
     # ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+    #   Method : Transform Filename
+    # ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+
+    def transform_filename(self, filename):
+
+        settings_remove = self.map_data["samples"]["edit"]["remove"]
+        settings_replace = self.map_data["samples"]["edit"]["replace"]
+        settings_insert = self.map_data["samples"]["edit"]["insert"]
+
+        # remove characters from beginning
+        if settings_remove["start"]:
+            filename = filename[settings_remove["start"]:]
+
+        # remove characters from end
+        if settings_remove["end"]:
+            filename = filename[:-settings_remove["end"]]
+
+        # remove parts of string
+        if settings_remove["string"]:
+
+            # always transform to string list
+            if type(settings_remove["string"]) is not list:
+                settings_remove["string"] = [settings_remove["string"]]
+
+            # remove strings
+            for s in settings_remove["string"]:
+                filename = filename.replace(s, "")
+
+        # replace part of string
+        if settings_replace["original"] and settings_replace["new"]:
+            filename = filename.replace(settings_replace["original"], settings_replace["new"])
+
+        # insert text at start
+        if settings_insert["start"]:
+            filename = settings_insert["start"] + filename
+
+        # insert text at end
+        if settings_insert["end"]:
+            filename = filename + settings_insert["end"]
+
+        # return changed string
+        return filename
+
+    # ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
     #   Method : Map Samples
     # ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
 
@@ -712,6 +756,7 @@ class Part(SfzStructure):
 
             filepath_abs = smp_file.get_full_path()
             filename = smp_file.get_no_extension()
+            filename_cut = self.transform_filename(filename)
 
             # skip indicator for filter
             skip = False
@@ -743,7 +788,7 @@ class Part(SfzStructure):
                 continue
 
             # split filename into attributes
-            data = filename.split(self.map_data["samples"]["split"])
+            data = filename_cut.split(self.map_data["samples"]["split"])
 
             # get naming pattern
             pattern = self.map_data["samples"]["pattern"]

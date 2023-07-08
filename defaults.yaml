@@ -80,17 +80,17 @@ templates:
     # Level
 
     level: # .f.string list.f.
-      pattern a: ["1", "2"]
-      pattern b: ["01", "02"]
+      pattern a: [ "1", "2" ]
+      pattern b: [ "01", "02" ]
 
     # * * * * * * * * * * * * * * *
     # Tonal
 
     tonal: # .f.string list.f.
-      classic-h-sharp: [c, c#, d, d#, e, f, f#, g, g#, a, a#, h]
-      classic-b-sharp: [c, c#, d, d#, e, f, f#, g, g#, a, a#, b]
-      classic-h-b: [c, db, d, eb, e, f, gb, g, ab, a, bb, h]
-      classic-b-b: [c, db, d, eb, e, f, gb, g, ab, a, hb, b]
+      classic-h-sharp: [ c, c#, d, d#, e, f, f#, g, g#, a, a#, h ]
+      classic-b-sharp: [ c, c#, d, d#, e, f, f#, g, g#, a, a#, b ]
+      classic-h-b: [ c, db, d, eb, e, f, gb, g, ab, a, bb, h ]
+      classic-b-b: [ c, db, d, eb, e, f, gb, g, ab, a, hb, b ]
 
 # ======================================================================================
 #     SFZ
@@ -402,8 +402,8 @@ equalizers:
   Blank:
     dynamic: true
     bands:
-      - [0, 1, 2]
-      - [200, 20, 2]
+      - [ 0, 1, 2 ]
+      - [ 200, 20, 2 ]
 
 # * * * * * * * * * * * * * * *
 # Equalizers : Element
@@ -569,7 +569,7 @@ release envelopes:
   Normal: # name of release envelope .t.string.t.
     decay:
     points: # list of envelope points [double, double]
-      - [0, 1]
+      - [ 0, 1 ]
 
 # * * * * * * * * * * * * * * *
 # Release Envelope Element
@@ -1279,10 +1279,27 @@ samples:
   # .h.Include
   # Allows only samples to be mapped that are recognized by the filter.
   # ??Wildcard "*" is allowed. Can be a list for multiple inclusions.
+  # ??Editing won't affect the Filter
   #
   # .h.Exclude
   # Skips samples that match the filter.
   # ??Wildcard "*" is allowed. Can be a list for multiple inclusions.
+  # ??Editing won't affect the Filter
+  #
+  # .h.Edit: Remove
+  # Allows the removal of a string or a certain number of characters
+  # from either the beginning or the end.
+  # ??Removal is non-destructive and happens before any processing
+  # ??File extensions won't be affected.
+  #
+  # .h.Edit: Replace
+  # Allows string replacement before the sample is processed.
+  # ??File extensions won't be affected.
+  #
+  # .h.Edit: Insert
+  # Allows the insertion of strings at the beginning or the
+  # end of the sample name.
+  # ??File extensions won't be affected.
   #
   # .h.Pattern
   # List that represents the attributes that can be read from a file.
@@ -1325,7 +1342,18 @@ samples:
   include: "*" # include filter .t.string | [string, string, ...].t.
   exclude: "" # exclude filter .t.string | [string, string, ...].t.
   split: _ # split symbol for grabbing file attributes .t.string.t.
-  pattern: [name, note, level, roundrobin] # file attribute pattern .t.[string, string, ...].t.
+  edit:
+    remove:
+      string: null # removes one or multiple matching strings .t.string | [string, string, ...].t.
+      start: 0 # removes certain amount of letters from the beginning .t.int.t.
+      end: 0 # removes certain amount of letters from the end .t.int.t.
+    replace:
+      original: # original string to replace .t.string.t.
+      new: # replacement string .t.string.t.
+    insert:
+      start: # string inserted at the beginning .t.string.t.
+      end: # string inserted at the end .t.string.t.
+  pattern: [ name, note, level, roundrobin ] # file attribute pattern .t.[string, string, ...].t.
   mapping: # mapping settings .t.section.t.
     type: tonal # mapping type .t.string.t. .f.tonal, atonal.f.
     level: # mapping settings regarding levels .t.section.t.
