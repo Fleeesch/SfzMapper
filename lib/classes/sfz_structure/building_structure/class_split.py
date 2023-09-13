@@ -28,13 +28,14 @@ from ..helpers.sequence.types.class_sequence_hybrid import SequenceHybrid
 from ..helpers.sequence.types.class_sequence_linear import SequenceLinear
 from ..helpers.sequence.types.class_sequence_random import SequenceRandom
 
+
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 #   Class
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
 class Split(SfzStructure):
-    
+
     # ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
     #   Method : Create Split if New
     # ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
@@ -49,25 +50,25 @@ class Split(SfzStructure):
             if s.level == sound.level:
                 target_split = s
                 break
-        
+
         # No split exists ? Create one!
         if target_split is None:
-            
+
             # try creating a split
             try:
                 target_split = Split(zone, sound.level)
             except:
                 # generic error message
                 message.error("Something went wrong when creating the Split")
-                
+
             zone.splits.append(target_split)
 
-        # add sample to region
+        # add sample to split
         target_split.sounds.append(sound)
 
         # place sound in split
         sound.place_in_split(target_split)
-    
+
     # ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
     #   Constructor
     # ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
@@ -103,16 +104,16 @@ class Split(SfzStructure):
 
         # crossfade is controlled by velocity
         self.force_full_range = False
-        
+
         # load control source
         self.load_control_source()
-    
+
     # ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
     #   Method : Get SFZ Range
     # ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
 
     def get_sfz_range(self, prefix):
-       
+
         # return crossfade tag if available
         if self.crossfade:
             return str(prefix) + self.crossfade.tag_range
@@ -131,46 +132,46 @@ class Split(SfzStructure):
 
         # load crossfade control data
         data_ctrl = data["crossfade"]["control"]
-        
+
         # store crossfade types
         type = data["crossfade"]["type"]
         depth = data["crossfade"]["depth"]
         source = data_ctrl["source"]
-        
+
         # skip if there's no crossfading
         if not depth:
             return
-        
+
         # control type - CC
         if data_ctrl["type"] == "cc":
             self.crossfade = CrossfadeCC(type, depth, source)
 
             # crossfade uses no velocity
             self.force_full_range = True
-        
+
         # control type - Channel Aftertouch
         elif data_ctrl["type"] == "aftertouch":
             self.crossfade = CrossfadeCC(type, depth, lookup.CC_CHANNEL_AT)
-            
+
             # crossfade uses no velocity
             self.force_full_range = True
-        
+
         # control type - Control
         elif data_ctrl["type"] == "control":
             # pick control from instrument lookup table
             self.crossfade = CrossfadeCC(type, depth, self.instrument.controls[source].get_cc())
-            
+
             # crossfade uses no velocity
             self.force_full_range = True
-        
+
         # control type - Velocity
         else:
             self.crossfade = CrossfadeVelocity(type, depth)
-    
+
         # force full range if settings say so
         if data["full level"] == True:
             self.force_full_range = True
-    
+
     # ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
     #   Method : Create Sequence
     # ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
@@ -207,7 +208,7 @@ class Split(SfzStructure):
         # don't do any crossfading when there's only one sample
         if fades is None:
             return
-        
+
         # crossfade / curve transformation factors
         curve = self.zone.part.map_data["splits"]["curve"]
         cf_factor = self.zone.part.map_data["splits"]["crossfade"]["depth"]
@@ -229,7 +230,7 @@ class Split(SfzStructure):
         cf_low_end = pow(cf_low_end, curve)
         cf_high_start = pow(cf_high_start, curve)
         cf_high_end = pow(cf_high_end, curve)
-        
+
         # convert to 7-bit
         range_low = round(range_low * 127)
         range_high = round(range_high * 127)
@@ -237,7 +238,7 @@ class Split(SfzStructure):
         cf_low_end = round(cf_low_end * 127)
         cf_high_start = round(cf_high_start * 127)
         cf_high_end = round(cf_high_end * 127)
-        
+
         # correct potential overlap
         if cf_factor == 0 and range_low > 0:
             range_low += 1
@@ -249,7 +250,7 @@ class Split(SfzStructure):
         self.crossfade_low_end = cf_low_end
         self.crossfade_high_start = cf_high_start
         self.crossfade_high_end = cf_high_end
-        
+
         # disable crossfade if there's no range
         if self.crossfade_low_start == self.crossfade_low_end:
             self.crossfade_low_start = None

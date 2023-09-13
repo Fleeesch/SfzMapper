@@ -25,7 +25,6 @@ import math
 
 from lib.classes.sfz_structure.building_structure.class_generator import Generator
 
-
 from lib import message
 
 from lib import functions as func
@@ -40,13 +39,13 @@ from .class_zone import Zone
 
 from lib.classes.sfz_structure.group.class_group import Group
 
+
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 #   Class
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
 class Part(SfzStructure):
-
     # ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
     #   Static Variables
     # ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
@@ -59,22 +58,22 @@ class Part(SfzStructure):
 
     @staticmethod
     def create(instrument, name, map_data):
-        
+
         # create instance
         part = Part(instrument, name, map_data)
-        
+
         # store into lookup
         Part.lookup.append(part)
-        
+
         # store into builder lookup
         instrument.parts[name] = part
-        
+
         return part
-    
+
     # ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
     #   Constructor
     # ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
-    
+
     def __init__(self, instrument, name, map_data):
 
         # super constructor
@@ -130,7 +129,6 @@ class Part(SfzStructure):
 
         # load equalizer
         self.load_local_equalizer()
-
 
         # try mapping a generator first, continue with samples on fail
         try:
@@ -248,7 +246,6 @@ class Part(SfzStructure):
 
             # go trhough note range of zone
             for note in range(zone.note_low, zone.note_high + 1):
-
                 # create new zone
                 zone_new = Zone(self, note)
 
@@ -507,7 +504,7 @@ class Part(SfzStructure):
 
             # go through pattern, find a matching pair
             for idx, i in enumerate(pattern):
-                if input == i:
+                if input.lower() == i.lower():
                     level = idx
                     break
 
@@ -517,7 +514,7 @@ class Part(SfzStructure):
 
             # go through pattern, find a matching pair
             for idx, i in enumerate(pattern_ar):
-                if input == i:
+                if input.lower() == i.lower():
                     level = idx
                     break
 
@@ -544,7 +541,6 @@ class Part(SfzStructure):
         # ::: Mappping Type - Direct :::
 
         if mapping_type == "direct":
-
             # grab number directly
             note = note_octave
 
@@ -642,7 +638,6 @@ class Part(SfzStructure):
 
                             # go through part zones
                             for z in self.instrument.parts[p_name].zones:
-
                                 # readjust boundaries
                                 key_min = min(key_min, z.note_low)
                                 key_max = max(key_max, z.note_high)
@@ -723,6 +718,8 @@ class Part(SfzStructure):
     #   Method : Map Samples
     # ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
 
+    # Here's the big one that takes care of all the sample mapping
+
     def map_samples(self):
 
         # mapping type
@@ -765,22 +762,22 @@ class Part(SfzStructure):
 
             if isinstance(f_include, list):
                 for e in f_include:
-                    if not fnmatch.fnmatch(filename, e):
+                    if not fnmatch.fnmatch(filename.lower(), e.lower()):
                         skip = True
                         break
             else:
-                if not fnmatch.fnmatch(filename, f_include):
+                if not fnmatch.fnmatch(filename.lower(), f_include.lower()):
                     skip = True
 
             # ::: Exclusion :::
 
             if isinstance(f_exclude, list):
                 for e in f_exclude:
-                    if fnmatch.fnmatch(filename, e):
+                    if fnmatch.fnmatch(filename.lower(), e.lower()):
                         skip = True
                         break
             else:
-                if fnmatch.fnmatch(filename, f_exclude):
+                if fnmatch.fnmatch(filename.lower(), f_exclude.lower()):
                     skip = True
 
             # skip if filter is applied
@@ -795,7 +792,6 @@ class Part(SfzStructure):
 
                 # go through split symbols
                 for s in self.map_data["samples"]["split"]:
-
                     # replace split symbol with first split symbol
                     filename_cut = filename_cut.replace(s, split_smb_first)
 
@@ -832,8 +828,7 @@ class Part(SfzStructure):
                     name = i
                     # increment mapping index if name changes
                     # (ignore empty name, being the first name)
-                    if mapping_previous_name and mapping_previous_name != name:
-
+                    if mapping_previous_name.lower() and mapping_previous_name.lower() != name.lower():
                         # increment index, recalculate note
                         mapping_index += 1
                         note = mapping_start + mapping_step * mapping_index
@@ -849,7 +844,6 @@ class Part(SfzStructure):
                 # roundrobin
                 if pattern[idx] == "roundrobin":
                     roundrobin = func.filter_number(i)
-
                     continue
 
                 # mapping type needs to be tonal
@@ -881,7 +875,6 @@ class Part(SfzStructure):
 
         # create zones based on sound
         for idx, sound in enumerate(sounds):
-
             Zone.create(self, sound)
 
         # : : : : : : : : : : : : : : :
